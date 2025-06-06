@@ -1,5 +1,7 @@
 # Documentation
 
+* [Start Here →](./start-here.md)
+
 ## Usage
 
 * [Publishing Your Plugin](./publishing.md)
