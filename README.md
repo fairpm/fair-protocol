@@ -2,6 +2,8 @@
 
 This repository contains the specification for the FAIR protocol, as well as documentation for the FAIR system as a whole.
 
+**New to FAIR? [Start Here →](./docs/start-here.md)**
+
 * [Documentation](./docs/README.md)
 * [Specification](./specification.md)
 
