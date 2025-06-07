@@ -11,7 +11,7 @@ FAIR replaces the concept of a single centralized repository for packages with a
 
 At the heart of the FAIR protocol is the Decentralized ID, or "DID". Each package gets a DID which uniquely identifies the package, and which allows looking up which repository the package uses. DIDs are also associated with cryptographic signing keys, building security into the heart of the protocol.
 
-Packages are hosted on a repository which provides the metadata about the packge (such as name, description, icons, and screenshots) as well as the package assets themselves, such as zips. Clients (like WordPress) connect to repositories to fetch this data, check for new versions, and download updates or assets to install.
+Packages are hosted on a repository which provides the metadata about the package (such as name, description, icons, and screenshots) as well as the package assets themselves, such as zips. Clients (like WordPress) connect to repositories to fetch this data, check for new versions, and download updates or assets to install.
 
 Because the DID tells the client which repository to pull data from, no centralized service is necessary once a client knows which package DIDs it wants to install. This works just like the open web: in the same way that browsers interact directly with websites, clients interact directly with repositories.
 
