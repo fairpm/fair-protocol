@@ -700,6 +700,79 @@ If the `privacy` property is not specified, clients SHOULD block installation of
 Repository Documents may have links to other resources, using the [HAL specification][hal], as provided in the `_links` property.
 
 
+## Discovery Aggregator Protocol
+
+Discovery aggregators are services which index packages, and offer browsing, search, and other querying services across packages. They act effectively as search engines for the FAIR system.
+
+The discovery aggregator protocol provides a set of common APIs to provide for interopability between discovery aggregators.
+
+Discovery aggregators are identified by their root URL (for example, `https://discovery.example/`). The root URL may be at the base of a domain (i.e. `/`) or at a subdirectory (e.g. `/discovery/`).
+
+
+### Index Endpoint
+
+The index endpoint for a discovery aggregator is available at the root URL. This endpoint is a read endpoint, accepting HTTP GET requests. The response format for the index endpoint is the Discovery Index Document.
+
+The index endpoint indicates what operations the aggregator supports, such as extensions to this specification.
+
+Valid index documents MUST conform to the JSON-LD specification. When presented as a standalone document, the index document MUST include a `@context` entry. The `@context` entry MUST be either the JSON String `https://fair.pm/ns/discovery/v1` or a JSON Array where the first item is the JSON String `https://fair.pm/ns/discovery/v1`.
+
+The following properties are defined for the index document:
+
+| Property    | Required? | Constraints                                                         |
+| ----------- | --------- | ------------------------------------------------------------------- |
+| id          | yes       | A valid DID.                                                        |
+| type        | yes       | A string that conforms to the rules of [type](#property-type).      |
+| license     | yes       | A string that conforms to the rules of [license](#property-license) |
+| authors     | yes       | A list that conforms to the rules of [authors](#property-authors)   |
+| security    | yes       | A list that conforms to the rules of [security](#property-security) |
+| releases    | yes       | A list of [Releases](#release-document)                             |
+| slug        | no        | A string that conforms to the rules of [slug](#property-slug)       |
+| name        | no        | A string.                                                           |
+| description | no        | A string.                                                           |
+| keywords    | no        | A list of strings.                                                  |
+| sections    | no        | A map that conforms to the rules of [sections](#property-sections)  |
+| _links      | no        | [HAL links][hal], with [defined relationships](#links-metadata)     |
+
+The properties of the metadata document have the following semantic meanings and constraints.
+
+
+### Listing Endpoint
+
+The listing endpoint for a discovery aggregator is available at `{root}/packages` (e.g. `https://discovery.example/packages`).
+
+Aggregators MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
+
+The response format of the listing endpoint MUST be a JSON array, where each object in the array MUST be a Metadata Document.
+
+The endpoint has the following query string parameters:
+
+| Parameter   | Constraints                                                         |
+| ----------- | ------------------------------------------------------------------- |
+| page        | A number greater than or equal to 1.                                |
+
+The endpoint has the following defined headers:
+
+| Header Name       | Required? | Value Constraints                                            |
+| ----------------- | --------- | ------------------------------------------------------------ |
+| Link              | no        | [RFC8288 Section 3][rfc8288s3] Link header.                  |
+| X-FAIR-Total      | yes       | A number, indicating the total number of available packages. |
+| X-FAIR-TotalPages | yes       | A number, indicating the total number of available pages.    |
+
+The Link header SHOULD contain `next` and `prev` links for each page of the collection.
+
+[rfc8288s3]: https://datatracker.ietf.org/doc/html/rfc8288#section-3
+
+
+### Single Package Endpoint
+
+The single package endpoint for a discovery aggregator is available at `{root}/packages/:id`, where `:id` represents a package ID.
+
+Aggregators MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
+
+The response format of the single package endpoint MUST be the Metadata Document for the requested package.
+
+
 ## Caching
 
 Clients MAY choose to use an external cache of package data instead of fetching it directly from the repository. In particular, external caches may be used for artifacts such as the main installable package, to reduce bandwidth costs and latency.
