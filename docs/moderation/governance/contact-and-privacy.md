@@ -29,9 +29,9 @@ Private contact methods may include:
 
 This data must be accurate and monitored. Failure to respond to valid contact attempts may lead to delisting or defederation.
 
-## Data Privacy and GDPR Compliance
+## Data Privacy Compliance
 
-All submitted contact information must be handled in accordance with relevant data protection laws, including the General Data Protection Regulation (GDPR) where applicable.
+All submitted contact information must be handled in accordance with relevant data protection laws, including the General Data Protection Regulation (GDPR) and Cyber Resilience Act (CRA) where applicable.
 
 All Nodes and Aggregators must:
 

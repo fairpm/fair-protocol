@@ -116,6 +116,39 @@ This is why:
 
 FAIR provides a framework for decentralized distribution, but it does not absolve individual Node operators of their legal responsibilities. Neither the Linux Foundation nor FAIR itself is not a legal shield.
 
+## As a Node operator, what is my liability for the content hosted on my Node?
+
+This is a critical question, and understanding your responsibilities is key.
+
+**Legal Liability (Copyright, Illegal Content, etc.):**
+
+* **You, as the Node operator, are generally responsible and potentially liable for complying with all applicable laws in your jurisdiction regarding the content you host.** This includes, but is not limited to:
+    * **Copyright Law:** You are responsible for addressing copyright infringement claims (e.g., through DMCA takedown notices or similar legal processes in your region). Hosting copyrighted material without permission can lead to legal action against you.
+    * **Other Illegal Content:** Distributing content that is illegal in your jurisdiction (e.g., malware, incitement to violence, child exploitation material) can also result in severe legal consequences for you as the publisher.
+
+**FAIR's View on Accountability (Within the FAIR Ecosystem):**
+
+Within the FAIR protocol's framework, there's a distinction between direct liability for content *behavior* (e.g., a plugin malfunctioning or having a security flaw *after* installation) and accountability for the *systems and processes* around that content on your Node.
+
+* **Accountability for Systems, Signals, and Processes:**
+    * While FAIR's model encourages developers to be responsible for the code they write, **Node operators are held accountable by the FAIR community and governance for the systems, signals, and processes by which content is submitted, vetted (according to your Node's policies), displayed, and discovered on your Node.**
+    * This means you are accountable for:
+        * Implementing and enforcing your Node's submission and content guidelines.
+        * How you integrate with FAIR's moderation and labeling systems (e.g., applying labels, responding to threshold warnings).
+        * Ensuring transparency about your Node's operations and affiliations.
+        * Your processes for handling reported issues or takedown requests.
+        * Adhering to FAIR's integrity requirements (e.g., connecting to Federation Monitors).
+* **Behavior of Hosted Content:**
+    * FAIR's reporting and labeling systems are designed to help identify and flag problematic content *behavior* (like security vulnerabilities or spammy actions) after it's been distributed.
+    * If content hosted on your Node is found to be problematic, your Node may receive negative labels, and you would be expected to act on such information (e.g., by removing the content or working with the developer, according to your policies and FAIR guidelines). Persistent failure to manage problematic content responsibly can impact your Node's reputation and standing within the FAIR ecosystem.
+
+**In summary:**
+
+* **Real-world legal liability, especially for copyright and illegal content, rests with you, the Node operator.** It is crucial to understand and comply with the laws applicable to you.
+* **Within FAIR, your accountability focuses on maintaining a trustworthy and transparent Node environment** through your operational practices, adherence to FAIR principles, and responsible handling of content issues as they are identified.
+
+**Disclaimer:** This FAQ is for informational purposes only and does not constitute legal advice. Node operators should consult with a qualified legal professional to understand their specific legal obligations and risks.
+
 ## How does FAIR prevent "bad" Nodes or Aggregators from just suppressing reports or negative labels?
 
 FAIR's [Integrity and Transparency Requirements](./governance/integrity.md) are designed to combat this. Key mechanisms include:
