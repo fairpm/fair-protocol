@@ -7,6 +7,7 @@ This section outlines the minimum expectations for all federation members, inclu
 - Contact and privacy requirements
 - Integration with federation-wide moderation systems like Ozone
 - Compliance with data protection laws (e.g., GDPR)
+- Risk management
 
 All Nodes and Aggregators must adhere to these requirements to remain part of the FAIR ecosystem. Governance is not about central control — it’s about maintaining mutual trust, accountability, and safety across a distributed network.
 
@@ -16,5 +17,6 @@ All Nodes and Aggregators must adhere to these requirements to remain part of th
 - [Integrity and Transparency Requirements](./integrity.md)
 - [Vetting and Reporting](./vetting-and-reporting.md)
 - [Defederation and Removal Policy](./defederation.md)
+- [Risk Management](./risk-management.md)
 
 More documents may be added as the federation evolves to include appeals processes, escalation procedures, or delegated authority models.

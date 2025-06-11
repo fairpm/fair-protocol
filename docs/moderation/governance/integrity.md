@@ -51,7 +51,6 @@ Failure to adequately disclose such material affiliations and financial interest
 * The Node or Aggregator being flagged as "Lacking Transparency" by FAIR's official Aggregator or other community tools.
 * Persistent or egregious non-disclosure may result in a review for suspension or delisting from FAIR's official Aggregator and potential defederation warnings issued to the community.
 
-
 ## Signed and Auditable Logs
 
 All moderation reports must be stored in an append-only, tamper-evident system. Examples include:
