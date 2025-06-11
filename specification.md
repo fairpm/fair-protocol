@@ -9,7 +9,7 @@ This specification outlines the core FAIR protocol specification ("FAIR Core"). 
 
 - *aggregator* - Any server which aggregates or collects package data together.
 - *client* - An entity which requests packages.
-- *DID* - Decentralized ID, a universally-unique identifier specified by the W3C specification.
+- *DID* - Decentralized ID, a universally-unique identifier specified by [the W3C specification](https://www.w3.org/TR/did-1.0/).
 - *package* - Any installable software, consisting of an ID, metadata, and associated assets.
 - *package binary* - An asset such as a zip file containing the package's binary executable code.
 - *repository* - Any server which offers packages, following the Repository APIs.
