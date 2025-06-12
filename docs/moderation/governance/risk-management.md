@@ -6,6 +6,8 @@ This document presents a risk matrix that identifies potential threats to the FA
 
 ## Emerging Risks
 
+The following risks have been identified, and mitigation proposed.
+
 ### Content Provenance and Chain of Trust
 
 * **What’s Missing:** There’s no clear method for confirming whether a plugin/theme was actually created or approved by the claimed developer. This is especially a concern across multiple Nodes.

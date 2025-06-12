@@ -149,6 +149,41 @@ Within the FAIR protocol's framework, there's a distinction between direct liabi
 
 **Disclaimer:** This FAQ is for informational purposes only and does not constitute legal advice. Node operators should consult with a qualified legal professional to understand their specific legal obligations and risks.
 
+## Can I run a private Node or Aggregator that isn't publicly accessible for content? What rules still apply?
+
+Operating a "private" Node (e.g., for internal company use, a specific closed community, or for testing) or a private Aggregator (e.g., curating a specific set of private Nodes) is entirely permissible within the FAIR framework. You are not obligated to make your hosted content or aggregated listings universally public.
+
+However, even for private instances, certain FAIR participation requirements **still apply** to ensure the overall health, security, and administrative manageability of the federated network. These are primarily:
+
+1. **Contact Information Requirements:**
+    * You **must** still provide both **Public Contact** information (which might be the name of your organization or a designated public point of contact, even if the service itself is private) and, crucially, **Private Administrative Contact** details to FAIR.
+    * This is essential for FAIR (or other authorized entities) to reach you for critical administrative reasons, such as:
+        * Security advisories that might affect your instance.
+        * Reports of your Node/Aggregator potentially being involved in network abuse (even unintentionally).
+        * Coordination during federation-wide incidents.
+        * Verifying your Node/Aggregator's operational status if it interacts with any public FAIR services (e.g., if your private Node still reports to a public Federation Monitor, or if your private Aggregator wants to list *other* public Nodes).
+    * (See [Contact and Privacy Requirements](./governance/contact-and-privacy.md) for full details).
+
+2. **Basic Metadata Publication for Verification:**
+    * While your *content* can be private, your Node or Aggregator instance itself (identified by its DID or network address) may still need to publish some basic, non-sensitive metadata for verification and administrative purposes if it is to be recognized at any level by the FAIR network (e.g., if you want it to appear in a list of "known but private" instances for administrative oversight, or if it needs to interact with any FAIR system components).
+    * This metadata would typically include things like its operational status, supported FAIR API versions, and its declared operator identity (DID), but not the private content itself. This allows for basic health checks and ensures the instance can be properly identified within administrative tools.
+
+3. **Adherence to FAIR Code of Conduct:**
+    * In any interactions your representatives have with the broader FAIR community, FAIR working groups, or official FAIR channels, adherence to the [FAIR Code of Conduct](./governance/guidelines.md#2-compliance-with-the-fair-code-of-conduct) is still expected.
+
+**Why these rules apply to private instances:**
+
+* **Federation Integrity:** Even private instances can (intentionally or unintentionally) impact the network if they are misconfigured or compromised. Being able to contact an operator is key.
+* **Security Coordination:** If a vulnerability is discovered that affects the software your private Node/Aggregator runs, FAIR needs to be able to notify you.
+* **Accountability:** Ensures that all entities identifiable within the FAIR operational space can be traced to a responsible party if issues arise.
+
+**What might *not* apply (or apply differently):**
+
+* Public content licensing rules (like GPLv2 compatibility for WordPress plugins) might not be relevant if your content is strictly private and not intended for distribution within those public ecosystems.
+* Requirements for public disclosure of affiliations or paid listings might be less relevant if your service is entirely internal and not offering services to the public.
+
+The core principle is that participation in the FAIR network, even in a private capacity, comes with a baseline expectation of contactability and identifiability for essential administrative and security purposes.
+
 ## How does FAIR prevent "bad" Nodes or Aggregators from just suppressing reports or negative labels?
 
 FAIR's [Integrity and Transparency Requirements](./governance/integrity.md) are designed to combat this. Key mechanisms include:
