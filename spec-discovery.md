@@ -186,3 +186,12 @@ The single package endpoint for a discovery aggregator is available at `{root}/p
 Aggregators MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
 
 The response format of the single package endpoint MUST be the Metadata Document for the requested package.
+
+
+### Reports Endpoint
+
+The reports endpoint for a discovery aggregator is available at `{root}/report`. This endpoint is a write endpoint, accepting HTTP POST requests. The response format for the index endpoint is the Report Response Document.
+
+Aggregators MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
+
+todo: specify details
