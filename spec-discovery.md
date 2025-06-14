@@ -43,16 +43,26 @@ The FAIR system focusses on three key flows:
 
 #### Discovery
 
-...
+When a user does not know which specific package they want to install, they need to discover packages meeting their criteria.
+
+Clients interact with discovery aggregators to find packages meeting user-provided criteria.
+
+Once the user has selected a particular package, the package DID is used for the Installation flow described in [FAIR Core][].
+
+Clients may offer users a choice of aggregator, allowing for user choice in which packages are available or how discovery takes place. The discovery protocol standardizes several APIs to permit this ability for clients to swap aggregators.
 
 
-## Discovery Aggregator Protocol
+## Discovery Protocol
 
 Discovery aggregators are services which index packages, and offer browsing, search, and other querying services across packages. They act effectively as search engines for the FAIR system.
 
-The discovery protocol provides a set of common APIs to provide for interoperability between discovery aggregators.
+The discovery protocol provides a set of common APIs to provide for interoperability between discovery aggregators. This allows clients to switch between discovery aggregators, providing user choice.
+
+The discovery protocol is built on top of [HTTP][http], and the use of any other protocol is out of scope. Unless otherwise specified, all HTTP protocols MUST use Transport Layer Security (TLS). The discovery protocol follows [REST semantics][rfc9205] where possible.
 
 Discovery aggregators are identified by their root URL (for example, `https://discovery.example/`). The root URL may be at the base of a domain (i.e. `/`) or at a subdirectory (e.g. `/discovery/`).
+
+[rfc9205]: https://datatracker.ietf.org/doc/html/rfc9205
 
 
 ### Index Endpoint
@@ -65,22 +75,81 @@ Valid index documents MUST conform to the JSON-LD specification. When presented 
 
 The following properties are defined for the index document:
 
-| Property    | Required? | Constraints                                                         |
-| ----------- | --------- | ------------------------------------------------------------------- |
-| id          | yes       | A valid DID.                                                        |
-| type        | yes       | A string that conforms to the rules of [type](#property-type).      |
-| license     | yes       | A string that conforms to the rules of [license](#property-license) |
-| authors     | yes       | A list that conforms to the rules of [authors](#property-authors)   |
-| security    | yes       | A list that conforms to the rules of [security](#property-security) |
-| releases    | yes       | A list of [Releases](#release-document)                             |
-| slug        | no        | A string that conforms to the rules of [slug](#property-slug)       |
-| name        | no        | A string.                                                           |
-| description | no        | A string.                                                           |
-| keywords    | no        | A list of strings.                                                  |
-| sections    | no        | A map that conforms to the rules of [sections](#property-sections)  |
-| _links      | no        | [HAL links][hal], with [defined relationships](#links-metadata)     |
+| Property    | Required? | Constraints                                                            |
+| ----------- | --------- | ---------------------------------------------------------------------- |
+| contacts    | yes       | An object that conforms to the rules of [contacts](#property-contacts) |
+| policies    | yes       | An object that conforms to the rules of [policies](#property-policies) |
+| name        | no        | A string.                                                              |
+| _links      | no        | [HAL links][hal], with [defined relationships](#links-index)           |
 
-The properties of the metadata document have the following semantic meanings and constraints.
+The properties of the index document have the following semantic meanings and constraints.
+
+
+### contacts
+
+<a name="property-contacts"></a>
+
+The `contacts` property specifies the contacts for the repository. This property MUST be specified.
+
+This property MUST be a valid map, represented as a JSON Object.
+
+The following keys and their semantic meaning are specified:
+
+* `abuse` - An abuse contact. Used for abuse notifications.
+* `security` - A security reporting contact. Used for security notifications.
+* `technical` - A technical contact. Used for protocol update notifications or other technical issues.
+
+Other keys MAY be specified, and their meaning MAY be defined within extensions to this specification.
+
+The values of the map MUST be objects, with the following properties:
+
+* `name` (optional) - A string. Human-readable name for the contact, such as a person or team name.
+* `url` (optional) - A URL string. Must contain a contact form or similar mechanism to send information.
+* `email` (optional) - An email address string.
+
+Vendors MUST specify at least one of `url` or `email` per contact.
+
+Clients SHOULD refuse to use an aggregator provided by a user without valid contacts. Clients SHOULD display links to the contacts to users.
+
+Aggregators are expected to provide valid contacts. If valid contacts are not provided, or timely responses are not provided, clients and other ecosystem entities MAY refuse to accept federation and MAY block access to the aggregator entirely.
+
+
+### policies
+
+<a name="property-policies"></a>
+
+The `policies` property specifies the policies for the repository. This property MUST be specified.
+
+This property MUST be a valid map, represented as a JSON Object.
+
+The following keys and their semantic meaning are specified:
+
+* `abuse` - The abuse policy for the aggregator.
+* `privacy` - The privacy policy for the aggregator.
+
+The values of the map MUST be URL strings.
+
+Clients SHOULD refuse to use an aggregator provided by a user without valid policies.
+
+Clients SHOULD display links to the policy documents to users.
+
+Aggregators are expected to provide valid policies. If valid policies are not provided, clients and other ecosystem entities MAY refuse to accept federation and MAY block access to the aggregator entirely.
+
+
+### name
+
+The `name` property specifies a human-readable name for the aggregator, which the client may display on an information screen.
+
+The name MUST be a string.
+
+
+### _links
+
+<a name="links-index"></a>
+
+The index endpoint may have links to other resources, using the [HAL specification][hal], as provided in the `_links` property.
+
+If present, an `alternate` link with a content-type matching `text/html` indicates a human-readable HTML page for the aggregator.
 
 
 ### Listing Endpoint
