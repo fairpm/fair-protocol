@@ -1,5 +1,11 @@
 # Frequently Asked Questions
 
+## Is there a default Aggregator and/or Repository?
+
+The default Repository is run using AspirePress and is a mirror of WordPress.org's repositories.
+
+The default Aggregator is run and managed by FAIR and lists all of the known and vetted Repositories. In the early days, this is by invitation only. As the federated system grows, we will open up for submissions.
+
 ## What's the difference between a Repository and an Aggregator?
 
 Think of it this way:

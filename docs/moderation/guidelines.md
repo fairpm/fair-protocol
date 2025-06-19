@@ -63,9 +63,12 @@ To ensure accountability and open communication, all Repositories and Aggregator
 
 To ensure seamless operation and compatibility within the federation:
 
-* **Repositories must** implement the current FAIR federated API specification (covering search, metadata, download links, and reporting endpoints).
-* **Aggregators must** accurately reflect Repository metadata, including any escalation notices (labels) and current listing status.
-* Both Repositories and Aggregators **must** support the standardized `/reports` endpoint and associated review/report escalation workflows as defined by FAIR.
+**Repositories and Aggregators must**
+* implement the current FAIR federated API specification (covering search, metadata, download links, and reporting endpoints) within 30 days of release;
+* support the standardized `/reports` endpoint and associated review/report escalation workflows as defined by FAIR;
+
+In addition, **Aggregators must**
+* accurately reflect Repository metadata, including any escalation notices (labels) and current listing status;
 
 ## 6. Report and Removal Transparency
 
@@ -86,7 +89,7 @@ Repository operators are _not_ liable for the behavior of code they host.
     * **Security:** Repository operators are expected to monitor for and respond to known security issues or malicious submissions within the content they host.
     * **Accuracy:** Metadata, versioning, and licensing information provided by the Repository for its hosted content **must** accurately reflect the actual content being served.
     * **Removal Compliance:** If content is legitimately flagged or subject to a valid takedown request (e.g., for abuse, licensing violation, copyright infringement, or legal claim), the Repository operator **must** act promptly to address the issue or remove the content as appropriate.
-    * **Traceability & Cooperation:** Repositories **must** maintain reasonable audit logs of submissions and publishing events and **must** cooperate with FAIR during authorized investigations.
+    * **Traceability & Cooperation:** Repositories **must** maintain reasonable audit logs of submissions and publishing events and **must** cooperate with FAIR during authorized investigations. Logs must be retained for 120 days minimum.
 
 Claims such as “a user uploaded this” or “we just mirrored it without review” do not absolve a Repository operator of their responsibilities for the content they choose to distribute within the FAIR federation. Repository operators who fail to take adequate ownership of their distributed content may be subject to warnings, negative labeling, review by FAIR working groups, or delisting/defederation actions.
 
