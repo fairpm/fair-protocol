@@ -22,7 +22,7 @@ In centralized systems, abuse reports and content reviews flow to a single autho
 The goal of moderation within FAIR is not to limit expression but to build trust. We aim to create an ecosystem where users, developers, and directory operators can act independently yet responsibly. Our moderation tools and systems are intended to provide federation participants with the ability to:
 
 - Flag known malicious or harmful content.
-- Label Repositories, plugins, themes, and aggregators with meaningful trust signals (e.g., “verified,” “deprecated,” “security-risk”).
+- Label Repositories, packages or other content, and aggregators with meaningful trust signals (e.g., “verified,” “deprecated,” “security-risk”).
 - Enable Aggregators to apply transparent and consistent filtering based on community-defined criteria.
 - Offer users control over the moderation standards they subscribe to and follow.
 
