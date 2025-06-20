@@ -9,7 +9,7 @@ This section outlines the minimum expectations for all federation members, inclu
 - Compliance with data protection laws (e.g., GDPR)
 - Risk management
 
-All Nodes and Aggregators must adhere to these requirements to remain part of the FAIR ecosystem. Governance is not about central control — it’s about maintaining mutual trust, accountability, and safety across a distributed network.
+All Repositories and Aggregators must adhere to these requirements to remain part of the FAIR ecosystem. Governance is not about central control — it’s about maintaining mutual trust, accountability, and safety across a distributed network.
 
 ## Topics
 
