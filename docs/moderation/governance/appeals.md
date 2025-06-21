@@ -15,7 +15,7 @@ The appeals process serves several key functions:
 
 This appeals process applies specifically to:
 
-- **Removal or Suspension from FAIR-Operated Services:** Decisions to dwfederate, delist, or suspend a Repository or Aggregator from a directory or service directly operated by FAIR.
+- **Removal or Suspension from FAIR-Operated Services:** Decisions to defederate, delist, or suspend a Repository or Aggregator from a directory or service directly operated by FAIR.
 - **Application of Critical FAIR-Issued Labels:** Challenges to specific, high-impact moderation labels (e.g., `fair:threshold:suspended75`, `package:malicious` if disputed) applied by the official FAIR Labeler Service, particularly if these labels result in widespread negative consequences across the ecosystem.
 - **Decisions made by FAIR Working Groups:** Formal findings or sanctions issued by a designated FAIR working group related to governance or moderation.
 
