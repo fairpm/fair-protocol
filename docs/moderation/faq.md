@@ -1,5 +1,12 @@
 # Frequently Asked Questions
 
+## Is there a default Aggregator and/or Repository?
+
+The default Repository is run using AspireCloud by [AspirePress](https://aspirepress.org/) and is a mirror of WordPress.org's repositories.
+
+The default Aggregator is run and managed by FAIR and lists all of the known and vetted Repositories. At present, this index is by invitation only. As the federated system grows, it will be opened for submissions. AspireCloud currently serves as the public index used by the FAIR and AspireUpdate plugins.
+
+
 ## What's the difference between a Repository and an Aggregator?
 
 Think of it this way:
@@ -194,7 +201,15 @@ FAIR's [Integrity and Transparency Requirements](./governance/integrity.md) are 
 * **Community Oversight:** Tools and public metrics feeds can help the community identify services that appear to be acting in bad faith.
 Failure to adhere to these integrity standards can lead to an entity being flagged, delisted from official FAIR services, or publicly noted as non-compliant.
 
-## Where can I get legal advice for operating my Repository or Aggregator?
+## What if I use an unofficial installer to access FAIR Repositories/Aggregators? Can FAIR still help protect me?
+
+FAIR cannot offer any assurance that a third-party installer can fully replace the FAIR installer, and it's checks and balances. We recommend you **ONLY** use the official FAIR or other FAIR-certified installer (e.g., WordPress plugin).
+
+The FAIR ecosystem provides a rich set of data and signals designed to enhance safety and trust. A well-designed third-party plugin *could* leverage these to help protect its users. However, **your level of protection when using a non-official plugin will depend entirely on that plugin's commitment to integrating and respecting FAIR's safety mechanisms.**
+
+The [official FAIR WordPress Plugin](./tools/wordpress-plugin.md) is specifically designed to deeply integrate these protective features and provide users with clear, actionable information based on FAIR's moderation and trust signals. If you are using another plugin, you might want to inquire with its developers about how (or if) it utilizes FAIR's safety protocols.
+
+## Where can I get legal advice for operating my Repository and/or Aggregator?
 
 Operating a Repository or Aggregator involves distributing software and data, which can have legal implications related to copyright, data privacy, terms of service, liability, and other areas. The specific laws and regulations can vary significantly depending on your geographic location, the location of your users, and the nature of the content you handle.
 
