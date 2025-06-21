@@ -63,9 +63,12 @@ To ensure accountability and open communication, all Repositories and Aggregator
 
 To ensure seamless operation and compatibility within the federation:
 
-* **Repositories must** implement the current FAIR federated API specification (covering search, metadata, download links, and reporting endpoints).
-* **Aggregators must** accurately reflect Repository metadata, including any escalation notices (labels) and current listing status.
-* Both Repositories and Aggregators **must** support the standardized `/reports` endpoint and associated review/report escalation workflows as defined by FAIR.
+**Repositories and Aggregators must**
+* implement the current FAIR federated API specification (covering search, metadata, download links, and reporting endpoints) within 30 days of release;
+* support the standardized `/reports` endpoint and associated review/report escalation workflows as defined by FAIR;
+
+In addition, **Aggregators must**
+* accurately reflect Repository metadata, including any escalation notices (labels) and current listing status;
 
 ## 6. Report and Removal Transparency
 

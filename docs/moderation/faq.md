@@ -6,7 +6,6 @@ The default Repository is run using AspireCloud by [AspirePress](https://aspirep
 
 The default Aggregator is run and managed by FAIR and lists all of the known and vetted Repositories. At present, this index is by invitation only. As the federated system grows, it will be opened for submissions. AspireCloud currently serves as the public index used by the FAIR and AspireUpdate plugins.
 
-
 ## What's the difference between a Repository and an Aggregator?
 
 Think of it this way:
