@@ -396,8 +396,8 @@ The following properties are defined for the release document:
 | version     | yes       | A string that conforms to the rules of [version](#property-version)  |
 | artifacts   | yes       | A map that conforms to the rules of [artifacts](#property-artifacts) |
 | provides    | no        | A map that conforms to the rules of [provides](#property-provides)   |
-| require     | no        | A map that conforms to the rules of [require](#property-require)     |
-| suggest     | no        | A map that conforms to the rules of [suggest](#property-suggest)     |
+| requires    | no        | A map that conforms to the rules of [requires](#property-requires)   |
+| suggests    | no        | A map that conforms to the rules of [suggests](#property-suggests)   |
 | auth        | no        | A map that conforms to the rules of [auth](#property-auth)           |
 | _links      | no        | [HAL links][hal], with [defined relationships](#links-release)       |
 
@@ -539,11 +539,11 @@ Clients SHOULD resolve the requirements of the package before completing install
 Environment requirements prefixed with `env:` are type-specific, and are specified by extensions to this specification. If a client does not recognise an environment requirement, it SHOULD treat the requirement as being unfulfilled, and SHOULD NOT install the package.
 
 
-### suggest
+### suggests
 
-<a name="property-suggest"></a>
+<a name="property-suggests"></a>
 
-The `suggest` property specifies packages that can be installed alongside the package being installed.
+The `suggests` property specifies packages that can be installed alongside the package being installed.
 
 This property matches the format of the [`requires` property](#property-requires).
 
