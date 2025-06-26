@@ -2,9 +2,9 @@
 
 ## Is there a default Aggregator and/or Repository?
 
-The default Repository is run using AspirePress and is a mirror of WordPress.org's repositories.
+The default Repository is run using AspireCloud by [AspirePress](https://aspirepress.org/) and is a mirror of WordPress.org's repositories.
 
-The default Aggregator is run and managed by FAIR and lists all of the known and vetted Repositories. In the early days, this is by invitation only. As the federated system grows, we will open up for submissions.
+The default Aggregator is run and managed by FAIR and lists all of the known and vetted Repositories. At present, this index is by invitation only. As the federated system grows, it will be opened for submissions. AspireCloud currently serves as the public index used by the FAIR and AspireUpdate plugins.
 
 ## What's the difference between a Repository and an Aggregator?
 
