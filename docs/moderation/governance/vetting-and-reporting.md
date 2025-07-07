@@ -54,7 +54,7 @@ Valid reports contribute toward a threshold system that escalates actions based 
     - Automated warning recorded and shown in system logs.
 - **50%:**
     - Warning displayed on all relevant listings.
-    - Reports forwarded to directory aggregators.
+    - Reports forwarded to directory Aggregators.
     - “Community Notice” badge shown.
 - **60%:**
     - “Community Notice” escalates to a visible Warning.
