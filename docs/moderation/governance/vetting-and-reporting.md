@@ -28,7 +28,7 @@ Each Repository and Aggregator must implement easily accessible reporting featur
     - "Report Repository"
     - "Report Aggregator"
 
-These reporting tools must be available from both listing and detail views for packages, Repositories, and Aggregators.
+These reporting tools must be available to the client from both listing and detail views for packages, Repositories, and Aggregators. For example, the WordPress theme or plugin installer (client) using FAIR should make this information visible to the end user, whether the user is browsing or searching plugins or themes, or reviewing those which are already installed.
 
 ## Reporting Controls (Eligibility and Safeguards)
 
@@ -72,7 +72,7 @@ Upon escalation, the FAIR working group will:
 
 - Investigate the reported item using community input, logs, and technical evaluation.
 - Contact Repository operators or maintainers for context and possible remediation.
-- Decide whether to delist, suspend, or reinstate content, Repositories, or Aggregators based on thier findings.
+- Decide whether to delist, suspend, or reinstate content, Repositories, or Aggregators based on their findings.
 
 This system balances openness with accountability, enabling community-led moderation without reverting to centralized control or bottlenecks.
 
