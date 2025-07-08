@@ -44,7 +44,7 @@ The following risks have been identified, and mitigation proposed. In most cases
 
 ### Accessibility and Internationalization
 
-* **Risk:** Packages may omit accessibility (a11y) or multilingual support in thier metadata, directories, or interfaces.
+* **Risk:** Packages may omit accessibility (a11y) or multilingual (i18n) support in their metadata, directories, or interfaces.
 * **Suggested Mitigation:**
   * WCAG-compliant admin/reporting interfaces (note: as legally required in many jurisdictions)
   * Support language tagging for package descriptions
