@@ -52,7 +52,7 @@ The following risks have been identified, and mitigation proposed. In most cases
 
 ### Federation Splits or Forks
 
-* **Risk:** Resilience of FAIR's trust model, review history, and directory state in the event that FAIR fracturing or fork.
+* **Risk:** Resilience of FAIR's trust model, review history, and directory state in the event that FAIR fractures or forks.
 * **Suggested Mitigation:**
   * Define soft-forking standards: shared content signing, mirrored moderation logs
   * Consider federation keys or voting structures to rebuild trust in new governance layers
