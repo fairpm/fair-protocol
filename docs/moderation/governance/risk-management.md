@@ -18,7 +18,7 @@ The following risks have been identified, and mitigation proposed. In most cases
 * **Risk:** With multiple Repositories potentially hosting forks, users may not know which version is original, official, or modified.
 * **Suggested Mitigation:** Standardize origin metadata. Each package should include:
   * `original_author`
-  * `Repository_origin`
+  * `repository_origin`
   * `is_fork_of` (if applicable)
   * `modifications_summary`
 * This can prevent accidental installs of altered software and increase trust in forks that are clear and transparent about their intent.
