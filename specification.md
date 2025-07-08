@@ -9,7 +9,7 @@ This specification outlines the core FAIR protocol specification ("FAIR Core"). 
 
 - *aggregator* - Any server which aggregates or collects package data together.
 - *client* - An entity which requests packages.
-- *DID* - Decentralized ID, a universally-unique identifier specified by the W3C specification.
+- *DID* - Decentralized ID, a universally-unique identifier specified by [the W3C specification](https://www.w3.org/TR/did-1.0/).
 - *package* - Any installable software, consisting of an ID, metadata, and associated assets.
 - *package binary* - An asset such as a zip file containing the package's binary executable code.
 - *repository* - Any server which offers packages, following the Repository APIs.
@@ -19,7 +19,7 @@ This specification outlines the core FAIR protocol specification ("FAIR Core"). 
 
 ## Introduction
 
-In a traditional package management system, a package manager client contacts a central repository to query which packages are available, to get information on each package and check for updats, and to download the package binaries themselves.
+In a traditional package management system, a package manager client contacts a central repository to query which packages are available, to get information on each package and check for updates, and to download the package binaries themselves.
 
 For large ecosystems, this central repository may host packages from many independent vendors.
 
@@ -31,7 +31,7 @@ This system has several problems and limitations:
 
 The FAIR Protocol addresses these issues by separating package identifiers, package repositories, and other services into a decentralized system.
 
-Each package in the FAIR system is uniquely identified by a [Decentralized Identifier (DID)][did]. The DID is used to identify the package, deduplicate any information about, and to fetch the DID Document which contains information such as the repository location and cryptographic signing keys. The DID acts as a permanent, globally-unique, host-independent identifier which vendors control.
+Each package in the FAIR system is uniquely identified by a [Decentralized Identifier (DID)][did]. The DID is used to identify the package, deduplicate any information about it, and to fetch the DID Document which contains information such as the repository location and cryptographic signing keys. The DID acts as a permanent, globally-unique, host-independent identifier which vendors control.
 
 Package vendors may choose any repository, including running their own or using a repository provider they trust. They may change repositories by pointing the DID to a different repository, giving them data portability.
 
@@ -396,12 +396,12 @@ The following properties are defined for the release document:
 | version     | yes       | A string that conforms to the rules of [version](#property-version)  |
 | artifacts   | yes       | A map that conforms to the rules of [artifacts](#property-artifacts) |
 | provides    | no        | A map that conforms to the rules of [provides](#property-provides)   |
-| require     | no        | A map that conforms to the rules of [require](#property-require)     |
-| suggest     | no        | A map that conforms to the rules of [suggest](#property-suggest)     |
+| requires    | no        | A map that conforms to the rules of [requires](#property-requires)   |
+| suggests    | no        | A map that conforms to the rules of [suggests](#property-suggests)   |
 | auth        | no        | A map that conforms to the rules of [auth](#property-auth)           |
 | _links      | no        | [HAL links][hal], with [defined relationships](#links-release)       |
 
-The properties of the metadata document have the following semantic meanings and constraints.
+The properties of the release document have the following semantic meanings and constraints.
 
 
 ### version
@@ -447,7 +447,7 @@ The values of the map MUST be objects or lists of objects, with the following co
 * `requires-auth` (optional) - A boolean indicating if the artifact needs authentication to access.
 * `url` (optional) - A URL string. Used to download the artifact.
 * `signature` (optional) - A cryptographic signature of the artifact.
-* `checksum` (optional) - A cryptographic signature of the artifact.
+* `checksum` (optional) - A cryptographic checksum of the artifact.
 
 Extensions MAY specify additional properties which are type-specific.
 
@@ -539,11 +539,11 @@ Clients SHOULD resolve the requirements of the package before completing install
 Environment requirements prefixed with `env:` are type-specific, and are specified by extensions to this specification. If a client does not recognise an environment requirement, it SHOULD treat the requirement as being unfulfilled, and SHOULD NOT install the package.
 
 
-### suggest
+### suggests
 
-<a name="property-suggest"></a>
+<a name="property-suggests"></a>
 
-The `suggest` property specifies packages that can be installed alongside the package being installed.
+The `suggests` property specifies packages that can be installed alongside the package being installed.
 
 This property matches the format of the [`requires` property](#property-requires).
 
