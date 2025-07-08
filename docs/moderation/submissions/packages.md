@@ -3,7 +3,7 @@
 A Package is any digital file which may be downloaded, installed, or served from a Repository. This may be include:
 * **Software:** Software may be in binary or source code form, whether excutable or not.
 * **Digital archive files:** File archives may bundle and/or compress multiple files into a single file to be "extracted" into its original form for use. (e.g., .zip, .tar.gz, .rar, etc.)
-* **Other content:** Other content may include text, images, media such as audio or video, or other digitally information.
+* **Other content:** Other content may include text, images, media such as audio or video, or other digitally stored information.
 
 Packages do not need to be complete works and do not have to be usable on their own. For example, this would be the case for software extensions to another package or media which requires other software to view its content. Where a package consists of or requires multiple files, it must be made available for download as a single valid archive file.
 
