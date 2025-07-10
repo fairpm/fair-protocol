@@ -332,7 +332,7 @@ The `name` property specifies a human-readable name for the package, which the c
 
 ### file
 
-The `file` property specifies the file name for the package as a `slug/plugin.php` for a plugin, or just the `slug` for a theme. The client in WordPress will utilize this information when the package requires updating. The file is used as a key in the update transient associative array.
+The `file` property specifies the file name for the package.
 
 The file MUST be a string containing only alphanumeric characters, dashes, or underscores. The file MUST start with an alphabetic character.
 
