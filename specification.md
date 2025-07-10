@@ -212,6 +212,7 @@ The following properties are defined for the metadata document:
 | releases    | yes       | A list of [Releases](#release-document)                             |
 | slug        | no        | A string that conforms to the rules of [slug](#property-slug)       |
 | name        | no        | A string.                                                           |
+| file        | no        | A string that conforms to the rules of [file](#property-file)       |
 | description | no        | A string.                                                           |
 | keywords    | no        | A list of strings.                                                  |
 | sections    | no        | A map that conforms to the rules of [sections](#property-sections)  |
@@ -328,7 +329,14 @@ Clients SHOULD use the slug for file or directory names used during installation
 
 The `name` property specifies a human-readable name for the package, which the client may display in index or list pages.
 
-The name MUST be a string.
+
+### file
+
+The `file` property specifies the file name for the package as a `slug/plugin.php` for a plugin, or just the `slug` for a theme. The client in WordPress will utilize this information when the package requires updating. The file is used as a key in the update transient associative array.
+
+The file MUST be a string containing only alphanumeric characters, dashes, or underscores. The file MUST start with an alphabetic character.
+
+The file MUST be a string.
 
 
 ### description
