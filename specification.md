@@ -332,7 +332,7 @@ The `name` property specifies a human-readable name for the package, which the c
 
 ### filename
 
-The `filename` property specifies the file name for the package.
+The `filename` property specifies the root folder and file name for the package.
 
 The filename MUST be a string containing only alphanumeric characters, dashes, or underscores. Optionally the filename may contain a period or a forward slash. The file MUST start with an alphabetic character.
 
