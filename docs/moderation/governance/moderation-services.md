@@ -1,5 +1,10 @@
 # Moderation Services and Labelers in FAIR
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 The FAIR ecosystem relies on a decentralized approach to moderation, where trust signals are primarily conveyed through a system of "labels." These labels are applied to Repositories, Aggregators, software packages or other content, or even developer identities by entities known as "Moderation Services" or "Labeler Services."
 
 FAIR will operate its own official Labeler Service(s) to apply labels based on its established governance policies (such as those outlined in [Vetting and Reporting](./vetting-and-reporting.md) and the [Appeals Process](./appeals.md)), but the architecture is designed to be open. This allows for a plurality of voices and trusted sources within the federation, and the ability to opt in or out from public labeling services.

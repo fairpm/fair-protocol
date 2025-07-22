@@ -1,5 +1,10 @@
 # Submitting Repositories to Aggregators
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 A Repository is a server which hosts a variety of packages. In order for a Repository's content to be discoverable, it must be added to an Aggregator.
 
 ## Automated Checks

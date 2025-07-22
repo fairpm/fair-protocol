@@ -1,5 +1,10 @@
 # Defederation and Removal Policy
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 Federated systems must clearly explain when and why content or Nodes are removed.
 
 ## Plugin/Theme Removal

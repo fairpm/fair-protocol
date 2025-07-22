@@ -1,5 +1,10 @@
 # Moderation in the FAIR Ecosystem
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 Decentralization brings power, resilience, and freedom — but it can also bring complexity, fragmentation, and new risks. In a system like FAIR, where anyone can run a Repository or Aggregator and distribute themes, plugins, or metadata across the ecosystem, the absence of centralized control means that trust must be built and maintained collaboratively.
 
 This section outlines FAIR's approach to moderation, detailing the philosophy, tools, and processes designed to foster a healthy and trustworthy decentralized network.
@@ -11,7 +16,7 @@ This section outlines FAIR's approach to moderation, detailing the philosophy, t
 The FAIR moderation framework is designed to address inherent challenges in decentralized systems, including:
 
 - **No single gatekeeper:** The absence of a central authority to approve or reject content.
-- **Risk of malicious actors:** The ease with which rogue Repositories can be created or known-vulnerable packages can be rehosted.
+- **Risk of malicious actors:** The ease with which rogue Repositories can be created or known-vulnerable packages can be re-hosted.
 - **Inconsistent practices:** Potential for varied moderation standards and enforcement between independent Repositories and aggregators.
 - **Lack of universal methods:** The need for standardized ways to flag, label, or address problematic content across the federation.
 
@@ -26,7 +31,17 @@ The goal of moderation within FAIR is not to limit expression but to build trust
 - Enable Aggregators to apply transparent and consistent filtering based on community-defined criteria.
 - Offer users control over the moderation standards they subscribe to and follow.
 
-Ultimately, moderation tools in FAIR are about enabling decentralized trust, not about gatekeeping.
+Ultimately, moderation tools in FAIR are about enabling trust in a decentralized network, not about gatekeeping.
+
+## Services Offered by FAIR
+
+FAIR will run the following:
+
+1. A Discovery Service
+2. A WordPress.org Mirror Aggregator
+3. A Moderation Service (to apply labeling)
+
+FAIR may, in the future, opt to host a basic Aggregator where people can submit their Packages to be hosted.
 
 ## Exploring Moderation Topics
 

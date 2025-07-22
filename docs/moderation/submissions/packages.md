@@ -1,5 +1,10 @@
 # Submitting Packages to a Repository
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 A Package is any digital file which may be downloaded, installed, or served from a Repository. This may be include:
 * **Software:** Software may be in binary or source code form, whether excutable or not.
 * **Digital archive files:** File archives may bundle and/or compress multiple files into a single file to be "extracted" into its original form for use. (e.g., .zip, .tar.gz, .rar, etc.)

@@ -1,5 +1,10 @@
 #  Vetting and Reporting
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 To ensure trust and quality in the decentralized ecosystem, all Repositories and Aggregators must include a transparent, community-driven reporting mechanism. This system enables Repositories to self-manage their content while remaining accountable to the broader federation.
 
 ## What Can Be Reported
@@ -53,7 +58,7 @@ Valid reports contribute toward a threshold system that escalates actions based 
 - **25%:**
     - Automated warning recorded and shown in system logs.
 - **50%:**
-    - Warning displayed on all relevant listings.
+    - Notice displayed on all relevant listings.
     - Reports forwarded to directory Aggregators.
     - “Community Notice” badge shown.
 - **60%:**

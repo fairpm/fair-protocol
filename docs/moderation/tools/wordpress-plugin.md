@@ -1,5 +1,10 @@
 # FAIR WordPress Plugin: Integrating Moderation and Trust Signals
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 The FAIR WordPress Plugin extends a standard WordPress installation to interact with the FAIR decentralized ecosystem. While its primary function is to enable WordPress sites to use FAIR services as a source for plugins and themes (details available at [https://github.com/fairpm/fair-plugin](https://github.com/fairpm/fair-plugin)), this document focuses on its crucial role in integrating moderation data and trust signals from the FAIR network directly into the WordPress admin experience.
 
 The plugin acts as an intelligent client, consuming data from Federation Monitors, Labeler Services, and Aggregators to provide site administrators with timely warnings, contextual information, and clear indicators about the status and trustworthiness of the software and services they interact with.

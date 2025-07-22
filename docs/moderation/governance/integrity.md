@@ -1,5 +1,10 @@
 # Integrity and Transparency Requirements
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 In a federated ecosystem, maintaining trust requires more than decentralized participation — it demands visible, verifiable integrity. All Nodes and Aggregators must implement safeguards to prevent manipulation of moderation systems, ensuring that reports and enforcement actions remain transparent, tamper-resistant, and auditable.
 
 Without oversight mechanisms, a bad actor could:

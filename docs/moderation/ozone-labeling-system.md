@@ -1,5 +1,10 @@
 # FAIR's Label-Based Moderation System with Ozone
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 To effectively manage content and behavior in a decentralized ecosystem like FAIR, we employ a label-based moderation system. This system is designed to be flexible, transparent, and community-driven, leveraging tools and concepts from the AT Protocol ecosystem, primarily **Ozone**.
 
 This document details how FAIR utilizes Ozone to create a shared, open label system for Repositories, Aggregators, Plugins, and Themes, enabling verifiable moderation decisions and supporting a diverse trust infrastructure.
@@ -40,6 +45,7 @@ FAIR will leverage Ozone's capabilities in the following ways:
         * `repository:non-compliant`
         * `aggregator:compliant`
         * `author:verified`
+        * `fair:verified`
     * These and other labels will be publicly queryable and attached to the Decentralized Identifiers (DIDs) of Repositories, Aggregators, or developer identities.
 
 2. **Transparency Ledger for Moderation Actions:**

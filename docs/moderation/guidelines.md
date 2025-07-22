@@ -1,5 +1,10 @@
 # Guidelines for Repositories and Aggregators
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 These foundational guidelines establish the minimum standards for participation in the FAIR ecosystem. While individual Aggregators may choose to impose stricter requirements, no Repository or Aggregator may operate within FAIR if they fail to meet these baseline expectations. Adherence to these guidelines is essential for ensuring a baseline of trust, legal compliance, and ethical participation across the federation.
 
 ## 1. Awareness of Ecosystem-Specific Licensing Norms
@@ -64,10 +69,13 @@ To ensure accountability and open communication, all Repositories and Aggregator
 To ensure seamless operation and compatibility within the federation:
 
 **Repositories and Aggregators must**
+
 * implement the current FAIR federated API specification (covering search, metadata, download links, and reporting endpoints) within 30 days of release;
 * support the standardized `/reports` endpoint and associated review/report escalation workflows as defined by FAIR;
+* support the moderation API and be connected to the FAIR Moderation Service (Federated Monitors);
 
 In addition, **Aggregators must**
+
 * accurately reflect Repository metadata, including any escalation notices (labels) and current listing status;
 
 ## 6. Report and Removal Transparency
@@ -76,9 +84,9 @@ If any plugin, theme, Repository, or Aggregator is removed from a listing by a R
 
 ## 7. Repository Operator Responsibility for Hosted Content
 
-Repository operators are fully responsible for all content distributed through their services, since they host the code. This responsibility pertains to the provenance, licensing, and integrity of the content as it is stored and distributed by their Repository.
+Repository operators are responsible for the content of the code distributed through their services. This responsibility pertains _only_ to the provenance, licensing, and integrity of the content as it is stored and distributed by their Repository. Repository operators are _not_ liable for the _behavior_ of code they host.
 
-Repository operators are _not_ liable for the behavior of code they host.
+For example, a package has the ability to scrape data from websites, and someone complains to the Repository that their package is doing damage to their site. This is _not_ the responsibility of the Repository, but that of the user of said package.
 
 * **Scope:** This responsibility covers:
     * Packages (plugins, themes, other software, or content of any type) served via the Repository’s API.

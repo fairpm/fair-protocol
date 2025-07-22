@@ -1,5 +1,10 @@
 # Appeals Process for FAIR Moderation Decisions
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 FAIR aims to foster a just and transparent ecosystem. While our moderation and governance systems are designed to be applied consistently and fairly, we recognize that errors can occur or new information may come to light. This document outlines the appeals process for decisions made by FAIR working groups or through FAIR-operated automated systems (such as the application of certain high-impact labels via the FAIR Labeler Service).
 
 ## Purpose of the Appeals Process

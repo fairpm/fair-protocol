@@ -1,5 +1,10 @@
 # Submissions
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 To foster an open and inclusive federated ecosystem, anyone may submit their content (packages,Repositories, or Aggregators) for inclusion in the FAIR network.
 
 - **Developers** can submit their packages to a Repository for hosting.

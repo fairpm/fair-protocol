@@ -1,5 +1,10 @@
 # Setting Up and Running a FAIR-Compatible Ozone Labeler Instance
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 This guide provides an overview for developers and organizations interested in setting up and operating their own independent Ozone-based Labeler Service that is compatible with the FAIR ecosystem. Running your own labeler allows you to contribute specialized moderation signals, cater to specific community needs, or offer alternative perspectives on trust and safety.
 
 Before proceeding, ensure you are familiar with:

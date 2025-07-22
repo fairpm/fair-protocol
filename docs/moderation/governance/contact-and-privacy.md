@@ -1,6 +1,11 @@
 # Contact and Privacy Requirements
 
-As part of federation governance, every participating Node and Aggregator must maintain valid contact information and follow strict data privacy practices. These requirements support transparency, accountability, and effective moderation across the FAIR ecosystem.
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
+As part of federation governance, every participating Repository and Aggregator must maintain valid contact information and follow strict data privacy practices. These requirements support transparency, accountability, and effective moderation across the FAIR ecosystem.
 
 ## Public Contact
 
@@ -11,11 +16,11 @@ Publicly visible contact information is required. This enables users and peers t
 - Website URL
 - Public email address or social profile
 
-Public contact details are visible in Aggregators and Node listings and must remain up-to-date.
+Public contact details are visible in Aggregators and Repository listings and must remain up-to-date.
 
 ## Private Contact
 
-Node and Aggregator operators must also supply private contact information. This is only accessible to federation administrators (e.g. FAIR, Aggregator maintainers) and is used for:
+Repository and Aggregator operators must also supply private contact information. This is only accessible to federation administrators (e.g. FAIR, Aggregator maintainers) and is used for:
 
 - Abuse or moderation inquiries
 - Technical communication
@@ -33,7 +38,7 @@ This data must be accurate and monitored. Failure to respond to valid contact at
 
 All submitted contact information must be handled in accordance with relevant data protection laws, including the General Data Protection Regulation (GDPR) and Cyber Resilience Act (CRA) where applicable.
 
-All Nodes and Aggregators must:
+All Repositories and Aggregators must:
 
 - Collect only necessary personal data
 - Publish a clear data usage policy
@@ -44,7 +49,7 @@ Violations of data privacy requirements may result in removal from federation li
 
 ## Integration with Moderation Services
 
-To support cross-federation trust and incident response, all Nodes and Aggregators **must** integrate with the designated federation-wide moderation platform: **Ozone**
+To support cross-federation trust and incident response, all Repositories and Aggregators **must** integrate with the designated federation-wide moderation platform: **Ozone**
 
 This includes:
 

@@ -1,5 +1,10 @@
 # Submitting Aggregators to a Discovery Service
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 A Discovery Service is a higher-level directory that aggregates multiple Aggregators into a unified, federated search experience. It allows ecosystem stakeholders—like hosting companies, CMS vendors, or large developer communities—to curate and serve content from multiple trusted sources under one roof.
 
 ## Example Use Case

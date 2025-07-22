@@ -1,5 +1,10 @@
 # Risk Management and Mitigation Strategies
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 The FAIR protocol, by its decentralized nature, introduces unique opportunities and challenges. To ensure the ecosystem remains robust, secure, and trustworthy for all participants, a proactive approach to risk management is essential.
 
 This document presents a risk matrix that identifies potential threats to the FAIR's operational integrity, governance stability, and community trust. For each identified risk, we have assessed its potential impact and likelihood, and outlined planned or recommended mitigation strategies. These strategies involve a combination of technical safeguards, governance policies, community initiatives, and transparent processes.

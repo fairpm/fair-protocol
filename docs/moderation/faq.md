@@ -1,5 +1,10 @@
 # Frequently Asked Questions
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 ## Is there a default Aggregator and/or Repository?
 
 The default Repository is run using AspireCloud by [AspirePress](https://aspirepress.org/) and is a mirror of WordPress.org's repositories.

@@ -1,5 +1,10 @@
 # Governance
 
+| <!-- --> | <!-- -->   |
+|----------|------------|
+| Status   | Proposal   |
+| Date     | 2025-07-22 |
+
 Decentralization empowers anyone to host and distribute software, but it also requires shared responsibility. The FAIR Protocol defines a governance framework to ensure participants operate transparently, protect user data, and uphold moderation standards.
 
 This section outlines the minimum expectations for all federation members, including:
