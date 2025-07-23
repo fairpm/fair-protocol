@@ -5,7 +5,7 @@
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
 
-Federated systems must clearly explain when and why content or Nodes are removed.
+Federated systems must clearly explain when and why content or Repositories are removed.
 
 ## Plugin/Theme Removal
 
@@ -13,10 +13,12 @@ Federated systems must clearly explain when and why content or Nodes are removed
 - Propagated via metadata
 - May include license issues, security problems, or author request
 
-## Node or Aggregator Removal
+## Repository or Aggregator Removal
 
-- Requires clear rationale and optional appeal
+- Any removal requires a clear rationale and documentation thereof
 - FAIR and Aggregators may delist any participant not meeting standards
 - Transparency and accountability are mandatory, even if a general explanation is given
 
-FAIR aims to ensure users are never left in the dark.
+Removed Repository or Aggregator managers have the option to appeal their removal, however restoration is never a guarantee. No one is forced to host code or list it, and Aggregators can exclude a Repository for any reason.
+
+FAIR aims to ensure users are never left in the dark by requiring documentation of removals.

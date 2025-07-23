@@ -98,7 +98,7 @@ The following are examples of labels that third-party moderation services might 
 - `fair:threshold:review60`
 - `package:security-vulnerability:active`
 - `repository:non-compliant`
-- `node:non-compliant`
+- `repository:non-compliant`
 
 #### Medium Risk (Notice Required)
 - `fair:threshold:notice50`

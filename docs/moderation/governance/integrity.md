@@ -5,7 +5,7 @@
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
 
-In a federated ecosystem, maintaining trust requires more than decentralized participation — it demands visible, verifiable integrity. All Nodes and Aggregators must implement safeguards to prevent manipulation of moderation systems, ensuring that reports and enforcement actions remain transparent, tamper-resistant, and auditable.
+In a federated ecosystem, maintaining trust requires more than decentralized participation — it demands visible, verifiable integrity. All Repositories and Aggregators must implement safeguards to prevent manipulation of moderation systems, ensuring that reports and enforcement actions remain transparent, tamper-resistant, and auditable.
 
 Without oversight mechanisms, a bad actor could:
 
@@ -18,7 +18,7 @@ To protect against this, the following integrity requirements are mandatory.
 
 ## Disclosure of Affiliations and Financial Interests
 
-To ensure the highest level of transparency and allow users to make informed decisions, all participating Nodes and Aggregators must clearly disclose material affiliations, sponsorships, and financial relationships that could influence their operations, content listings, or recommendations.
+To ensure the highest level of transparency and allow users to make informed decisions, all participating Repositories and Aggregators must clearly disclose material affiliations, sponsorships, and financial relationships that could influence their operations, content listings, or recommendations.
 
 Open disclosure of these relationships is essential for:
 
@@ -31,11 +31,11 @@ This principle is vital for maintaining user trust and ensuring a level playing 
 ### Specific Disclosure Requirements:
 
 * **Paid Listings or Preferential Treatment:**
-    * **By Aggregators:** If an Aggregator receives payment from a Node for inclusion in its listings, for preferential placement (e.g., "featured," "sponsored"), or for any other form of paid promotion, this relationship **must** be clearly and conspicuously disclosed by the Aggregator.
-    * **By Nodes:** If a Node receives payment from a plugin/theme author/developer for hosting their package, for preferential display on the Node, or for any other form of paid promotion, this **must** be clearly and conspicuously disclosed by the Node.
+    * **By Aggregators:** If an Aggregator receives payment from a Repository for inclusion in its listings, for preferential placement (e.g., "featured," "sponsored"), or for any other form of paid promotion, this relationship **must** be clearly and conspicuously disclosed by the Aggregator.
+    * **By Repositories:** If a Repository receives payment from a plugin/theme author/developer for hosting their package, for preferential display on the Repository, or for any other form of paid promotion, this **must** be clearly and conspicuously disclosed by the Repository.
     * In both cases, this disclosure should be visible alongside the relevant listing(s) and in a dedicated, easily accessible section detailing all such arrangements.
-* **Sponsorship of Infrastructure or Operations:** If server hosting, significant operational costs, or development are sponsored or paid for by a third-party entity (especially if that entity also participates in or benefits from the FAIR ecosystem, such as a commercial plugin company, hosting provider, or another Node/Aggregator), this sponsorship **must** be disclosed, **naming** the sponsoring entity and the nature of the support provided.
-* **Other Material Affiliations:** Any other affiliations or relationships (e.g., common ownership between a Node and an Aggregator, significant investment by an ecosystem participant in another) that could reasonably be perceived by users as a potential conflict of interest or a source of bias **must** be disclosed.
+* **Sponsorship of Infrastructure or Operations:** If server hosting, significant operational costs, or development are sponsored or paid for by a third-party entity (especially if that entity also participates in or benefits from the FAIR ecosystem, such as a commercial plugin company, hosting provider, or another Repository/Aggregator), this sponsorship **must** be disclosed, **naming** the sponsoring entity and the nature of the support provided.
+* **Other Material Affiliations:** Any other affiliations or relationships (e.g., common ownership between a Repository and an Aggregator, significant investment by an ecosystem participant in another) that could reasonably be perceived by users as a potential conflict of interest or a source of bias **must** be disclosed.
 
 ### Method of Disclosure:
 
@@ -43,9 +43,9 @@ Disclosure information must be:
 
 * Clear and Conspicuous: Not hidden in fine print or obscure locations.
 * Easily Accessible: Users should not have to hunt for this information.
-* Machine-Readable: Where feasible, such disclosures should also be available in a machine-readable format as part of the Node's or Aggregator's metadata API, allowing tools and other services to surface this information. For example, a `sponsored: true` flag or an `affiliations` array in metadata.
+* Machine-Readable: Where feasible, such disclosures should also be available in a machine-readable format as part of the Repository's or Aggregator's metadata API, allowing tools and other services to surface this information. For example, a `sponsored: true` flag or an `affiliations` array in metadata.
 * Typically Provided On:
-    * A dedicated "About Us," "Disclosure," "Sponsorship," or "Transparency" page on the Node or Aggregator's public-facing website/interface.
+    * A dedicated "About Us," "Disclosure," "Sponsorship," or "Transparency" page on the Repository or Aggregator's public-facing website/interface.
     * Directly on or adjacent to listings if the disclosure pertains to a specific item (e.g., a "Sponsored Listing" badge).
 
 ### Consequences of Non-Disclosure:
@@ -53,7 +53,7 @@ Disclosure information must be:
 Failure to adequately disclose such material affiliations and financial interests will be considered a breach of FAIR's integrity standards. This may lead to:
 
 * A formal warning from FAIR.
-* The Node or Aggregator being flagged as "Lacking Transparency" by FAIR's official Aggregator or other community tools.
+* The Repository or Aggregator being flagged as "Lacking Transparency" by FAIR's official Aggregator or other community tools.
 * Persistent or egregious non-disclosure may result in a review for suspension or delisting from FAIR's official Aggregator and potential defederation warnings issued to the community.
 
 ## Signed and Auditable Logs
@@ -74,7 +74,7 @@ This involves:
 
 * **Signed Records:** Key moderation events (e.g., formal warnings, suspensions, delistings initiated by FAIR, or the application of critical FAIR-issued labels) will be recorded as cryptographically signed, verifiable entries.
 * **Publicly Auditable:** These signed records can be published to a distributed ledger or a system built on technologies like the AT Protocol graph. This makes FAIR's own moderation interventions transparent and available for public audit.
-* **Contribution to System Integrity:** By making its own oversight actions verifiable and difficult to tamper with, FAIR not only ensures accountability for its role but also provides a trusted dataset that other participants in the ecosystem can reference. This complements the requirements for individual Nodes and Aggregators to maintain their own logs.
+* **Contribution to System Integrity:** By making its own oversight actions verifiable and difficult to tamper with, FAIR not only ensures accountability for its role but also provides a trusted dataset that other participants in the ecosystem can reference. This complements the requirements for individual Repositories and Aggregators to maintain their own logs.
 
 The mechanisms for creating and distributing these signed moderation records, including how they relate to the broader label-based system, are detailed further in the [Ozone Labeling System documentation](../ozone-labeling-system.md). This approach ensures that even FAIR's own interventions are subject to scrutiny, reinforcing the overall integrity of the federated ecosystem.
 
@@ -84,11 +84,11 @@ To prevent any single entity from unilaterally discarding or suppressing a repor
 
 Specifically, reports must be sent to:
 
-- The originating Node (where the plugin/theme is hosted or the Node itself is the subject).
-- Any relevant Aggregators listing the item or Node.
+- The originating Repository (where the plugin/theme is hosted or the Repository itself is the subject).
+- Any relevant Aggregators listing the item or Repository.
 - **A recognized Federation Monitor.**
 
-The system must notify the package developer (or Node/Aggregator maintainer, as appropriate) at each significant stage of the report's lifecycle.
+The system must notify the package developer (or Repository/Aggregator maintainer, as appropriate) at each significant stage of the report's lifecycle.
 
 ### Federation Monitors Explained
 
@@ -117,7 +117,7 @@ This confirmation must include:
 
 ## Public Metrics Feed
 
-All Nodes must expose an aggregated, machine-readable report summary including:
+All Repositories must expose an aggregated, machine-readable report summary including:
 
 - Number of reports by type (e.g., license, security)
 - Resolution status (e.g., pending, resolved, dismissed)

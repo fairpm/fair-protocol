@@ -46,7 +46,7 @@ Valid grounds for an appeal may include, but are not limited to:
 - **Factual Error:** The decision was based on incorrect or incomplete information.
 - **Misapplication of Policy:** FAIR's policies or guidelines were not correctly applied to the specific case.
 - **New Evidence:** Significant new information has become available that could not be presented for consideration in the initial decision.
-- **Procedural Irregularity:** A significant flaw in the decision-making process itself, such as a logical error or rendering of a descision that would conflict with another FAIR policy.
+- **Procedural Irregularity:** A significant flaw in the decision-making process itself, such as a logical error or rendering of a decision that would conflict with another FAIR policy.
 - **Disproportionate Action:** The action taken was significantly disproportionate to the issue identified. (In simple terms, "the punishment should fit the crime.")
 
 _Simply disagreeing with the decision is not adequate grounds for appeal: new information or reasoning **must** be presented for consideration based on the valid grounds listed here._

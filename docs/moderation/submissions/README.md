@@ -17,6 +17,6 @@ The submission process is designed to be straightforward and accessible while en
 
 Learn how to submit:
 
-- [Packages to a Node](./packages.md)
+- [Packages to a Repository](./packages.md)
 - [Repositories to an Aggregator](./repositories.md)
 - [Aggregators to a Discovery Service](./aggregators.md)

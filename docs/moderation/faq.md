@@ -46,7 +46,7 @@ Labels are digital tags applied to plugins, themes, Repositories, or Aggregators
 
 * **For Users:** Labels can help you make informed decisions. For example, a plugin might be labeled `plugin:security-vulnerability:active` (warning you of a risk) or `plugin:community-trusted` (a positive signal). The [FAIR WordPress Plugin](./tools/fair-wordpress-plugin.md) will surface these labels as warnings or indicators.
 
-* **For Developers/Operators:** Labels can reflect the status or reputation of your plugin, Repository, or Aggregator. Positive labels can build trust, while negative ones (e.g., `node:non-compliant`) might indicate issues you need to address. Persistent negative labels from reputable labelers could affect your discoverability.
+* **For Developers/Operators:** Labels can reflect the status or reputation of your plugin, Repository, or Aggregator. Positive labels can build trust, while negative ones (e.g., `repository:non-compliant`) might indicate issues you need to address. Persistent negative labels from reputable labelers could affect your discoverability.
 
 You can learn more about the system in [Ozone Labeling System](./ozone-labeling-system.md) and  Services](./governance-services.md).
 

@@ -41,7 +41,7 @@ FAIR will run the following:
 2. A WordPress.org Mirror Aggregator
 3. A Moderation Service (to apply labeling)
 
-FAIR may, in the future, opt to host a basic Aggregator where people can submit their Packages to be hosted.
+FAIR may, in the future, opt to host a Repository where people can submit their Packages to be hosted.
 
 ## Exploring Moderation Topics
 
