@@ -19,6 +19,6 @@ Federated systems must clearly explain when and why content or Repositories are 
 - FAIR and Aggregators may delist any participant not meeting standards
 - Transparency and accountability are mandatory, even if a general explanation is given
 
-Removed Repository or Aggregator managers have the option to appeal their removal, however restoration is never a guarantee. No one is forced to host code or list it, and Aggregators can exclude a Repository for any reason.
+Removed Repository or Aggregator managers have the option to [appeal](appeals.md) their removal, however restoration is never a guarantee. No one is forced to host code or list it, and Aggregators can exclude a Repository for any reason.
 
 FAIR aims to ensure users are never left in the dark by requiring documentation of removals.
