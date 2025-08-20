@@ -23,5 +23,6 @@ All Repositories and Aggregators must adhere to these requirements to remain par
 - [Vetting and Reporting](./vetting-and-reporting.md)
 - [Defederation and Removal Policy](./defederation.md)
 - [Risk Management](./risk-management.md)
+- [ppeals Process](./appeals.md)
 
 More documents may be added as the federation evolves to include appeals processes, escalation procedures, or delegated authority models.
