@@ -328,6 +328,8 @@ Clients SHOULD use the slug for file or directory names used during installation
 
 The `name` property specifies a human-readable name for the package, which the client may display in index or list pages.
 
+The name MUST be a string.
+
 
 ### description
 
