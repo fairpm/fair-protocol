@@ -212,7 +212,6 @@ The following properties are defined for the metadata document:
 | releases    | yes       | A list of [Releases](#release-document)                             |
 | slug        | no        | A string that conforms to the rules of [slug](#property-slug)       |
 | name        | no        | A string.                                                           |
-| filename    | no        | A string that conforms to the rules of [filename](#property-file)   |
 | description | no        | A string.                                                           |
 | keywords    | no        | A list of strings.                                                  |
 | sections    | no        | A map that conforms to the rules of [sections](#property-sections)  |
@@ -328,15 +327,6 @@ Clients SHOULD use the slug for file or directory names used during installation
 ### name
 
 The `name` property specifies a human-readable name for the package, which the client may display in index or list pages.
-
-
-### filename
-
-The `filename` property specifies the root folder and file name for the package.
-
-The filename MUST be a string containing only alphanumeric characters, dashes, or underscores. Optionally the filename may contain a period or a forward slash. The file MUST start with an alphabetic character.
-
-The filename MUST be a string.
 
 
 ### description
