@@ -176,7 +176,7 @@ Clients SHOULD display vulnerability warnings to users prior to installation, de
 
 ## Query Endpoint
 
-The query endpoint for a labeler is available at `{root}/query` (e.g. `https://moderator.example/query`).
+The query endpoint for a labeler is available at `{root}/query` (e.g. `https://moderator.example/query`). This endpoint is REQUIRED.
 
 Labelers MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
 
@@ -247,3 +247,97 @@ The following keys and their semantic meaning are specified:
 
 * `message` - A human-readable message explaining the label to the user.
 * `url` - A URL to a HTML/HTTP page explaining the label to the user.
+
+
+## Reporting Endpoint
+
+The reporting endpoint for a labeler is available at `{root}/report` (e.g. `https://moderator.example/report`). This endpoint is OPTIONAL.
+
+This endpoint MUST accept a JSON document via HTTP POST, as defined below.
+
+Labelers MUST support an optional trailing slash on the URL. Responses to this URL SHOULD NOT return a redirect, as this conflicts with the semantics of HTTP POST requests.
+
+Labelers may choose whether to support reporting. For example, labelers which apply human moderation may want to receive reports, while those which use generated or derived data may not be able to handle reports. Labelers SHOULD accept reports where possible.
+
+
+### Request Document
+
+The request document is a JSON object, with the following properties:
+
+| Property    | Required? | Constraints                                                                 |
+| ----------- | --------- | --------------------------------------------------------------------------- |
+| subject     | yes       | A [fairpm URI](#uris) indicating which subject this report is attached to.  |
+| reason      | yes       | A string containing the reason type for this report.                        |
+| message     | yes       | A string containing a human-readable message for this report.               |
+| date        | no        | A string containing an [RFC 3339][] date-time.                              |
+
+The properties of the release document have the following semantic meanings and constraints.
+
+#### reason
+
+The `reason` property specifies the reason type for this report.
+
+The reason type is a well-defined string that the labeler is able to accept, indicating the type of the report. These types correspond to the accepted types listed in the [Index Document](#index-document) for the labeler.
+
+If the labeler receives a reason that it does not accept, it SHOULD return a 400 Bad Request response.
+
+#### message
+
+The `message` property specifies a human-readable message for the report. This is a plain-text string, with no formatting semantics applied.
+
+Clients SHOULD allow users to enter a message indicating the human-readable reason for their report, to assist labelers in processing reports.
+
+
+### Response Document
+
+The response document is a JSON object, with the following properties:
+
+| Property    | Constraints                                                                 |
+| ----------- | --------------------------------------------------------------------------- |
+| subject     | A [fairpm URI](#uris) indicating which subject this report is attached to.  |
+| reason      | A string containing the reason type for this report.                        |
+| message     | A string containing a human-readable message for this report.               |
+| date        | A string containing an [RFC 3339][] date-time.                              |
+
+
+## Index Endpoint
+
+The index endpoint for a labeler is available at `{root}`. This endpoint is REQUIRED.
+
+The response format of the listing endpoint MUST be a JSON object, following the semantics defined below.
+
+The endpoint has the following query string parameters:
+
+| Parameter | Constraints                                                            |
+| --------- | ---------------------------------------------------------------------- |
+| lang      | Preferred language for human-readable text. May be repeated. Optional. |
+
+
+### Response Document
+
+<a name="index-document"></a>
+
+The response document ("Index Document") is a JSON object, with the following properties:
+
+| Property    | Required? | Constraints                                                                      |
+| ----------- | --------- | -------------------------------------------------------------------------------- |
+| name        | yes       | A string containing a human-readable name for the labeler.                       |
+| supports    | yes       | A JSON array of supported actions, as [defined below](#index-property-supports). |
+| _links      | no        | [HAL links][hal].                                                                |
+
+When presented as a standalone document, the index document MUST include a `@context` entry. The `@context` entry MUST be either the JSON String `https://fair.pm/ns/labeler/v1` or a JSON Array where the first item is the JSON String `https://fair.pm/ns/labeler/v1`. The `@context` entry MAY be omitted where the index document is embedded within another document.
+
+The properties of the release document have the following semantic meanings and constraints.
+
+#### supports
+
+<a name="index-property-supports"></a>
+
+The `supports` property indicates which actions the labeler supports. This property MUST be specified.
+
+This property MUST be a valid list, represented as a JSON Array. The list MUST have at least one string.
+
+The items of the list MUST be strings from the following enumerated list:
+
+* `query` - Indicates the labeler supports [querying](#query-endpoint). MUST be included.
+* `report` - Indicates the labeler supports [reporting](#reporting-endpoint).
