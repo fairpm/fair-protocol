@@ -176,9 +176,9 @@ Clients SHOULD display vulnerability warnings to users prior to installation, de
 
 ## Query Endpoint
 
-The listing endpoint for a discovery aggregator is available at `{root}/query` (e.g. `https://moderator.example/query`).
+The query endpoint for a labeler is available at `{root}/query` (e.g. `https://moderator.example/query`).
 
-Aggregators MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
+Labelers MUST support an optional trailing slash on the URL, and responses to this URL SHOULD issue a HTTP redirect to the canonical URL.
 
 The response format of the listing endpoint MUST be a JSON array, where each object in the array MUST be a Label Document.
 
