@@ -63,7 +63,9 @@ POST /report
 Content-Type: application/json
 
 {
-	"uri": "fairpm:did:plc:a1b2c3d4e5f6"
+	"subject": "fairpm:did:plc:a1b2c3d4e5f6/releases/1.2.3"
+	"reason": "https://moderator.example#reasons.crash",
+	"message": "The package crashed my system after it was installed!"
 }
 ```
 
