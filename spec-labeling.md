@@ -20,7 +20,7 @@ FAIR Labeling provides a decentralized way to solve this, based on the Stackable
 
 A labeling service hosted at `https://moderator.example` provides a label query endpoint at `https://moderator.example/query`.
 
-A FAIR client sends a GET request to this endpoint, asking for labels for release 1.2.3 of a package with ID `did:plc:a1b2c3d4e5f6`. This release is identified by the URI `fairpm:did:plc:a1b2c3d4e5f6/releases/1.2.2`.
+A FAIR client sends a GET request to this endpoint, asking for labels for release 1.2.3 of a package with ID `did:plc:a1b2c3d4e5f6`. This release is identified by the URI `fairpm:did:plc:a1b2c3d4e5f6/releases/1.2.3`.
 
 The labeler responds with one label for the release itself (which is negative), and one for the package (which is positive):
 
@@ -106,7 +106,7 @@ For example, for a package with DID `did:web:package.example`, the package URI w
 
 Release URIs are formed by creating a URI with the scheme `fairpm`, authority set to the package DID, and path set to a concatenated string of `/releases/` followed by the `version` of the release (as per the FAIR Core Release Document).
 
-For example, for release with version `123.4.5` from a package with DID `did:web:package.example`, the release URI would be `fairpm:did:web:package.example/releases/123.4.5`.
+For example, for a release with version `123.4.5` from a package with DID `did:web:package.example`, the release URI would be `fairpm:did:web:package.example/releases/123.4.5`.
 
 The URI path MUST NOT be set to other values or contain other prefixes, to avoid conflicts with future changes to this specification. The URI query and fragment MUST be empty, to avoid conflicts with future changes to this specification that may assign meaning to these components.
 
@@ -115,7 +115,7 @@ The URI path MUST NOT be set to other values or contain other prefixes, to avoid
 
 Labelers publish labels under a fixed set of label values, which have defined meaning and behaviour. Labelers SHOULD NOT use custom label values not defined in this specification, to avoid conflicts with future changes to this specification.
 
-Each label values has defined meaning as listed below, as well as a positive, neutral, or negative sentiment indicating the impact of the label. Additionally, some label values have special meaning and behaviour, indicated by a `!` prefix.
+Each label value has a defined meaning as listed below, as well as a positive, neutral, or negative sentiment indicating the impact of the label. Additionally, some label values have special meaning and behaviour, indicated by a `!` prefix.
 
 The following fixed labels are defined:
 
@@ -153,7 +153,7 @@ Where possible, labelers SHOULD include information about the special block with
 
 ### !warn
 
-The `!warn` special label value indicates clients MUST display the warning included in the context before a package is installed. It does not provide any information about why the package or release is blocked. This is a negative signal.
+The `!warn` special label value indicates clients MUST display the warning included in the context before a package is installed. It does not provide any information about why there is a warning about the package or release. This is a negative signal.
 
 This label value is only intended to be used where a more specific label value cannot be used, such as for legal reasons. Labelers SHOULD use this label sparingly, and SHOULD use non-special labels where possible.
 
@@ -169,7 +169,7 @@ The meaning of "verified" is specific to each labeler. Labelers are encouraged t
 
 ### vulnerable
 
-The `vulnerable:*` label values indicate the labeler believes the package or release contains software vulnerabilities which may make pose a risk to the user. This is a family of values prefixed with `vulnerable:`, with `critical`, `high`, `medium`, and `low` suffixes indicating the severity of the vulnerability. This is a negative signal.
+The `vulnerable:*` label values indicate the labeler believes the package or release contains software vulnerabilities which may pose a risk to the user. This is a family of values prefixed with `vulnerable:`, with `critical`, `high`, `medium`, and `low` suffixes indicating the severity of the vulnerability. This is a negative signal.
 
 The meaning of the suffix MAY be specific to each labeler. Labelers SHOULD use industry-standard meaning for severities, such as NVD CVSS qualitative severity ratings.
 
