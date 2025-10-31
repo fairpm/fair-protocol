@@ -279,6 +279,8 @@ The `reason` property specifies the reason type for this report.
 
 The reason type is a well-defined string that the labeler is able to accept, indicating the type of the report. These types correspond to the accepted types listed in the [Index Document](#index-document) for the labeler.
 
+The reason MUST be specified as a URI, where the scheme, authority, and path match the Index Document's URL, and where the fragment is the path to the reason, in the format `reasons.{id}` (as a partial subset of JSONPath). Clients MAY dynamically resolve this URI by fetching the Index Document at the URL, then resolving the fragment by prefixing with `$.` and treating it as a JSONPath reference on the Index Document.
+
 If the labeler receives a reason that it does not accept, it SHOULD return a 400 Bad Request response.
 
 #### message
@@ -319,11 +321,12 @@ The endpoint has the following query string parameters:
 
 The response document ("Index Document") is a JSON object, with the following properties:
 
-| Property    | Required? | Constraints                                                                      |
-| ----------- | --------- | -------------------------------------------------------------------------------- |
-| name        | yes       | A string containing a human-readable name for the labeler.                       |
-| supports    | yes       | A JSON array of supported actions, as [defined below](#index-property-supports). |
-| _links      | no        | [HAL links][hal].                                                                |
+| Property    | Required? | Constraints                                                                                    |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------- |
+| name        | yes       | A string containing a human-readable name for the labeler.                                     |
+| supports    | yes       | A JSON array of supported actions, as [defined below](#index-property-supports).               |
+| reasons     | no        | A JSON object containing valid reporting reasons, as [defined below](#index-property-reasons). |
+| _links      | no        | [HAL links][hal].                                                                              |
 
 When presented as a standalone document, the index document MUST include a `@context` entry. The `@context` entry MUST be either the JSON String `https://fair.pm/ns/labeler/v1` or a JSON Array where the first item is the JSON String `https://fair.pm/ns/labeler/v1`. The `@context` entry MAY be omitted where the index document is embedded within another document.
 
@@ -341,3 +344,21 @@ The items of the list MUST be strings from the following enumerated list:
 
 * `query` - Indicates the labeler supports [querying](#query-endpoint). MUST be included.
 * `report` - Indicates the labeler supports [reporting](#reporting-endpoint).
+
+
+### reasons
+
+<a name="index-property-reasons"></a>
+
+The `reasons` property indicates which reasons a labeler supports for reporting.
+
+If the labeler specifies support for `report` in [supports](#index-property-supports), the Index Document MUST specify this property, and MUST specify at least one item.
+
+This property MUST be a valid JSON object. The object MUST have at least one property.
+
+The keys of the object MUST be strings, indicating a unique ID for the reason.
+
+The values of the object MUST be objects, with the following properties:
+
+* `name` (required) - A string. Unique human-readable name for the reason. This name SHOULD be translated into the user's language, as indicated by the `lang` query parameter.
+* `description` (optional) - A string. Longer human-readable description for the reason. This description SHOULD be translated into the user's language, as indicated by the `lang` query parameter.
