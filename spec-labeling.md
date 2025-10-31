@@ -184,15 +184,29 @@ The response format of the listing endpoint MUST be a JSON array, where each obj
 
 The endpoint has the following query string parameters:
 
-| Parameter | Constraints                                                          |
-| --------- | -------------------------------------------------------------------- |
-| ids       | URI for the package or release to fetch labels for. May be repeated. |
+| Parameter | Constraints                                                                    |
+| --------- | ------------------------------------------------------------------------------ |
+| ids       | URI for the package or release to fetch labels for. May be repeated. Required. |
+| lang      | Preferred language for human-readable text. May be repeated. Optional.         |
 
 If the labeler does not have any labels for the ID, it MUST respond with an empty JSON array.
 
 If the provided IDs are invalid and not understood by the labeler, the labeler MUST respond with a 400 Bad Request error.
 
 Labelers MAY return labels for entities which do not exact-match the supplied IDs, such as to provide labels for related entities. For example, if a client requests labels for a release, the labeler MAY respond with labels for the package the release belongs to. Clients MAY provide both package and release IDs when querying to make this expectation explicit.
+
+
+### lang
+
+The `lang` parameter specifies the preferred language or languages for human-readable text in the response.
+
+The `lang` parameter MUST be a [BCP 47 (RFC 5646) language tag](https://datatracker.ietf.org/doc/html/rfc5646).
+
+Labelers SHOULD provide human-readable text in the preferred language as specified by this parameter if they are able to. Clients SHOULD indicate the preferred language of the user when making requests.
+
+Clients MAY indicate multiple preferred languages by passing this parameter multiple times. Labelers MUST interpret multiple languages as an ordered list, with higher preference assigned to the first parameter value and so on.
+
+Labelers MAY return labels in a default language instead of a preferred language.
 
 
 ## Label Document
