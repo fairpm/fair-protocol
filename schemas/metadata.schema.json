@@ -1,0 +1,329 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://fair.pm/schemas/metadata/v1",
+	"title": "FAIR Metadata Document",
+	"description": "A Metadata Document provides information about a specific package in the FAIR Package Management Protocol.",
+	"type": "object",
+	"required": [
+		"@context",
+		"id",
+		"type",
+		"license",
+		"authors",
+		"releases"
+	],
+	"properties": {
+		"@context": {
+			"description": "JSON-LD context for the metadata document.",
+			"oneOf": [
+				{
+					"type": "string",
+					"const": "https://fair.pm/ns/metadata/v1"
+				},
+				{
+					"type": "array",
+					"prefixItems": [
+						{
+							"const": "https://fair.pm/ns/metadata/v1"
+						}
+					]
+				}
+			]
+		},
+		"id": {
+			"type": "string",
+			"description": "The package ID. Must be a valid DID.",
+			"pattern": "^did:[a-z0-9]+:.+"
+		},
+		"type": {
+			"type": "string",
+			"description": "The package type. Should use a type defined in the type registry. Custom types should be prefixed with 'x-'.",
+			"examples": [
+				"wp-core",
+				"wp-plugin",
+				"wp-theme"
+			]
+		},
+		"license": {
+			"type": "string",
+			"description": "The license of the package. Must be a valid SPDX License Expression or 'proprietary'.",
+			"examples": [
+				"GPL-2.0-or-later",
+				"MIT",
+				"proprietary"
+			]
+		},
+		"authors": {
+			"type": "array",
+			"description": "The authors of the package.",
+			"minItems": 1,
+			"items": {
+				"$ref": "#/$defs/author"
+			}
+		},
+		"security": {
+			"type": "array",
+			"description": "The security contacts for the package.",
+			"minItems": 1,
+			"items": {
+				"$ref": "#/$defs/securityContact"
+			}
+		},
+		"releases": {
+			"type": "array",
+			"description": "Releases available for the package.",
+			"items": {
+				"$ref": "#/$defs/release"
+			}
+		},
+		"slug": {
+			"type": "string",
+			"description": "The desired slug for the package, used for filenames or directory names.",
+			"pattern": "^[a-zA-Z0-9_-]+$"
+		},
+		"name": {
+			"type": "string",
+			"description": "A human-readable name for the package."
+		},
+		"description": {
+			"type": "string",
+			"description": "A short description of the package. Should not exceed 140 characters.",
+			"maxLength": 140
+		},
+		"keywords": {
+			"type": "array",
+			"description": "Keywords to assist users in searching for packages. Should not contain more than 5 items.",
+			"maxItems": 5,
+			"items": {
+				"type": "string"
+			}
+		},
+		"sections": {
+			"type": "object",
+			"description": "Human-readable sections of text to display to users.",
+			"properties": {
+				"changelog": {
+					"type": "string",
+					"description": "A list of changes to the package."
+				},
+				"description": {
+					"type": "string",
+					"description": "The primary description and information for the package."
+				},
+				"security": {
+					"type": "string",
+					"description": "Information about the security of the package and how to report vulnerabilities."
+				}
+			},
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"_links": {
+			"$ref": "#/$defs/halLinks"
+		}
+	},
+	"additionalProperties": true,
+	"$defs": {
+		"author": {
+			"type": "object",
+			"description": "An author of the package.",
+			"required": [
+				"name"
+			],
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Human-readable author name."
+				},
+				"url": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL to the author's site or a page describing the author."
+				},
+				"email": {
+					"type": "string",
+					"format": "email",
+					"description": "Email address to contact the author."
+				}
+			},
+			"additionalProperties": false
+		},
+		"securityContact": {
+			"type": "object",
+			"description": "A security contact for the package.",
+			"anyOf": [
+				{
+					"required": [
+						"url"
+					]
+				},
+				{
+					"required": [
+						"email"
+					]
+				}
+			],
+			"properties": {
+				"url": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL to a security contact form or security information."
+				},
+				"email": {
+					"type": "string",
+					"format": "email",
+					"description": "Email address for security notifications."
+				}
+			},
+			"additionalProperties": false
+		},
+		"release": {
+			"type": "object",
+			"description": "A release document providing information about a package release.",
+			"required": [
+				"version",
+				"artifacts"
+			],
+			"properties": {
+				"version": {
+					"type": "string",
+					"description": "The version for this release. Should conform to semantic versioning."
+				},
+				"artifacts": {
+					"type": "object",
+					"description": "The artifacts for the release.",
+					"minProperties": 1,
+					"additionalProperties": {
+						"oneOf": [
+							{
+								"$ref": "#/$defs/artifact"
+							},
+							{
+								"type": "array",
+								"items": {
+									"$ref": "#/$defs/artifact"
+								}
+							}
+						]
+					}
+				},
+				"provides": {
+					"type": "object",
+					"description": "Capabilities that the package provides.",
+					"additionalProperties": {
+						"oneOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"requires": {
+					"type": "object",
+					"description": "Dependencies that the package requires. Keys must be either a package DID or an environment requirement.",
+					"propertyNames": {
+						"pattern": "^(did:|env:).+"
+					},
+					"additionalProperties": {
+						"type": "string"
+					},
+					"examples": [
+						{
+							"env:php": ">=8.0"
+						},
+						{
+							"env:wp": ">=6.0"
+						},
+						{
+							"did:plc:example": "^1.2.0"
+						}
+					]
+				},
+				"suggests": {
+					"type": "object",
+					"description": "Packages that can be installed alongside this package. Keys must be either a package DID or an environment requirement.",
+					"propertyNames": {
+						"pattern": "^(did:|env:).+"
+					},
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"auth": {
+					"$ref": "#/$defs/authRequirement"
+				},
+				"_links": {
+					"$ref": "#/$defs/halLinks"
+				}
+			},
+			"additionalProperties": true
+		},
+		"artifact": {
+			"type": "object",
+			"description": "An artifact for a release.",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "A unique ID for the artifact."
+				},
+				"content-type": {
+					"type": "string",
+					"description": "The MIME type of the artifact."
+				},
+				"requires-auth": {
+					"type": "boolean",
+					"description": "Whether the artifact requires authentication to access."
+				},
+				"url": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL to download the artifact."
+				},
+				"signature": {
+					"type": "string",
+					"description": "Cryptographic signature of the artifact."
+				},
+				"checksum": {
+					"type": "string",
+					"description": "Cryptographic checksum of the artifact, prefixed with the algorithm (e.g., 'sha256:...')."
+				}
+			},
+			"additionalProperties": true
+		},
+		"authRequirement": {
+			"type": "object",
+			"description": "Authentication requirements to access the package.",
+			"required": [
+				"type"
+			],
+			"properties": {
+				"type": {
+					"type": "string",
+					"description": "The authentication method being used."
+				},
+				"hint": {
+					"type": "string",
+					"description": "A human-readable hint about how to authenticate.",
+					"maxLength": 140
+				},
+				"hint_url": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL providing more information about authentication requirements."
+				}
+			},
+			"additionalProperties": true
+		},
+		"halLinks": {
+			"type": "object",
+			"description": "HAL links to related resources."
+		}
+	}
+}
