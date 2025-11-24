@@ -1,0 +1,13 @@
+{
+	"name": "fair-protocol",
+	"version": "1.0.0",
+	"description": "FAIR (Federated and Independent Repositories) Package Management Protocol",
+	"private": true,
+	"devDependencies": {
+		"ajv-cli": "^5.0",
+		"ajv-formats": "^3.0"
+	},
+	"scripts": {
+		"test": "./scripts/test.sh"
+	}
+}
