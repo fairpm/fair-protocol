@@ -157,31 +157,34 @@
 		"securityContact": {
 			"type": "object",
 			"description": "A security contact for the package.",
-			"anyOf": [
+			"oneOf": [
 				{
 					"required": [
 						"url"
-					]
+					],
+					"properties": {
+						"url": {
+							"type": "string",
+							"format": "uri",
+							"description": "URL to a security contact form or security information."
+						}
+					},
+					"additionalProperties": false
 				},
 				{
 					"required": [
 						"email"
-					]
+					],
+					"properties": {
+						"email": {
+							"type": "string",
+							"format": "email",
+							"description": "Email address for security notifications."
+						}
+					},
+					"additionalProperties": false
 				}
-			],
-			"properties": {
-				"url": {
-					"type": "string",
-					"format": "uri",
-					"description": "URL to a security contact form or security information."
-				},
-				"email": {
-					"type": "string",
-					"format": "email",
-					"description": "Email address for security notifications."
-				}
-			},
-			"additionalProperties": false
+			]
 		},
 		"release": {
 			"type": "object",
