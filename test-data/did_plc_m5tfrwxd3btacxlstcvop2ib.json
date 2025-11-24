@@ -1,0 +1,90 @@
+{
+  "@context": "https://fair.pm/ns/metadata/v1",
+  "id": "did:plc:m5tfrwxd3btacxlstcvop2ib",
+  "type": "wp-plugin",
+  "name": "Glossary by Progress Planner",
+  "slug": "pp-glossary",
+  "filename": "pp-glossary/pp-glossary.php",
+  "description": "Glossary by Progress Planner is a modern, accessible WordPress glossary plugin that automatically transforms glossary terms in your content…",
+  "authors": [
+    {
+      "name": "Joost de Valk",
+      "url": "https://joost.blog"
+    }
+  ],
+  "license": "GPL v3 or later",
+  "security": [],
+  "keywords": [
+    "glossary",
+    "definitions",
+    "terms",
+    "dictionary"
+  ],
+  "sections": {
+    "description": "<p>Glossary by Progress Planner is a modern, accessible WordPress glossary plugin that automatically transforms glossary terms in your content into interactive elements with hover-triggered popover definitions.</p>\n<h4> Key Features </h4>\n<ul>\n<li><strong>Custom Post Type</strong>: Register glossary entries with custom fields (no content editor needed)</li>\n<li><strong>Native WordPress Fields</strong>: Uses WordPress custom meta boxes for field management (short description, long description, synonyms)</li>\n<li><strong>Automatic Term Linking</strong>: Automatically transforms the first mention of glossary terms in your content</li>\n<li><strong>Hover-Triggered Popovers</strong>: Display definitions on hover/focus using the native Popover API with CSS Anchor Positioning</li>\n<li><strong>Semantic HTML</strong>: Uses <code>&lt;dfn&gt;</code> and <code>&lt;aside&gt;</code> elements with proper ARIA attributes</li>\n<li><strong>Schema.org Integration</strong>: Full DefinedTerm and DefinedTermSet structured data support\n<ul>\n<li>Integrates with Yoast SEO schema graph when available</li>\n<li>Falls back to Microdata when Yoast SEO is not active</li>\n</ul>\n</li>\n<li><strong>Synonyms Support</strong>: Define alternative terms that trigger the same glossary entry</li>\n<li><strong>Glossary Block</strong>: Gutenberg block to display full glossary with alphabetical navigation</li>\n<li><strong>Settings Page</strong>: Configure which page displays the glossary</li>\n<li><strong>Accessible</strong>: Full keyboard navigation and screen reader compatibility</li>\n<li><strong>Responsive Design</strong>: Mobile-friendly with CSS custom properties for easy theming</li>\n<li><strong>No External Dependencies</strong>: Pure WordPress core functionality, no third-party plugins required</li>\n</ul>\n<h4> How It Works </h4>\n<p>Once you've added glossary entries, the plugin automatically:</p>\n<ul>\n<li>Scans post and page content for mentions of glossary terms (case-insensitive)</li>\n<li>Transforms the <strong>first mention</strong> of each term into an interactive element</li>\n<li>Shows a popover with the short description when users hover over or focus on the term</li>\n<li>Adds a \"Read more\" link to the full glossary entry</li>\n</ul>\n<h4> Browser Support </h4>\n<p>The plugin uses modern web platform features:</p>\n<p><strong>Popover API:</strong></p>\n<ul>\n<li>Chrome/Edge 114+</li>\n<li>Safari 17+</li>\n<li>Firefox (experimental support behind flag)</li>\n</ul>\n<p><strong>CSS Anchor Positioning:</strong></p>\n<ul>\n<li>Chrome/Edge 125+/Safari: supported</li>\n<li>Firefox (not yet supported)</li>\n</ul>\n<p>For older browsers, consider adding the Popover API polyfill. CSS Anchor Positioning gracefully degrades (popovers may not position optimally but will still be functional).</p>\n<h4> Accessibility </h4>\n<p>The plugin follows WCAG 2.1 Level AA guidelines:</p>\n<ul>\n<li>Semantic HTML elements (<code>&lt;dfn&gt;</code>, <code>&lt;aside&gt;</code>, proper roles)</li>\n<li>Full keyboard navigation with visible focus indicators</li>\n<li>ARIA attributes for screen readers</li>\n<li>Hover delay to prevent accidental triggers</li>\n<li><code>cursor: help</code> to indicate interactive terms</li>\n<li>Color contrast ratios meet AA standards</li>\n</ul>\n<h4> Schema.org Structured Data </h4>\n<p>The plugin automatically adds Schema.org structured data for glossary entries:</p>\n<ul>\n<li><strong>With Yoast SEO</strong>: Integrates with the Yoast schema graph API to add DefinedTermSet and DefinedTerm entries in JSON-LD format</li>\n<li><strong>Without Yoast SEO</strong>: Outputs Microdata markup directly in the HTML using <code>itemscope</code> and <code>itemtype</code> attributes</li>\n</ul>\n<p>Each glossary entry includes:</p>\n<ul>\n<li>@type: DefinedTerm</li>\n<li>name: The term title</li>\n<li>description: Short description (shown in popovers)</li>\n<li>url: Anchor link to the entry on the glossary page</li>\n<li>alternateName: Array of synonyms (alternative terms)</li>\n</ul>",
+    "installation": "<h4> Automatic Installation </h4>\n<ol>\n<li>Log in to your WordPress admin panel</li>\n<li>Navigate to Plugins > Add New</li>\n<li>Search for \"Glossary by Progress Planner\"</li>\n<li>Click \"Install Now\" and then \"Activate\"</li>\n</ol>\n<h4> Manual Installation </h4>\n<ol>\n<li>Download the plugin zip file</li>\n<li>Extract it to your <code>wp-content/plugins/</code> directory</li>\n<li>Activate the plugin through the 'Plugins' menu in WordPress</li>\n</ol>\n<h4> Setup </h4>\n<ol>\n<li><strong>Create a Glossary Page</strong>: Create a new page in WordPress (e.g., \"Glossary\" or \"Terms\") and add the <strong>Glossary List</strong> block to the page</li>\n<li><strong>Configure Settings</strong>: Go to <strong>Glossary > Settings</strong> in the WordPress admin and select the page you created as the \"Glossary Page\"</li>\n<li><strong>Add Glossary Entries</strong>: Go to <strong>Glossary > Add New</strong> and enter terms with their short descriptions, long descriptions, and synonyms</li>\n</ol>",
+    "changelog": "<h4> 1.0.0 </h4>\n<ul>\n<li>Initial release</li>\n<li>Custom post type for glossary entries</li>\n<li>Native WordPress custom fields (short description, long description, synonyms)</li>\n<li>Hover-triggered popovers using Popover API with CSS Anchor Positioning</li>\n<li>Automatic term linking (first occurrence only)</li>\n<li>Glossary List Gutenberg block</li>\n<li>Settings page for glossary page configuration</li>\n<li>Schema.org structured data (DefinedTerm and DefinedTermSet)\n<ul>\n<li>Yoast SEO integration (JSON-LD)</li>\n<li>Microdata fallback when Yoast is not active</li>\n</ul>\n</li>\n<li>Semantic, accessible HTML</li>\n<li>Responsive design with CSS custom properties</li>\n<li>Full keyboard and screen reader support</li>\n<li>No external plugin dependencies</li>\n</ul>",
+    "faq": "<h4>Does this plugin require any other plugins?</h4>\n<p>No, this plugin uses only native WordPress functionality and has no external dependencies.</p>\n<h4>Which browsers are supported?</h4>\n<p>The plugin works best in modern browsers with Popover API support (Chrome 114+, Edge 114+, Safari 17+). For older browsers, consider adding the Popover API polyfill.</p>\n<h4>Does it work with Yoast SEO?</h4>\n<p>Yes! The plugin integrates seamlessly with Yoast SEO, adding glossary structured data to Yoast's JSON-LD schema graph. When Yoast SEO is not active, it falls back to Microdata markup.</p>\n<h4>Can I customize the styling?</h4>\n<p>Yes, the plugin uses CSS custom properties for easy theming. You can override the default colors and styles in your theme's CSS.</p>\n<h4>How do I disable automatic linking for specific post types?</h4>\n<p>Use the <code>pp_glossary_disabled_post_types</code> filter:</p>\n<p><code>add_filter( 'pp_glossary_disabled_post_types', function( $post_types ) { return array( 'product', 'custom_post_type' ); } );</code></p>\n<h4>Does it work with the block editor?</h4>\n<p>Yes, the plugin includes a Glossary List block that you can add to any page or post using the block editor.</p>\n"
+  },
+  "last_updated": "2025-11-21T11:40:08Z",
+  "releases": [
+    {
+      "version": "1.0.1",
+      "requires": {
+        "env:php": ">=7.4",
+        "env:wp": ">=6.0"
+      },
+      "suggests": {
+        "env:wp": ">=6.9.3"
+      },
+      "provides": [],
+      "artifacts": {
+        "icon": [
+          {
+            "url": "https://s.w.org/plugins/geopattern-icon/pp-glossary.svg",
+            "content-type": "image/svg+xml",
+            "height": null,
+            "width": null
+          }
+        ],
+        "package": [
+          {
+            "url": "https://api.github.com/repos/ProgressPlanner/pp-glossary/releases/assets/319202008",
+            "content-type": "application/octet-stream",
+            "signature": "JPrQdRoTCdbMNVwlkXBXuaxKZw-zO6ks6ic7HQvSTvcpSZCIr7GAssJKlIirkXJOvrPrMxWhZkXvStpAW6W2Cg",
+            "checksum": "sha256:3133f204c4c2a22bcb0e4f8b5279a6b1753018413f6795423518a1aa6c94ae30"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.1",
+      "requires": {
+        "env:php": ">=7.4",
+        "env:wp": ">=6.0"
+      },
+      "suggests": {
+        "env:wp": ">=6.9.3"
+      },
+      "provides": [],
+      "artifacts": {
+        "icon": [
+          {
+            "url": "https://s.w.org/plugins/geopattern-icon/pp-glossary.svg",
+            "content-type": "image/svg+xml",
+            "height": null,
+            "width": null
+          }
+        ],
+        "package": [
+          {
+            "url": "https://api.github.com/repos/ProgressPlanner/pp-glossary/releases/assets/316315635",
+            "content-type": "application/octet-stream",
+            "signature": "C6mmYlJIIGKjZi4Ak0rP309bGuv6f2aPNxf91i1SEX4I__Ln7QnuaTKlmVEtYgLSa6GeF6e2UGEl7YbvOdztCQ",
+            "checksum": "sha256:b39eecaf6d13e96203797eb5c71705117acbb4b9ed91f1da177eafb304e52a19"
+          }
+        ]
+      }
+    }
+  ]
+}

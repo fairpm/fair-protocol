@@ -1,0 +1,1325 @@
+{
+    "@context": "https:\/\/fair.pm\/ns\/metadata\/v1",
+    "id": "did:plc:afjf7gsjzsqmgc7dlhb553mv",
+    "type": "wp-plugin",
+    "name": "Git Updater",
+    "slug": "git-updater",
+    "filename": "git-updater-f27e06\/git-updater.php",
+    "description": "This plugin was originally designed to simply update any GitHub hosted WordPress plugin or theme. Currently, plugins or themes hosted on Bi\u2026",
+    "authors": [
+        {
+            "name": "Andy Fragen",
+            "url": "https:\/\/thefragens.com"
+        }
+    ],
+    "license": "MIT",
+    "security": [
+        {
+            "email": "andy+security@git-updater.com"
+        }
+    ],
+    "keywords": [
+        "packages",
+        "language pack",
+        "updater"
+    ],
+    "sections": {
+        "description": "<p>This plugin was originally designed to simply update any GitHub hosted WordPress plugin or theme. Currently, plugins or themes hosted on Bitbucket, GitLab, Gitea, or Gist are also supported via additional API plugins. Additionally, self-hosted git servers are supported.<\/p>\n<p>Your plugin or theme <strong>must<\/strong> contain a header in the style.css header or in the plugin's header denoting the location on GitHub. The format is as follows.<\/p>\n<pre><code>GitHub Plugin URI: afragen\/git-updater\nGitHub Plugin URI: https:\/\/github.com\/afragen\/git-updater<\/code><\/pre>\n<p>or<\/p>\n<pre><code>GitHub Theme URI: afragen\/test-child\nGitHub Theme URI: https:\/\/github.com\/afragen\/test-child<\/code><\/pre>\n<p>...where the above URI leads to the <strong>owner\/repository<\/strong> of your theme or plugin. The URI may be in the format <code>https:\/\/github.com\/&lt;owner&gt;\/&lt;repo&gt;<\/code> or the short format <code>&lt;owner&gt;\/&lt;repo&gt;<\/code>. You do not need both. Only one Plugin or Theme URI is required. You <strong>must not<\/strong> include any extensions like <code>.git<\/code>.<\/p>\n<h3>API Plugins<\/h3>\n<p>API plugins for Bitbucket, GitLab, Gitea, and Gist are available. API plugins are available for a one-click install from the <strong>Add-Ons<\/strong> tab.<\/p>\n<ul>\n<li><a href=\"https:\/\/github.com\/afragen\/git-updater-bitbucket\/releases\/latest\">Git Updater - Bitbucket<\/a><\/li>\n<li><a href=\"https:\/\/github.com\/afragen\/git-updater-gitlab\/releases\/latest\">Git Updater - GitLab<\/a><\/li>\n<li><a href=\"https:\/\/github.com\/afragen\/git-updater-gitea\/releases\/latest\">Git Updater - Gitea<\/a><\/li>\n<li><a href=\"https:\/\/github.com\/afragen\/git-updater-gist\/releases\/latest\">Git Updater - Gist<\/a><\/li>\n<\/ul>\n<h3>Sponsor<\/h3>\n<p>Purchase a license at the <a href=\"https:\/\/git-updater.com\/store\/\">Git Updater Store<\/a>. An unlimited yearly license is very reasonable and allows for authenticated API requests. There is an initial free trial period. After the trial period Git Updater will not be able to make authenticated API requests.<\/p>\n<p>You can <a href=\"https:\/\/github.com\/sponsors\/afragen\">sponsor me on GitHub<\/a> to help with continued development and support.<\/p>\n<h3>Headers<\/h3>\n<p>The following headers are available for use depending upon your hosting source.<\/p>\n<h4>GitHub<\/h4>\n<ul>\n<li>GitHub Plugin URI<\/li>\n<li>GitHub Theme URI<\/li>\n<li>GitHub Languages<\/li>\n<\/ul>",
+        "installation": "<p>Go to <a href=\"https:\/\/git-updater.com\">git-updater.com<\/a> to download and install the latest version.<\/p>",
+        "faq": "<h4>Knowledge Base<\/h4>\n<p><a href=\"https:\/\/git-updater.com\/knowledge-base\">Comprehensive information regarding Git Updater is available in the Knowledge Base.<\/a><\/p>\n<h4>Slack<\/h4>\n<p>We now have a <a href=\"https:\/\/git-updater.slack.com\">Slack team for Git Updater<\/a>. Please <a href=\"https:\/\/join.slack.com\/t\/git-updater\/shared_invite\/zt-1extq97hy-FjA1QAhjGNDzmFjjlRv3rg\">click here for an invite<\/a>. You will be automatically added to the <em>#general<\/em> and <em>#support<\/em> channels. Please take a look at other channels too.<\/p>\n<h4>Translations<\/h4>\n<p>If you are a polyglot I would greatly appreciate translation contributions to <a href=\"https:\/\/translate.git-updater.com\">GlotPress for Git Updater<\/a>.<\/p>\n",
+        "changelog": "<h4>[unreleased]<\/h4>\n<h4>12.20.0 \/ 2025-11-24<\/h4>\n<ul>\n<li>move tag sort outside of loop<\/li>\n<li>use auth key for REST endpoint to flush repository cache for possible abuse<\/li>\n<li>added <code>Screenshots<\/code> section to plugin modal<\/li>\n<li>get <code>created_at<\/code> per release asset<\/li>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<li>Cache Add-Ons for 7 days<\/li>\n<\/ul>\n<h4>12.19.0 \/ 2025-09-29<\/h4>\n<ul>\n<li>setup for Gitea release assets<\/li>\n<li>use <code>mcaskill\/composer-exclude-files<\/code> to exclude autoload of <code>freemius\/wordpress-sdk\/start.php<\/code><\/li>\n<li>harden <code>parse_meta_response()<\/code><\/li>\n<li>modify dot org check for package added to mirror like AspireCloud<\/li>\n<li>don't overwrite <code>requires<\/code> and <code>requires_php<\/code> data from readme.txt if already exists<\/li>\n<li>correctly parse for multiple release assets per release<\/li>\n<li>update POT GitHub Action<\/li>\n<li>refactor <code>add_accept_header()<\/code><\/li>\n<li>set <code>release_assets<\/code> and <code>release_asset_download<\/code> for latest release asset<\/li>\n<\/ul>\n<h4>12.18.1 \/ 2025-08-06<\/h4>\n<ul>\n<li>data check on release assets<\/li>\n<\/ul>\n<h4>12.18.0 \/ 2025-08-04<\/h4>\n<ul>\n<li>update cache delete and don't use <code>wp_cache_flush<\/code><\/li>\n<li>always show download link in REST endpoint<\/li>\n<li>improved reverse sort for branch\/tag versions<\/li>\n<li>get all release assets from GitHub API and pick release asset download from release assets array, other APIs get latest release asset only<\/li>\n<li>update <code>parse_tag()<\/code> and <code>sort_tags()<\/code><\/li>\n<li>update branch switching tags<\/li>\n<\/ul>\n<h4>12.17.3 \/ 2025-07-31<\/h4>\n<ul>\n<li>add new <code>Security<\/code> header with value of email or URI<\/li>\n<\/ul>\n<h4>12.17.2 \/ 2025-07-26<\/h4>\n<ul>\n<li>update <code>GU_Freemius<\/code> for FAIR installation<\/li>\n<\/ul>\n<h4>12.17.1 \/ 2025-07-20<\/h4>\n<ul>\n<li>add remote data for <code>did<\/code>, <code>slug_hash<\/code> if added via <code>Additions<\/code><\/li>\n<li>use <code>Bearer<\/code> for token with GitHub API<\/li>\n<\/ul>\n<h4>12.17.0 \/ 2025-07-14<\/h4>\n<ul>\n<li>un-escape stuff, more uses of <code>use<\/code><\/li>\n<li>add <code>License<\/code> header info<\/li>\n<li>add <code>Update URI<\/code> header info<\/li>\n<li>add <code>get_did_hash()<\/code> to get hash of DID<\/li>\n<li>add <code>get_file_without_did_hash()<\/code><\/li>\n<li>simplify check for <code>rename_on_activation()<\/code><\/li>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<\/ul>\n<h4>12.16.1 \/ 2025-06-12<\/h4>\n<ul>\n<li>add DID<\/li>\n<li>update rollback sort<\/li>\n<li>update banner image<\/li>\n<\/ul>\n<h4>12.16.0 \/ 2025-06-09<\/h4>\n<ul>\n<li>change callback from <code>new REST_API()<\/code> to <code>$this<\/code><\/li>\n<li>collect <code>Author URI<\/code> from headers.<\/li>\n<li>add action hook to <code>Base::get_remote_repo_meta<\/code><\/li>\n<li>get all versions of release assets, similar to tags\/rollbacks<\/li>\n<li>add compatibility check for AspireUpdate and FAIR Package Manager<\/li>\n<\/ul>\n<h4>12.15.1 \/ 2025-05-20<\/h4>\n<ul>\n<li>update stability of composer requirements<\/li>\n<\/ul>\n<h4>12.15.0 \/ 2025-05-20<\/h4>\n<ul>\n<li>update to correct format of readme tags<\/li>\n<li>add correctly formated date\/time for <code>update-api<\/code> REST endpoint<\/li>\n<li>remove deprecated hooks from v10 and earlier<\/li>\n<li>add error checking to <code>parse_contents_response()<\/code><\/li>\n<li>update Freemius\/wordpress-sdk<\/li>\n<li>add support for <code>Plugin ID<\/code> and <code>Theme ID<\/code> headers for FAIR<\/li>\n<li>update <code>composer.json<\/code><\/li>\n<\/ul>\n<h4>12.14.0 \/ 2025-02-26<\/h4>\n<ul>\n<li>make sure proper release asset headers are added even if access token not set<\/li>\n<li>ensure <em>short description<\/em> is 150 characters or less<\/li>\n<\/ul>\n<h4>12.13.0 \/ 2025-02-21<\/h4>\n<ul>\n<li>update caching<\/li>\n<li>add <code>versions<\/code> to REST endpoint for <code>{plugins|themes|update}-api<\/code><\/li>\n<li>update generate POT workflow<\/li>\n<\/ul>\n<h4>12.12.1 \/ 2025-02-12<\/h4>\n<ul>\n<li>revert uninstall back to Freemius<\/li>\n<\/ul>\n<h4>12.12.0 \/ 2025-02-10<\/h4>\n<ul>\n<li>save source with <code>Additions<\/code><\/li>\n<li>update <code>Additions::deduplicate()<\/code><\/li>\n<li>update <code>Base::upgrader_source_selection()<\/code> rename to allow for AJAX installation, thanks @costdev<\/li>\n<li>add <code>git-updater-collections<\/code>to <code>Add-Ons<\/code><\/li>\n<li>make list table show all elements<\/li>\n<li>add <code>Private Package<\/code> option for <code>Additions<\/code>, these private packages are not to be shared with aggregators<\/li>\n<li>switch to standard <code>uninstall.php<\/code> as issue with calling <code>Freemius<\/code> during their <code>after_uninstall<\/code> hook<\/li>\n<li>add early exit in <code>get_repo_slugs()<\/code> during AJAX installation for <code>Add-Ons<\/code><\/li>\n<li>remove soft match in <code>get_repo_slugs()<\/code><\/li>\n<li>removed <code>Add_Ons::upgrader_source_selection<\/code> no longer needed<\/li>\n<li>save\/export tags from <code>readme.txt<\/code> for REST endpoint<\/li>\n<\/ul>\n<h4>12.11.0 \/ 2025-02-02<\/h4>\n<ul>\n<li>update Additions to add additional listings<\/li>\n<li>more updates for possibly passing <code>null<\/code><\/li>\n<li>update <code>REST_API::get_api_data<\/code><\/li>\n<li>update <code>Theme<\/code> to add <code>theme_uri<\/code> to update transient<\/li>\n<li>update to pass complete data for multiple uses of <code>gu_additions<\/code> hook<\/li>\n<\/ul>\n<h4>12.10.1 \/ 2025-01-30<\/h4>\n<ul>\n<li>fix issue with release asset<\/li>\n<li>add guard to <code>Add-Ons<\/code><\/li>\n<li>remove <code>git-updater-federation<\/code> from <code>Add-Ons<\/code><\/li>\n<\/ul>\n<h4>12.10.0 \/ 2025-01-29<\/h4>\n<ul>\n<li>refactor <code>Add_Ons<\/code> to use <code>plugins-api<\/code> REST endpoint and standard plugin card<\/li>\n<li>added features by @costdev for AJAXifying<\/li>\n<li>added parsing of <code>Update URI<\/code> and <code>Requires Plugins<\/code> headers<\/li>\n<li>increase requirements to PHP 8+<\/li>\n<li>added REST endpoint to export data from <code>Additions<\/code><\/li>\n<li>added REST endpoint to export Update API data from <code>Additions<\/code><\/li>\n<li>update Freemius\/wordpress-sdk<\/li>\n<li>change 'API Add-Ons' to 'Add-Ons'<\/li>\n<\/ul>\n<h4>12.9.0 \/ 2025-01-07<\/h4>\n<ul>\n<li>add API get for repo root contents for efficiency<\/li>\n<li>add feature to virtually add repos via Additions tab to server REST update-api endpoint<\/li>\n<li>switch to getting most data via API calls and not from locally installed files<\/li>\n<li>add REST endpoint to individually flush repo cache<\/li>\n<li>fix <code>Basic_Auth_Loader::get_slug_for_credentials()<\/code> to get slug for gist<\/li>\n<li>update <code>$release_asset_parts<\/code> in <code>Basic_Auth_Loader::unset_release_asset_auth()<\/code> for AWS download link<\/li>\n<li>improved release asset handling<\/li>\n<\/ul>\n<h4>12.8.0 \/ 2024-12-21<\/h4>\n<ul>\n<li>update GitHub release asset parsing<\/li>\n<li>update <code>REST_API<\/code> for Bitbucket update link<\/li>\n<li>update <code>REST_API<\/code> for <code>update-api<\/code> route<\/li>\n<\/ul>\n<h4>12.7.2 \/ 2024-12-18<\/h4>\n<ul>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<li>use <code>mcaskill\/composer-exclude-files<\/code> to exclude autoloading <code>start.php<\/code> from Freemius, issues arise<\/li>\n<li>update <code>REST_API::get_api_data()<\/code> to always get current release asset redirect as appropriate<\/li>\n<\/ul>\n<h4>12.7.1 \/ 2024-12-02<\/h4>\n<ul>\n<li>use <code>get_file_date()<\/code> to return plugin version<\/li>\n<li>fix <code>API::get_dot_org_data()<\/code> to work with WPE mirror<\/li>\n<\/ul>\n<h4>12.7.0 \/ 2024-11-30<\/h4>\n<ul>\n<li>fix missing\/incorrect textdomains<\/li>\n<li>look for <code>__()<\/code> functions loading in hooks before <code>init<\/code><\/li>\n<li>remove <code>load_plugin_textdomain()<\/code><\/li>\n<li>add git host icon to single site theme description<\/li>\n<li>don't save to GitHub.com access token from single repo remote install<\/li>\n<li>fix PHP 8.1 creation dynamic variable from <code>class REST_API<\/code><\/li>\n<li>update REST API response to return <code>plugins_api()<\/code> or <code>themes_api()<\/code> style response<\/li>\n<\/ul>\n<h4>12.6.0 \/ 2024-10-13<\/h4>\n<ul>\n<li>check existence of <code>FS__RESOLVE_CLONE_AS<\/code> before setting<\/li>\n<li>add filter hook <code>gu_api_domain<\/code> to set domain for default API updating<\/li>\n<li>add filter hook <code>gu_ignore_dot_org<\/code> to completely ignore updates from dot org. Works as if every plugin\/theme is in the <code>gu_override_dot_org<\/code> hook<\/li>\n<\/ul>\n<h4>12.5.0 \/ 2024-08-16<\/h4>\n<ul>\n<li>update <code>class-parser.php<\/code><\/li>\n<li>update <code>Requires PHP<\/code> to 7.4 for <code>class-parser.php<\/code><\/li>\n<li>update <code>Requires WP<\/code> to 5.9<\/li>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<li>update <code>printf()<\/code> in <code>class Branches<\/code><\/li>\n<li>fix old <code>git-updater-pro<\/code> and <code>git-updater-additions<\/code> textdomains<\/li>\n<li>update <code>Base::upgrader_source_selection()<\/code> when trying to update <code>$source<\/code> and <code>$new_source<\/code> when destination directories are identical<\/li>\n<li>remove unused parameters in certain functions<\/li>\n<\/ul>\n<h4>12.4.0 \/ 2024-03-04<\/h4>\n<ul>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<li>update <code>class-parser.php<\/code><\/li>\n<li>use <code>is_wp_version_compatible()<\/code> and <code>is_php_version_compatible()<\/code> in <code>GU_Trait::can_update_repo()<\/code><\/li>\n<li>update <code>gu-loader.php<\/code> with generic loader<\/li>\n<li>update <code>Readme_Parser::trim_length<\/code><\/li>\n<\/ul>\n<h4>12.3.1 \/ 2023-10-19<\/h4>\n<ul>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<li>WPCS 3.0.0 linting<\/li>\n<li>popup on icon for &quot;Updates via Git Updater&quot;, thanks @BrianHenryIE<\/li>\n<\/ul>\n<h4>12.3.0 \/ 2023-08-10<\/h4>\n<ul>\n<li>update Bitbucket Add-on message for consistency<\/li>\n<li>ensure <code>Shim<\/code> available during <code>register_activation_hook()<\/code><\/li>\n<li>add conditional to <code>get_remote_api_branches()<\/code> to ensure <code>$response<\/code> is not a scalar<\/li>\n<li>use null coalescing operator<\/li>\n<li>update for PHP 8.2<\/li>\n<\/ul>\n<h4>12.2.3 \/ 2023-06-27<\/h4>\n<ul>\n<li>composer update<\/li>\n<li>get <code>gu_disable_cron<\/code> hook result once per repository<\/li>\n<li>ensure git class is instantiated when checking <code>waiting_for_background_update()<\/code><\/li>\n<li>add check for <code>$response-&gt;error<\/code> to <code>API::validate_response()<\/code><\/li>\n<li>update <code>freemius\/wordpress-sdk<\/code> to 2.5.10<\/li>\n<\/ul>\n<h4>12.2.2 \/2023-05-22<\/h4>\n<ul>\n<li>add back Network only activate for multisite, may cause issue where post-license activation Freemius doesn't re-direct to network admin<\/li>\n<li>update anonymous functions as static functions for better performance<\/li>\n<li>composer update<\/li>\n<\/ul>\n<h4>12.2.1 \/ 2023-04-21<\/h4>\n<ul>\n<li>ensure <code>$wp_filesystem<\/code> set for <code>Bootstrap::rename_on_activation()<\/code><\/li>\n<li>uninstall tested to function correctly<\/li>\n<\/ul>\n<h4>12.2.0 \/ 2023-04-20<\/h4>\n<ul>\n<li>update <code>freemius\/wordpress-sdk<\/code><\/li>\n<li>update <code>afragen\/wp-dismiss-notice<\/code><\/li>\n<li>don't save unused data from <code>API_Common::parse_release_asset()<\/code><\/li>\n<li>don't use Freemius uninstall, use previous <code>uninstall.php<\/code><\/li>\n<li>more PHP 8.2 compatibility<\/li>\n<li>composer update<\/li>\n<li>update <code>REST_API::get_plugins_api_data()<\/code> to return response without download link using boolean value in <code>download<\/code> query arg<\/li>\n<li>hide Freemius menus with <code>gu_hide_settings<\/code> filter<\/li>\n<li>more specific hiding of Git Updater settings<\/li>\n<\/ul>\n<h4>12.1.3 \/ 2023-03-20<\/h4>\n<ul>\n<li>improved setting\/default of <code>$options['bypass_background_processing']<\/code><\/li>\n<li>improved setting\/default of <code>$options['branch_switch']<\/code><\/li>\n<li>display upgrade notice on <code>update-core.php<\/code><\/li>\n<li>composer update <code>afragen\/singleton<\/code> for PHP 8.2 compat<\/li>\n<\/ul>\n<h4>12.1.2 \/ 2023-02-08<\/h4>\n<ul>\n<li>fix for webhook updating issue if <code>$branches<\/code> not defined, thanks @awunsch<\/li>\n<\/ul>\n<h4>12.1.1 \/ 2023-02-07<\/h4>\n<ul>\n<li>remove force of Network activation, messes up Freemius license activation on multisite<\/li>\n<li>composer update<\/li>\n<\/ul>\n<h4>12.1.0 \/ 2023-02-06<\/h4>\n<ul>\n<li>further limit log of HTTP errors, trying for only once per plugin<\/li>\n<li>eliminate Freemius clone resolution popup<\/li>\n<li>update <code>Shim:move_dir()<\/code> for improved error messaging<\/li>\n<li>update comparison in <code>Base::upgrader_source_selection<\/code> of <code>$source<\/code> and <code>$new_source<\/code><\/li>\n<\/ul>\n<h4>12.0.4 \/ 2023-01-27<\/h4>\n<ul>\n<li>update to use <code>str_contains()<\/code><\/li>\n<li>log HTTP errors only hourly<\/li>\n<li>update <code>Shim::move_dir()<\/code> to exit early if source and destination differ only by case or trailing slash<\/li>\n<\/ul>\n<h4>12.0.3 \/ 2023-01-19<\/h4>\n<ul>\n<li>update <code>Shim<\/code> for <code>move_dir()<\/code> and <code>wp_opcache_invalidate_directory()<\/code><\/li>\n<li>composer update<\/li>\n<\/ul>\n<h4>12.0.2 \/ 2023-01-12<\/h4>\n<ul>\n<li>PHP 8.1 compatibility fix, thanks @chesio<\/li>\n<li>other PHP 8.1 fixes<\/li>\n<li>declare <code>class API<\/code> variable <code>$type<\/code>, avoid future PHP issues, thanks @chesio<\/li>\n<\/ul>\n<h4>12.0.1 \/ 2023-01-02<\/h4>\n<ul>\n<li>cleanup parsing of GitHub release assets<\/li>\n<li>composer update to fix dependency conflict<\/li>\n<\/ul>\n<h4>12.0.0 \/ 2022-12-12<\/h4>\n<ul>\n<li>ensure <code>$wp_filesystem<\/code> is available<\/li>\n<li>re-integrate Git Updater PRO<\/li>\n<li>integrate Git Updater Additions<\/li>\n<li>add git logo to subtab, hide for now<\/li>\n<li>load API tabs of installed\/active API plugins<\/li>\n<li>set Git Updater to auto-update with new <code>$db_version<\/code><\/li>\n<li>replace Appsero SDK with Freemius SDK<\/li>\n<li>suspend Freemius plugin updating for Git Updater<\/li>\n<li>fix uninstall.php for Freemius<\/li>\n<\/ul>"
+    },
+    "last_updated": "2025-11-24T16:49:20Z",
+    "releases": [
+        {
+            "version": "12.20.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.20.0",
+                        "content-type": "application\/zip",
+                        "signature": "WHFZUNty_bRC_xW91hLcpTBW2q2NGEWElA9S1p8IXyck6ZlWGXNlTlzLV5t2l79p0Fs7loCHD_TURyiCCm-kBw",
+                        "checksum": "sha256:4ecfed68f4323fa5f592220c33735390f14a8e5fb035641c4cd3bc2d48b125c4"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.19.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.19.0",
+                        "content-type": "application\/zip",
+                        "signature": "7b-0Vhc-0UZNUiGBdt0TeusAsPVtaueC8vNzWHsfvuL2SXFvN1167fob1bepPxDUzfrab696uJQbcKgsVinDDQ",
+                        "checksum": "sha256:042f4b6b0679a0e05f5a7c31866666d6023f03f158d42e50341447017bf7761c"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.18.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.18.1",
+                        "content-type": "application\/zip",
+                        "signature": "EpuafWIgTMKhzTv1TI9LJwWwY2fd4qXt03uySS7JEmZmZGM7Rpd_vmaQqFkF9S_ZfjBSr1KNrOtV7Grs8EsKAA",
+                        "checksum": "sha256:df5500189a2496b5b9926140f736fa5a1412a6f8a24076e5b8916ca62b93cc69"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.18.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.18.0",
+                        "content-type": "application\/zip",
+                        "signature": "2ImwweAEBCS6JklvmAX0gY1b16hXTANDfajeIe23l88390DoOJyGCMWDu-JCgrer5dzoPR4dcCP_xReaIk6jCQ",
+                        "checksum": "sha256:926a9cdbc9cb541d474e97721edc7c9f5e807fb3a3561330408bb8c6f60efda8"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.17.3",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.17.3",
+                        "content-type": "application\/zip",
+                        "signature": "Ja_jQpWxa1HbBANXfEODhaVabtwZh3gSISFspCnH4VRhAFRtuTzL_ocrK9YLiZt_5uRG-EYNUZCQ2GpIO1hlCA",
+                        "checksum": "sha256:0bcbe37b55845c46f44a26b811e65644e2ea7d3667bc5d803aba253e68c9abe4"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.17.2",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.17.2",
+                        "content-type": "application\/zip",
+                        "signature": "E9dmnQeyns4zkEFdkoqgoP5ypZUYhSHgc4jCGIyAbbMsrBcU_Bz4BTz3TZ5FN0HFDLJHM72EsgnWn-v_kkyvDw",
+                        "checksum": "sha256:34cedaa6ce5a9117a648ef74e9ff0a078fe6233754df1c193832158400c4dc56"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.17.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.17.1",
+                        "content-type": "application\/zip",
+                        "signature": "UeQGZeLW-dBTjf4KmWPWOniAOuYtUOtM291LNfl1Z1Oe00fot9sch_2XMVCSdzm_1HVYWl9k-cbX1oNnjZMABg",
+                        "checksum": "sha256:2587fef3fe85a4105468fc1585bda7e3390fd7910139052241e0f6acb0937202"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.17.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.17.0",
+                        "content-type": "application\/zip",
+                        "signature": "xEukT1stXFmp0eLm7h5y53eNS96ySMxyeVZWFUEKjiDtVP1tOi_1h9EFV6ptlCfpHJ9pCIinlpGhH-jnd55tBQ",
+                        "checksum": "sha256:e5bfd517038b85d6bb7d69ce5167d178f8a38fe78914c2412f0e192804bfccd1"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.16.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.16.1",
+                        "content-type": "application\/zip",
+                        "signature": "GClIU9t-edxT_Wlx0o28WIE4xvG4bpBunk6PLFuIBC_cwrjKGiWNtX5e1VsyrUl5Cvy2lPuwkR8vCljLFJI-Dw",
+                        "checksum": "sha256:7ff0fef82da2539e5fe2762588e60253936cfd7170af997d1827e573cf9a5070"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.16.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.16.0",
+                        "content-type": "application\/zip",
+                        "signature": "bZaYNOXcZih-akRr5EnRUZs3l39LIblD10Tf9pqCzva_QDn3_ndGHfufLJKZ9FUhQFXltufhvB8OjC1VShgkDg",
+                        "checksum": "sha256:25525e2058abe3a2f116dea85749699fe7fe39232f89ebd2c95453f70c18272b"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.15.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.15.1",
+                        "content-type": "application\/zip",
+                        "signature": "wIwghj8OxbbvvsMB4M4RF2R_Q9KyfG8Qqc84aqkRN6LNTUQ7ILUrBaMc8bJTxYzn0v-W9ff6QMjqzuqLiF_MCg",
+                        "checksum": "sha256:6ba95944cc31e717caf723bc95efff1efcb1a878bd3aea9f2f6ef73c266523b4"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.15.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.15.0",
+                        "content-type": "application\/zip",
+                        "signature": "J2Fy6lO8wojImtZxb_IK_KIxp52uzK46sqwIrtyfzwHQysoZFsCODidydLAJf7iCAW1dFIMCriamlTMZ-2GqDg",
+                        "checksum": "sha256:b433ec009a7d2dafe4d3d4352011bf4d72eb702a35556d6f22b98ec296886d03"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.14.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.14.0",
+                        "content-type": "application\/zip",
+                        "signature": "D9wH1mQA3w0xn6PtXiwoc1TQxMvM3ZXVjJhN1LkH7o_wDRVrqDvMjx68jsYFdmUo-G1Pf_KnUiSXXV50GyGhDQ",
+                        "checksum": "sha256:866009f83ca2d44915fed955b4d5d550822269fa463ecec3e8e54ebd39e328c0"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.13.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.13.0",
+                        "content-type": "application\/zip",
+                        "signature": "gScmNhlOblNNa5yMtNO_3JQFdP6tJj8Js1y9okesLGpDW9CQWYRn3ixI10JFbpzfdFnO2T5TnRk_m8GTdbFeBw",
+                        "checksum": "sha256:7b52d620e10f2b1deaedd9dcff84dece08a0a73f5568535a8f0ec1cd7f0eef28"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.12.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.12.1",
+                        "content-type": "application\/zip",
+                        "signature": "R4gPaVZDW-LncQ6Vw_DEK2mcVwanXHNIL05qs1BckpiXCqyetFACI57nRmIFsKVhQ-RgsRoSGBQbQJD4OOwiBA",
+                        "checksum": "sha256:416b8b06e200933b80a1c01734cc3bc1c4dd2229a26fe5d2e20adf6134d87bb2"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.12.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.12.0",
+                        "content-type": "application\/zip",
+                        "signature": "q4CW0TEbfge7gLzjY5swtzW7J9-4O8WkGhkruPHq92v6l2ub0aGKPxV9pLzLZ7Wt2utGIOWV8bRwncBYuE1HBQ",
+                        "checksum": "sha256:9902b69df2eff7a5db7852e9071783ea5f4959a32eae2599341652cd23d1ce28"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.11.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.11.0",
+                        "content-type": "application\/zip",
+                        "signature": "-dfw_XxHZv4B_OxxJLW9DnsFVqhYjUsZhT0e5pUydwxG9Ga7YtigEeWOVnKVtXRY1Wk-f4xxCF018_PAGd-aAw",
+                        "checksum": "sha256:e7401cb920b2ffb5adcd1fd4a4035ebb296a13f78af58a401a691d1091fe6040"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.10.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.10.1",
+                        "content-type": "application\/zip",
+                        "signature": "iq7hXh4SDRbFAUWAUnJdHLpuUq_ytSarAWm7ZL62l-M801frHr0x3f47PPpUUig3bC53KUccS2EBJvreOtA1Dw",
+                        "checksum": "sha256:5ab2379a0fd70c650001915e74ffd953f05028599e7b8ccc476f7b97b988997b"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.10.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.10.0",
+                        "content-type": "application\/zip",
+                        "signature": "RcHgWum3loMgZhCoZQYtqqcj3Ne0nlwSVY3uzhIVjYNvIXG5KguLSCtCJN0_sFfrsLUUue9pzhf6IaFd7znTAA",
+                        "checksum": "sha256:ebd4c0071910538097043233303d3ea74de7b69cb2ea4102645198f77b065d6c"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.9.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.9.0",
+                        "content-type": "application\/zip",
+                        "signature": "I3CEq8dStGWfE3Gq81PwxDK1jRRq88ceiE9hD7_AnZ5lLnC9bEUF7jihThpHodfQu-v9vrqkIa-M0dLg3vcTDw",
+                        "checksum": "sha256:bd722f6e88a4160a64dae4065065414d3008eec294e0a220fe6dabe90e620af0"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.8.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.8.0",
+                        "content-type": "application\/zip",
+                        "signature": "Vsw2XOUu_n7TFFbtcIC7u_Zjtcy-YoazEm-OFbEilA9qkxt_L31HJh3moxjCxas9S-m02kcpdD8cbQh_ghg0Bw",
+                        "checksum": "sha256:a5cc2781eb3c2a03fe72619133f7deffc68f68948e5b3bfa675dafbb2da449eb"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.7.2",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.7.2",
+                        "content-type": "application\/zip",
+                        "signature": "C6KW1BfjbY4rQNAezKe_4aWEDDvF0Tp1Vvw4w8lO63w29ZeQg16THVQiR40cAwvFFluBbBNArM0FfUrOu--pBg",
+                        "checksum": "sha256:6df2cadb415f94dd90c71a14c26a1164c95af8a5922b64aa0c5efe6fcda8a17c"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.7.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.7.1",
+                        "content-type": "application\/zip",
+                        "signature": "mb2CHQd1k_yrHmaMdtrwfCe1cqvEEaUEV4OFNZpRajJ8z2h-1sVJ1XoCURoJPwqB3Cyrn-O_imm69i0gG-6IAg",
+                        "checksum": "sha256:39f6b423e1cc12849a42ce0d8ef2b9bfc653db74bd837a02817f9a39d893e899"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.7.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.7.0",
+                        "content-type": "application\/zip",
+                        "signature": "RccMJbYtdKl7Abp5esy18YceBeKtQIQ8SvFyIRccTgK4hssWEmMyfURahO6zMG_pYwJCfBlQ26dqOg7msyW7BQ",
+                        "checksum": "sha256:9ff570c44b3bc31389d7e670c425a72eb26e7eeb313601ba70d8c66becb17486"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.6.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.6.0",
+                        "content-type": "application\/zip",
+                        "signature": "v8JUKsokDtQlmRvlAXCsh1DdhS7B8K41KKmVyq0rDoQTmm2p0RmfPEVhDfFc7vooUf4A19Ut8fCJ1GAeJN4JAQ",
+                        "checksum": "sha256:9cc2f57beed959cd67ea2a4a74636ea89b6693c44e4e16e9beb6055077f5866d"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.5.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.5.0",
+                        "content-type": "application\/zip",
+                        "signature": "aoOYcsKaT0yQz1CGncH-SndXH-MUodPjNxtQItMV6HcNohDv-AWIzHgtJsO2CbpkCteSLIMtbrYp0o9pEt93Ag",
+                        "checksum": "sha256:78cf094078c4882193e6daae231d2e9c9708e99ac60246f1057bae6fb01cecf6"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.4.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.4.0",
+                        "content-type": "application\/zip",
+                        "signature": "6RNj0S_OiXualC5sVoraLlBSJIdmKgdYLnqINc2rTzWGOHopS124TpZgYeOQPZIk5Ppcp05TXp7g0m2MbBSACg",
+                        "checksum": "sha256:d9eb08a1e78679361031fecae00f397df689752365f8a63fe72e5d762c43abcf"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.3.1",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.3.1",
+                        "content-type": "application\/zip",
+                        "signature": "fAgNsi0MylCHk9qkbtuDSUlFNpwlUUI2mabkZDmkCfK6Fqy0O04GIQrg3S57SL9tdP9amAwwHvRhH_nLyQTgBw",
+                        "checksum": "sha256:6cf1fec44679f6e8767af53503183c80fa74d687d461ad8d935bf0a3190f0d42"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.3.0",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.3.0",
+                        "content-type": "application\/zip",
+                        "signature": "UgdZ33qYxmg8Qa4AFmtS8Aaha3ylA9_Wn3r-cevT1YcIfHA_VamZdD_ZBgloa0umgniqDRGT5vVA8h12wzmZDQ",
+                        "checksum": "sha256:980fe5a81ae2c767fdb7e79385627230c505899fe4a59c07b71a633b70704243"
+                    }
+                ]
+            }
+        },
+        {
+            "version": "12.2.3",
+            "requires": {
+                "env:php": ">=8.0",
+                "env:wp": ">=5.9"
+            },
+            "suggests": {
+                "env:wp": ">=6.9.3"
+            },
+            "provides": [],
+            "artifacts": {
+                "banner": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-772x250.png",
+                        "content-type": "image\/png",
+                        "height": 250,
+                        "width": 772
+                    },
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/banner-1544x500.png",
+                        "content-type": "image\/png",
+                        "height": 500,
+                        "width": 1544
+                    }
+                ],
+                "icon": [
+                    {
+                        "url": "https:\/\/raw.githubusercontent.com\/afragen\/git-updater\/master\/assets\/icon.svg",
+                        "content-type": "image\/svg+xml",
+                        "height": null,
+                        "width": null
+                    }
+                ],
+                "package": [
+                    {
+                        "url": "https:\/\/api.github.com\/repos\/afragen\/git-updater\/zipball\/12.2.3",
+                        "content-type": "application\/zip",
+                        "signature": "A1t2aGWRRkUCx1Y7yds9FN1wV9TQC3CDOd1gpzV1bCyF0slWO1Vr2qhnPrAI6GoLHKl8eX9vvfxUi4AVq2rjAw",
+                        "checksum": "sha256:a74ead3807d36186015bbdcd126cfdd598237134f1d1c5f287723d367fc62ddd"
+                    }
+                ]
+            }
+        }
+    ]
+}
