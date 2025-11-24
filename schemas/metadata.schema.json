@@ -26,6 +26,7 @@
 				},
 				{
 					"type": "array",
+					"minItems": 1,
 					"prefixItems": [
 						{
 							"const": "https://fair.pm/ns/metadata/v1"
