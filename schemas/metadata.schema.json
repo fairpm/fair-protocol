@@ -14,8 +14,7 @@
 	],
 	"properties": {
 		"$schema": {
-			"type": "string",
-			"const": "https://fair.pm/schemas/metadata/v1"
+			"type": "string"
 		},
 		"@context": {
 			"description": "JSON-LD context for the metadata document.",
