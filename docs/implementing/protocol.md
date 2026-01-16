@@ -2,7 +2,7 @@
 
 The FAIR (Federated and Independent Repositories) Package Management Protocol is a system for distributing installable software (like plugins or themes) in a decentralized, secure, and portable way. It is designed to allow anyone to publish, discover, and install packages, without relying on a single central repository.
 
-The [full specification](../specification.md) and [WordPress-specific extension](../specification.md) is available.
+The [full specification](../../specification.md) and [WordPress-specific extension](../../ext-wp.md) is available.
 
 The following is an overview of the protocol.
 
