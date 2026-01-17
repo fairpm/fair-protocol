@@ -160,7 +160,7 @@ The repo URL SHOULD point to a valid [Metadata Document](#metadata-document) ava
 
 Valid documents SHOULD NOT contain multiple services without the `FairPackageManagementRepo` type unless specified by an extension to this specification. Clients which assume a single repository MUST use the first service with the matching type in the [set][ordered-set].
 
-Valid documents MUST contain one or more verification methods in the `verificationMethod` property. Valid verification methods MUST have the type `Multibase`, and MUST use an ID where the non-fragment parts of the URL match the DID, and where the fragment part starts with `fair_`.
+Valid documents MUST contain one or more verification methods in the `verificationMethod` property. Valid verification methods MUST have the type `Multikey`, and MUST use an ID where the non-fragment parts of the URL match the DID, and where the fragment part starts with `fair_`.
 
 For example, the following document is considered a valid DID document:
 
