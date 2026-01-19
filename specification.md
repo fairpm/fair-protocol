@@ -202,20 +202,21 @@ Valid metadata documents MUST conform to the JSON-LD specification. When present
 
 The following properties are defined for the metadata document:
 
-| Property    | Required? | Constraints                                                         |
-| ----------- | --------- | ------------------------------------------------------------------- |
-| id          | yes       | A valid DID.                                                        |
-| type        | yes       | A string that conforms to the rules of [type](#property-type).      |
-| license     | yes       | A string that conforms to the rules of [license](#property-license) |
-| authors     | yes       | A list that conforms to the rules of [authors](#property-authors)   |
-| security    | yes       | A list that conforms to the rules of [security](#property-security) |
-| releases    | yes       | A list of [Releases](#release-document)                             |
-| slug        | no        | A string that conforms to the rules of [slug](#property-slug)       |
-| name        | no        | A string.                                                           |
-| description | no        | A string.                                                           |
-| keywords    | no        | A list of strings.                                                  |
-| sections    | no        | A map that conforms to the rules of [sections](#property-sections)  |
-| _links      | no        | [HAL links][hal], with [defined relationships](#links-metadata)     |
+| Property      | Required? | Constraints                                                         |
+| ------------- | --------- | ------------------------------------------------------------------- |
+| id            | yes       | A valid DID.                                                        |
+| type          | yes       | A string that conforms to the rules of [type](#property-type).      |
+| license       | yes       | A string that conforms to the rules of [license](#property-license) |
+| authors       | yes       | A list that conforms to the rules of [authors](#property-authors)   |
+| security      | yes       | A list that conforms to the rules of [security](#property-security) |
+| releases      | yes       | A list of [Releases](#release-document)                             |
+| slug          | no        | A string that conforms to the rules of [slug](#property-slug)       |
+| name          | no        | A string.                                                           |
+| release_asset | no        | A boolean indicating the package binary is a release asset.         |
+| description   | no        | A string.                                                           |
+| keywords      | no        | A list of strings.                                                  |
+| sections      | no        | A map that conforms to the rules of [sections](#property-sections)  |
+| _links        | no        | [HAL links][hal], with [defined relationships](#links-metadata)     |
 
 The properties of the metadata document have the following semantic meanings and constraints.
 
@@ -329,6 +330,13 @@ Clients SHOULD use the slug for file or directory names used during installation
 The `name` property specifies a human-readable name for the package, which the client may display in index or list pages.
 
 The name MUST be a string.
+
+
+### release_asset
+
+The `release_asset` property is a boolean that specifies whether the package binary is a release asset.
+
+The release_asset MUST be a boolean.
 
 
 ### description
