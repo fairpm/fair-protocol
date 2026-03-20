@@ -344,7 +344,7 @@ The description SHOULD be written in plain text, and clients MUST escape any spe
 
 The `keywords` property specifies keywords to assist users in searching for packages.
 
-Keywords MUST be a list, represented as a JSON Array. The list SHOULD NOT contain more than 5 items. Clients MAY truncate the list to 5 items.
+Keywords MUST be a list, represented as a JSON Array.
 
 Each item of the array MUST be a string.
 
