@@ -2,37 +2,36 @@
 
 FAIR for TYPO3 Packages is an extension to the [FAIR Core specification](./specification) for the TYPO3 Content Management System (CMS).
 
+| Document Status: | Draft |
+| ---------------- | ----- |
 
 ## Package Types
 
 This specification provides the following package types and associated semantic meanings:
 
-| Type           | Description                                                  |
-| -------------- | ------------------------------------------------------------ |
+| Type              | Description                                                  |
+| ----------------- | ------------------------------------------------------------ |
 | `typo3-core`      | The TYPO3 CMS itself, or alternative distributions of it     |
 | `typo3-extension` | Extensions for the TYPO3 CMS                                 |
 | `typo3-theme`     | Themes for the TYPO3 CMS                                     |
 
 
+## Core
+
+*to be specified*
+
+
 ## Common
 
-For each of the `typo3-core`, `typo3-extension`, and `typo3-theme` package types, several definitions are common.
-  extra: { 
-    tags: Stable, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0, PHP 8.1, PHP 8.2, PHP 8.3, PHP 8.4, TYPO3 8.7, TYPO3 9
-.5, TYPO3 11.5, TYPO3 12.4, TYPO3 13.4, English, German, Backend, OpenSource, Free, TER,
-    compatibility: { 
-      typo3-8.7: 1.0.0-2.0.0,
-      typo3-9.5: 1.1.1-2.99.99,
-      typo3-10.4: 2.0.0-3.99.99,
-      typo3-11.5: 3.0.0-4.99.99,
-      typo3-12.4: 4.0.0-x.x.x,
-      typo3-13.4: 5.0.0-x.x.x
-    },
-    typo3/cms: { 
-      extension-key: glossaries
-    }
-  }
+For the `typo3-extension` and `typo3-theme` package types, several definitions are common.
+
+```json
+tags: [],
+compatibility: [],
+typo3: { 
+   extension-key: "key-name"
 }
+```
 
 ### Metadata Document
 
