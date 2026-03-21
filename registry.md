@@ -18,9 +18,9 @@ This document is a registry for the known extensions to the FAIR Package Managem
 | `wp-core`         | [FAIR for WordPress Packages](./ext-wp.md) | FAIR Working Group |
 | `wp-plugin`       | [FAIR for WordPress Packages](./ext-wp.md) | FAIR Working Group |
 | `wp-theme`        | [FAIR for WordPress Packages](./ext-wp.md) | FAIR Working Group |
-| `typo3-core`      | [FAIR for TYPO3 Packages](./ext-typo3.md) | FAIR Working Group |
-| `typo3-extension` | [FAIR for TYPO3 Packages](./ext-typo3.md) | FAIR Working Group |
-| `typo3-theme`     | [FAIR for TYPO3 Packages](./ext-typo3.md) | FAIR Working Group |
+| `typo3-core`      | Reserved for future use.                   | FAIR Working Group |
+| `typo3-extension` | [FAIR for TYPO3 Packages](./ext-typo3.md)  | FAIR Working Group |
+| `typo3-theme`     | Reserved for future use.                   | FAIR Working Group |
 
 ## Authentication Methods
 
