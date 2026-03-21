@@ -359,7 +359,7 @@ The `description` property specifies a short description of the package, which t
 
 The description MUST be a string.
 
-The description SHOULD be written in plain text, and clients MUST escape any special characters for the applicable formatting context (such as HTML). The description SHOULD NOT exceed 140 characters. Clients MAY truncate the description if it exceeds this limit.
+The description SHOULD be written in plain text, and clients MUST escape any special characters for the applicable formatting context (such as HTML). The description SHOULD NOT exceed 250 characters. Clients MAY truncate the description if it exceeds this limit.
 
 
 ### keywords
