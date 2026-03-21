@@ -11,9 +11,9 @@ This specification provides the following package types and associated semantic 
 
 | Type              | Description                                                  |
 | ----------------- | ------------------------------------------------------------ |
-| `typo3-core`      | The TYPO3 CMS itself, or alternative distributions of it     |
+| `typo3-core`      | Reserved for future use                                      |
 | `typo3-extension` | Extensions for the TYPO3 CMS                                 |
-| `typo3-theme`     | Themes for the TYPO3 CMS                                     |
+| `typo3-theme`     | Reserved for future use                                      |
 
 
 ## Core
