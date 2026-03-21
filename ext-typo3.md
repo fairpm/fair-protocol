@@ -26,7 +26,7 @@ This specification provides the following package types and associated semantic 
 For the `typo3-extension` and `typo3-theme` package types, several definitions are common.
 
 ```json
-tags: [],
+keywords: [],
 compatibility: [],
 typo3: { 
    extension-key: "key-name"
