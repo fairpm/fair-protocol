@@ -29,3 +29,13 @@ This document is a registry for the known extensions to the FAIR Package Managem
 | `bearer` | [FAIR Authentication Methods](./ext-auth.md) | FAIR Working Group |
 | `basic`  | [FAIR Authentication Methods](./ext-auth.md) | FAIR Working Group |
 | `oauth2` | [FAIR Authentication Methods](./ext-auth.md) | FAIR Working Group |
+
+
+## Entitlement Types
+
+| Type                | Description                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `subscription`      | Active subscription required to access the package.            |
+| `purchase`          | One-time purchase required to access the package.              |
+| `license-key`       | Valid license key required to access the package.              |
+| `free-registration` | Free to use, but requires registration with the vendor.        |

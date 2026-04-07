@@ -40,7 +40,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -83,7 +83,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -126,7 +126,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -169,7 +169,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -212,7 +212,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -255,7 +255,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -298,7 +298,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -341,7 +341,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -384,7 +384,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -427,7 +427,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -470,7 +470,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -513,7 +513,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -556,7 +556,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -599,7 +599,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -642,7 +642,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -685,7 +685,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -728,7 +728,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -771,7 +771,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -814,7 +814,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -857,7 +857,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -900,7 +900,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -943,7 +943,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -986,7 +986,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1029,7 +1029,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1072,7 +1072,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1115,7 +1115,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1158,7 +1158,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1201,7 +1201,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1244,7 +1244,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {
@@ -1287,7 +1287,7 @@
             "suggests": {
                 "env:wp": ">=6.9.3"
             },
-            "provides": [],
+            "provides": {},
             "artifacts": {
                 "banner": [
                     {

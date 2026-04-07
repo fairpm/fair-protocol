@@ -69,6 +69,11 @@ The FAIR system focusses on three key flows:
                                       V
                Client selects which package release to install
                                       |
+                          (If entitlements required)
+                                      |
+                                      V
+          Client verifies entitlement with vendor's entitlement service
+                                      |
                                       V
                        Client downloads package binary
                                       |
@@ -76,7 +81,7 @@ The FAIR system focusses on three key flows:
         Client verifies package binary signature matches signing key
 ```
 
-The Installation flow has five discrete steps:
+The Installation flow has up to six discrete steps:
 
 1. The client resolves the specified DID to a DID Document. The Document contains information on which repository is valid for the DID.
 
@@ -84,9 +89,11 @@ The Installation flow has five discrete steps:
 
 3. The client selects one of the available package releases to download and install. This may be presented as a choice to the user, or the client may select this automatically (for example, the latest release).
 
-4. The client downloads the package binary or binaries for the selected release.
+4. If the metadata specifies [entitlements](#entitlements), the client verifies the user's entitlement with the vendor's [entitlement service](#entitlement-verification). If the user is not entitled, the client SHOULD display the entitlement hint and hint URL to the user and MUST NOT proceed with the download.
 
-5. The client verifies the signature for the downloaded binary file(s) against the valid signing keys specified in the DID Document.
+5. The client downloads the package binary or binaries for the selected release.
+
+6. The client verifies the signature for the downloaded binary file(s) against the valid signing keys specified in the DID Document.
 
 Once these steps have been completed, the client can treat the package as verified and perform additional client-specific steps such as installation.
 
@@ -108,6 +115,11 @@ For package binaries, clients may use a local (caching) mirror for any signed as
                                       |
                                       V
                Client selects which package release to install
+                                      |
+                          (If entitlements required)
+                                      |
+                                      V
+          Client verifies entitlement with vendor's entitlement service
                                       |
                                       V
                        Client downloads package binary
@@ -158,7 +170,9 @@ Valid documents MUST contain a service of type `FairPackageManagementRepo` with 
 
 The repo URL SHOULD point to a valid [Metadata Document](#metadata-document) available via the HTTP protocol. Clients SHOULD ensure they have robust error handling if this URL is invalid, such as if the server is unavailable.
 
-Valid documents SHOULD NOT contain multiple services without the `FairPackageManagementRepo` type unless specified by an extension to this specification. Clients which assume a single repository MUST use the first service with the matching type in the [set][ordered-set].
+Valid documents SHOULD NOT contain multiple services with the `FairPackageManagementRepo` type unless specified by an extension to this specification. Clients which assume a single repository MUST use the first service with the matching type in the [set][ordered-set].
+
+Valid documents MAY contain a service of type `FairEntitlementService` with a valid URL. This service specifies the base URL of the vendor's entitlement verification service, as described in [Entitlement Verification](#entitlement-verification). If a package's metadata specifies [entitlements](#entitlements), clients MUST verify that the entitlement service URL in the metadata is under the `FairEntitlementService` URL from the DID Document. If the DID Document does not contain a `FairEntitlementService`, or the URLs do not match, clients MUST reject the entitlement configuration and SHOULD display a warning to the user.
 
 Valid documents MUST contain one or more verification methods in the `verificationMethod` property. Valid verification methods MUST have the type `Multibase`, and MUST use an ID where the non-fragment parts of the URL match the DID, and where the fragment part starts with `fair_`.
 
@@ -178,6 +192,11 @@ For example, the following document is considered a valid DID document:
       "id": "#fairpm_repo",
       "serviceEndpoint": "https://example.fair.pm/packages/1234",
       "type": "FairPackageManagementRepo"
+    },
+    {
+      "id": "#fairpm_entitlements",
+      "serviceEndpoint": "https://licenses.example.com",
+      "type": "FairEntitlementService"
     }
   ],
   "verificationMethod": [
@@ -190,6 +209,8 @@ For example, the following document is considered a valid DID document:
   ]
 }
 ```
+
+The `FairEntitlementService` is optional. Packages which do not require entitlements do not need this service in their DID Document.
 
 [ordered-set]: https://infra.spec.whatwg.org/#ordered-set
 
@@ -214,8 +235,9 @@ The following properties are defined for the metadata document:
 | name        | no        | A string.                                                           |
 | description | no        | A string.                                                           |
 | keywords    | no        | A list of strings.                                                  |
-| sections    | no        | A map that conforms to the rules of [sections](#property-sections)  |
-| _links      | no        | [HAL links][hal], with [defined relationships](#links-metadata)     |
+| sections     | no        | A map that conforms to the rules of [sections](#property-sections)          |
+| entitlements | no        | An object that conforms to the rules of [entitlements](#entitlements)       |
+| _links       | no        | [HAL links][hal], with [defined relationships](#links-metadata)            |
 
 The properties of the metadata document have the following semantic meanings and constraints.
 
@@ -337,7 +359,7 @@ The `description` property specifies a short description of the package, which t
 
 The description MUST be a string.
 
-The description SHOULD be written in plain text, and clients MUST escape any special characters for the applicable formatting context (such as HTML). The description SHOULD NOT exceed 140 characters. Clients MAY truncate the description if it exceeds this limit.
+The description SHOULD be written in plain text, and clients MUST escape any special characters for the applicable formatting context (such as HTML). The description SHOULD NOT exceed 250 characters. Clients MAY truncate the description if it exceeds this limit.
 
 
 ### keywords
@@ -366,6 +388,27 @@ The following keys and their semantic meaning are specified:
 Other keys MAY be specified, and their meaning MAY be defined within extensions to this specification.
 
 Clients SHOULD ignore any section which does not have an explicit semantic meaning specified.
+
+
+### entitlements
+
+<a name="entitlements"></a>
+
+The `entitlements` property specifies the vendor's access requirements for the package. Unlike `auth` on releases (which describes how to authenticate with the repository), entitlements describe what a user needs to be allowed to access the package, as controlled by the vendor.
+
+This property MUST be a valid object, represented as a JSON Object, with the following properties:
+
+* `service` (required) - A URL string. The URL of the vendor's entitlement verification endpoint, as described in [Entitlement Verification](#entitlement-verification). Clients MUST validate that this URL is under the `FairEntitlementService` URL specified in the [DID Document](#did-document). If the URLs do not match, clients MUST reject the entitlement configuration.
+* `type` (required) - A string. The type of entitlement required. This SHOULD be a type defined in the [entitlement type registry][entitlement-registry]. Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are non-standard.
+* `hint` (optional) - A string. A human-readable hint to display to the user explaining what is required to access the package. The hint SHOULD be written in plain text, and clients MUST escape any special characters for the applicable formatting context (such as HTML). The hint SHOULD NOT exceed 140 characters. Clients MAY truncate the hint if it exceeds this limit.
+* `hint_url` (optional) - A URL string. A URL for more information about the access requirements, such as a purchase page or subscription signup.
+* `scope` (optional) - A string or list of strings. Specifies what the entitlement controls. The value `"artifacts"` (the default) indicates that only artifact downloads require entitlement verification. The value `"metadata"` indicates that all access including metadata requires entitlement verification. A list of strings indicates that only the specified artifact types require entitlement verification.
+
+Clients MUST clearly communicate entitlement requirements to users before initiating any authentication or purchase flow.
+
+Clients which do not recognise the entitlement type SHOULD display the `hint` and `hint_url` to the user. Vendors SHOULD include the `hint` and `hint_url` properties.
+
+[entitlement-registry]: ./registry.md#entitlement-types
 
 
 ### _links
@@ -552,7 +595,7 @@ This property matches the format of the [`requires` property](#property-requires
 
 <a name="property-auth"></a>
 
-The `auth` property specifies authentication requirements to access the package.
+The `auth` property specifies the authentication mechanism required to access artifacts from the repository. This property describes **how** to authenticate with the repository's HTTP server, not **whether** a user is authorized to access the package. For access control and entitlement requirements, see [entitlements](#entitlements) on the Metadata Document.
 
 This property MUST be a valid object, conforming to the authentication method being used. The `type` property of this object indicates the authentication method being used. The authentication method SHOULD be a method defined in the [authentication registry][auth-registry].
 
@@ -561,16 +604,16 @@ Custom or non-standard methods SHOULD be prefixed with `x-` to indicate they are
 Common properties of the object are defined as:
 
 * `type` (required) - The authentication method being used.
-* `hint` (optional) - A human-readable hint to the authentication method.
-* `hint_url` (optional) - A URL for more information about the required authentication.
+* `hint` (optional) - A human-readable hint indicating how to obtain repository credentials.
+* `hint_url` (optional) - A URL where the user can obtain repository credentials or find more information.
 
 Extensions MAY specify additional properties which are type-specific.
 
 Clients which do not recognise the method being used SHOULD display the `hint` and `hint_url` to the user. Repositories SHOULD include the `hint` and `hint_url` properties.
 
-Authentication may be used for limited-access packages, such as those requiring purchase, and clients SHOULD display the `hint` and `hint_url` to the user to ensure they understand why access is limited.
+Access to individual artifacts may be limited on a per-artifact basis using the `requires-auth` property on the artifact. The presence of this flag indicates clients must authenticate with the repository in order to access the artifact.
 
-Access to individual artifacts may be limited on a per-artifact basis using the `requires-auth` property on the artifact. The presence of this flag indicates clients must authenticate in order to access the artifact.
+When a package has both `auth` (on the release) and `entitlements` (on the metadata), the client SHOULD first verify the user's entitlement, then use the resulting [entitlement proof](#entitlement-proof) as the bearer token for repository authentication. This allows repositories to enforce entitlements without needing their own authorization logic.
 
 The properties of this object have the following semantic meanings and constraints.
 
@@ -588,7 +631,7 @@ Custom or non-standard methods SHOULD be prefixed with `x-` to indicate they are
 
 #### hint
 
-The `hint` property specifies a hint to display to the user to indicate how they can authenticate and why it is required.
+The `hint` property specifies a hint to display to the user to indicate how they can obtain repository credentials.
 
 This property MUST be a string.
 
@@ -599,7 +642,7 @@ The hint SHOULD be written in plain text, and clients MUST escape any special ch
 
 #### hint_url
 
-The `hint_url` property specifies a URL which provides more information about the authentication requirements for the package.
+The `hint_url` property specifies a URL where the user can obtain repository credentials or find more information about the repository's authentication requirements.
 
 This property MUST be a string with a valid URL to a HTTP document.
 
@@ -698,6 +741,67 @@ If the `privacy` property is not specified, clients SHOULD block installation of
 <a name="links-repo"></a>
 
 Repository Documents may have links to other resources, using the [HAL specification][hal], as provided in the `_links` property.
+
+
+## Entitlement Verification
+
+<a name="entitlement-verification"></a>
+
+Entitlement verification allows vendors to control access to their packages independently of which repository serves them. This provides a federated access control mechanism where the vendor maintains authority over who can access their packages, even as packages move between repositories, are mirrored by aggregators, or are served by caches.
+
+The entitlement verification protocol has three components:
+
+1. The **entitlement service**, operated by the vendor, which verifies whether a user is entitled to access a package.
+2. The **verification request**, made by the client to the entitlement service.
+3. The **entitlement proof**, returned by the entitlement service, which the client can present to repositories and caches.
+
+
+### Verification Request
+
+To verify a user's entitlement, the client sends an HTTP `POST` request to the entitlement service URL specified in the metadata's `entitlements.service` property.
+
+The request body MUST be a JSON object with the following properties:
+
+* `package_did` (required) - The DID of the package being accessed.
+* `version` (optional) - The version of the release being accessed. If omitted, the entitlement service SHOULD verify access to the package as a whole.
+
+The client MUST include the user's credentials in the `Authorization` header, using an authentication method supported by the entitlement service. The specific method depends on the entitlement type; for example, a `license-key` entitlement might use a bearer token containing the license key.
+
+The entitlement service MUST respond with one of the following HTTP status codes:
+
+* `200 OK` - The user is entitled. The response body MUST contain an [Entitlement Proof](#entitlement-proof).
+* `401 Unauthorized` - The credentials are invalid or missing. The response body SHOULD contain `hint` and `hint_url` properties to guide the user.
+* `402 Payment Required` - The user needs to purchase or subscribe. The response body SHOULD contain `hint` and `hint_url` properties to guide the user.
+* `403 Forbidden` - The user's entitlement has been revoked. The response body SHOULD contain `hint` and `hint_url` properties explaining why.
+
+
+### Entitlement Proof
+
+<a name="entitlement-proof"></a>
+
+An entitlement proof is a [JSON Web Token (JWT)][jwt] that attests to a user's entitlement to access a package. The proof is issued by the entitlement service and can be presented to repositories and caches as a bearer token to access restricted artifacts.
+
+The JWT payload MUST contain the following claims:
+
+* `sub` - The authenticated user or client identifier.
+* `package_did` - The DID of the package this proof is valid for.
+* `iss` - The entitlement service URL that issued the proof.
+* `iat` - The time at which the proof was issued, as a Unix timestamp.
+* `exp` - The time at which the proof expires, as a Unix timestamp. This value SHOULD NOT be more than 24 hours after `iat`.
+
+The JWT payload MAY contain the following claims:
+
+* `version` - The version this proof is valid for. If omitted, the proof is valid for all versions.
+* `scope` - A list of artifact types this proof grants access to. If omitted, the proof grants access to all artifact types.
+
+The JWT MUST be signed using a key that can be verified through the entitlement service. Entitlement services SHOULD publish their signing keys via a [JSON Web Key Set (JWKS)][jwks] endpoint at `/.well-known/jwks.json` relative to the service URL.
+
+Repositories and caches which accept entitlement proofs MUST verify the JWT signature and expiration before granting access. Repositories SHOULD accept entitlement proofs as bearer tokens in the `Authorization` header.
+
+Clients MAY cache entitlement proofs for the duration of their validity (until `exp`), and SHOULD reuse cached proofs for subsequent requests to the same package.
+
+[jwt]: https://datatracker.ietf.org/doc/html/rfc7519
+[jwks]: https://datatracker.ietf.org/doc/html/rfc7517
 
 
 ## Caching
