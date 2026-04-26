@@ -13,7 +13,11 @@
     }
   ],
   "license": "GPL v3 or later",
-  "security": [],
+  "security": [
+    {
+      "url": "https://github.com/ProgressPlanner/pp-glossary/security/advisories"
+    }
+  ],
   "keywords": [
     "glossary",
     "definitions",
@@ -37,7 +41,7 @@
       "suggests": {
         "env:wp": ">=6.9.3"
       },
-      "provides": [],
+      "provides": {},
       "artifacts": {
         "icon": [
           {
@@ -66,7 +70,7 @@
       "suggests": {
         "env:wp": ">=6.9.3"
       },
-      "provides": [],
+      "provides": {},
       "artifacts": {
         "icon": [
           {
