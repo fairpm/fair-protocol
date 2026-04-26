@@ -474,13 +474,13 @@ Clients MAY choose to select the most appropriate artifact for download based on
 [rfc6838]: https://datatracker.ietf.org/doc/html/rfc6838
 
 
-#### auth
+#### requires-auth
 
-The `auth` property specifies whether the artifact requires authentication to access.
+The `requires-auth` property specifies whether the artifact requires authentication to access.
 
-The `auth` property MUST be a boolean.
+The `requires-auth` property MUST be a boolean.
 
-If the `auth` property is true, clients SHOULD perform authentication prior to accessing the URL, according to the [auth](#property-auth) property of the release.
+If the `requires-auth` property is true, clients SHOULD perform authentication prior to accessing the URL, according to the [auth](#property-auth) property of the release.
 
 
 #### url
