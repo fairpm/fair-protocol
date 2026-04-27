@@ -441,7 +441,11 @@ The build metadata MUST be ignored when determining version precedence.
 
 #### Version immutability
 
-A Repository MUST NOT modify or replace artifacts or metadata of a published release. The first release record created for a package version MUST be treated as the canonical record. Aggregators that index release records MUST ignore any record for a version that has already been indexed for the same package DID. On update checks, if a Repository serves a release for a previously-installed version, Clients MUST reject the response and MUST alert the user.
+A repository MUST NOT modify or replace the artifacts or metadata of a published release for a given version. The first release record created for a version under a given package DID is the canonical record.
+
+Clients MUST retain the `checksum` value of installed releases. On update checks, if a repository serves a release for a previously-installed version with a different `checksum`, clients MUST reject the response and MUST alert the user.
+
+Aggregators that index release records MUST ignore any record for a version that has already been indexed for the same package DID. The earlier record is canonical; the later record is invalid and MUST be treated as if it were not present.
 
 ### artifacts
 
