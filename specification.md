@@ -584,6 +584,23 @@ The properties of this object have the following semantic meanings and constrain
 
 [auth-registry]: ./registry.md#authentication-methods
 
+### sbom
+
+<a name="property-sbom"></a>
+
+Publishers MAY include an entry for the `sbom` property to specify a machine-readable software bill of materials for this release.
+
+This property MUST be a valid object with the following properties:
+
+* `format` (optional) — The SBOM format. MUST be one of `"cyclonedx"` or `"spdx"`.
+* `url` (optional) — A URL string where the SBOM document can be fetched.
+* `checksum` (optional) — A checksum of the SBOM document, in the same format as artifact checksums (see [checksum](#checksum)). This allows the SBOM document to be verified using the same trust chain as the release artifact.
+
+Publishers SHOULD include `sbom` references for releases distributed commercially in jurisdictions that require software bill of materials disclosure.
+
+Clients SHOULD surface SBOM presence or absence to users when displaying release details, and SHOULD provide access to the SBOM URL for inspection. Clients MUST NOT refuse to install a release solely because `sbom` is absent.
+
+Aggregators and Labellers MAY use SBOM presence and content as a trust signal.
 
 #### type
 
