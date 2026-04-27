@@ -719,6 +719,31 @@ Clients SHOULD only use trusted external caches, such as those provided by the s
 Clients MUST NOT use an external cache for [Resolving DIDs](#resolving-dids), but MAY use an internal cache for this data. DID resolution MUST NOT be cached for more than 24 hours.
 
 
+## Deletion & Tombstone Semantics
+
+Publishers may remove Packages or releases from their Repositories. This section defines the expected behavior of Clients and Aggregators when this occurs.
+
+### Package deletion
+
+When a Repository no longer serves a previously-indexed Package, the Package is considered deleted.
+
+Aggregators SHOULD retain an internal tombstone record for the Package DID. This tombstone MUST NOT be served in search results and the deleted Package MUST NOT be installable. Direct lookups by DID SHOULD return an explicit `deleted` response (HTTP `410 Gone`) rather than `404 Not Found`.
+
+Since removal from a site is an explicit user action, Package deletion MUST NOT cause uninstallation.
+
+### Release deletion
+
+When a specific release record is removed from a Repository, the release is considered deleted.
+
+Aggregators MUST exclude deleted releases from release lists. The latest-release selection algorithm MUST skip deleted releases when determining the current version, as deleted releases MUST NOT be installable. 
+
+Aggregators that mirror artifacts SHOULD remove the mirrored artifact bytes for deleted releases from their object stores. The tombstone record SHOULD be retained.
+
+### Deletion is distinct from version immutability
+
+Deletion removes a release from distribution. A Publisher removing a release is explicitly permitted; a Publisher releasing a new artifact in place of an existing version is not (see [Version immutability](#version-immutability)). A deleted release MUST NOT be republished under the same version number, for which a tombstone record is retained.
+
+
 ## JSON-LD Contexts
 
 The following JSON-LD contexts are registered by this specification.
