@@ -435,6 +435,9 @@ This property SHOULD be a valid version number conforming to the [Semantic Versi
 
 The build metadata MUST be ignored when determining version precedence.
 
+#### Version immutability
+
+A Repository MUST NOT modify or replace artifacts or metadata of a published release. The first release record created for a package version MUST be treated as the canonical record. Aggregators that index release records MUST ignore any record for a version that has already been indexed for the same package DID. On update checks, if a Repository serves a release for a previously-installed version, Clients MUST reject the response and MUST alert the user.
 
 ### artifacts
 
