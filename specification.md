@@ -507,14 +507,16 @@ Signatures MUST be generated using the appropriate signature method for one of t
 
 #### checksum
 
-The `checksum` property specifies a checksum used to validate the data integrity of the artifact.
+The `checksum` property specifies a checksum used to validate the data integrity of the artifact. Checksums MUST be specified as a multibase-encoded multihash string, as defined by the [multiformats specifications](https://multiformats.io/). Valid multihash codecs are:
 
-Checksums MUST be specified as a string, with the checksum value prefixed with the checksum function and a colon character. The valid checksum algorithms are:
+* `sha2-384` (0x20)
+* `sha2-512` (0x13)
 
-* `sha256`
-* `sha384`
+The `sha2-256` (0x12) codec is deprecated and MUST NOT be used in new packages. Clients MAY accept `sha2-256` checksums from existing packages.
 
-Extensions MAY specify additional valid checksum algorithms. Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are non-standard.
+Extensions MAY specify alternative checksum formats or additional valid checksum algorithms for artifact types. Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are non-standard. Signature requirements MUST NOT overridden. 
+
+A Client that recognizes a valid extension for the artifact type MAY apply the extension's requirements in place of the above.
 
 
 ### provides
