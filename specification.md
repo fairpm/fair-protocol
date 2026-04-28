@@ -750,6 +750,34 @@ The following JSON-LD contexts are registered by this specification.
 | `https://fair.pm/ns/repository/v1` | [Repository Document](#repository-document) |
 
 
+## Schema Evolution
+
+As the FAIR Protocol specification and its extensions evolve, clients need predictable guarantees about backward compatibility. The following rules govern how document schemas may change.
+
+### Additive-optional fields only.
+
+New properties MAY be added to any document type at any time, provided they are optional. Clients MUST ignore properties they do not recognize and continue to process the document normally.
+
+### No narrowing of existing fields.
+
+An existing property:
+
+* MUST NOT be made required if it was previously optional.
+* MUST NOT have its type changed.
+* MUST NOT have its validation rules tightened.
+* MUST NOT be renamed.
+
+Each of these are considered breaking changes.
+
+### Breaking changes require a new context URL.
+
+If a genuinely incompatible shape is needed for a document type, a new JSON-LD context URL MUST be introduced. The old context URL and its associated document shape MUST remain valid for all documents that reference it.
+
+### Extensions follow the same rules.
+
+Extension authors MUST treat extension-defined document shapes as subject to these constraints once the extension is deployed and indexed by Aggregators. An extension update that would break deployed clients requires a new extension identifier.
+
+
 ## Link Relationships
 
 The following link relationships are defined, such as for links specified by [HAL links][hal] (in the `_links`) property of a document).
