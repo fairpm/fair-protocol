@@ -453,12 +453,15 @@ Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are n
 
 The values of the map MUST be objects or lists of objects, with the following common properties:
 
-* `id` (optional) - A unique ID for the artifact.
-* `content-type` (optional) - The MIME type of the artifact.
-* `requires-auth` (optional) - A boolean indicating if the artifact needs authentication to access.
-* `url` (optional) - A URL string. Used to download the artifact.
-* `signature` (optional) - A cryptographic signature of the artifact.
-* `checksum` (optional) - A cryptographic checksum of the artifact.
+| Property        | Required? | Description                                                |
+|-----------------|-----------|------------------------------------------------------------|
+| `id`            |   no      | A unique ID for the artifact within its type group.        |
+| `content-type`  |   no      | The MIME type of the artifact.                             |
+| `requires-auth` |   no      | Boolean: whether authentication is required to access.     |
+| `release-asset` |   no      | Boolean: whether the artifact is a platform release asset. |
+| `url`           |   no      | URL where the artifact can be downloaded.                  |
+| `signature`     |   no      | Cryptographic signature of the artifact.                   |
+| `checksum`      |   no      | Cryptographic checksum of the artifact.                    |
 
 Extensions MAY specify additional properties which are type-specific.
 
@@ -494,6 +497,44 @@ The `requires-auth` property MUST be a boolean.
 If the `requires-auth` property is true, clients SHOULD perform authentication prior to accessing the URL, according to the [auth](#property-auth) property of the release.
 
 
+### release-asset
+
+The `release-asset` property indicates that the artifact URL points to a platform release asset rather than a directly-served file.
+
+The `release-asset` property MUST be a boolean. If omitted, clients MUST treat the value as `false`.
+
+When `release-asset` is `true`, the artifact URL points to a binary file served by a platform API. Clients MUST send an `Accept: application/octet-stream` header when downloading the artifact, in addition to any headers required by the `requires-auth` property. Clients MUST NOT follow a redirect that changes the host to one not associated with the original URL without re-validating the target.
+
+When `release-asset` is `false` or omitted, Clients MAY use their default download behavior.
+
+The following example shows a release with one release-asset artifact and one directly-served artifact:
+
+```json
+{
+  "version": "2.1.0",
+  "artifacts": {
+    "package": [
+      {
+        "url": "https://api.github.com/repos/acme/plugin/releases/assets/98765432",
+        "content-type": "application/zip",
+        "release-asset": true,
+        "signature": "z...",
+        "checksum": "sha384:abc123..."
+      }
+    ],
+    "icon": [
+      {
+        "url": "https://example.com/assets/plugin-icon.png",
+        "content-type": "image/png"
+      }
+    ]
+  }
+}
+```
+
+Clients SHOULD verify the checksum and signature of `release-asset` artifacts using the same procedure as other artifacts. The `release-asset` flag affects only how the artifact is downloaded, not how it is verified.
+
+
 #### url
 
 The `url` property specifies the URL where a client can access an asset.
@@ -512,10 +553,7 @@ Signatures MUST be generated using the appropriate signature method for one of t
 
 The `checksum` property specifies a checksum used to validate the data integrity of the artifact.
 
-Checksums MUST be specified as a string, with the checksum value prefixed with the checksum function and a colon character. The valid checksum algorithms are:
-
-* `sha256`
-* `sha384`
+Checksums MUST be specified as a string, as defined in [checksum][#checksum].
 
 Extensions MAY specify additional valid checksum algorithms. Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are non-standard.
 
