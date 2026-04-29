@@ -516,7 +516,7 @@ The following example shows a release with one release-asset artifact and one di
     "package": [
       {
         "url": "https://api.github.com/repos/acme/plugin/releases/assets/98765432",
-        "content-type": "application/zip",
+        "content-type": "application/octet-stream",
         "release-asset": true,
         "signature": "z...",
         "checksum": "sha384:abc123..."
