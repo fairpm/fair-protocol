@@ -240,7 +240,11 @@ This property MUST be a valid string. The property SHOULD use a type defined in 
 
 Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are non-standard.
 
-Clients SHOULD refuse to process types which they do not have a semantic understanding of.
+Clients MUST NOT install packages with a `type` they do not have a semantic understanding of. When installation of a Package with an unknown `type` is attempted, clients MUST surface an error message.
+
+Example:
+
+> Could not install: unsupported package ecosystem.
 
 [type-registry]: ./registry.md#package-types
 
