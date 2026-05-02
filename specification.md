@@ -793,17 +793,19 @@ Publishers may remove Packages or releases from their Repositories. This section
 
 When a Repository no longer serves a previously-indexed Package, the Package is considered deleted.
 
-Aggregators SHOULD retain an internal tombstone record for the Package DID. This tombstone MUST NOT be served in search results and the deleted Package MUST NOT be installable. Direct lookups by DID SHOULD return an explicit `deleted` response (HTTP `410 Gone`) rather than `404 Not Found`.
+Repositories SHOULD retain an internal tombstone record for the Package DID. This tombstone MUST NOT be served in search results and the deleted Package MUST NOT be installable. Direct lookups by DID SHOULD return an explicit `deleted` response (HTTP `410 Gone`) rather than `404 Not Found`.
 
-Since removal from a site is an explicit user action, Package deletion MUST NOT cause uninstallation.
+Since removal from a site is an explicit user action, Package deletion MUST NOT cause uninstallation by the Client.
 
 ### Release deletion
 
 When a specific release record is removed from a Repository, the release is considered deleted.
 
-Aggregators MUST exclude deleted releases from release lists. The latest-release selection algorithm MUST skip deleted releases when determining the current version, as deleted releases MUST NOT be installable. 
+Repositories MUST exclude deleted releases from release lists. The latest-release selection algorithm MUST skip deleted releases when determining the current version, as deleted releases MUST NOT be installable.
 
-Aggregators that mirror artifacts SHOULD remove the mirrored artifact bytes for deleted releases from their object stores. The tombstone record SHOULD be retained.
+Repositories that mirror artifacts SHOULD remove the mirrored artifact bytes for deleted releases from their object stores. The tombstone record SHOULD be retained.
+
+Release deletion MUST NOT cause uninstallation by the Client.
 
 ### Deletion is distinct from version immutability
 
