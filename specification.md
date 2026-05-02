@@ -441,7 +441,11 @@ The build metadata MUST be ignored when determining version precedence.
 
 #### Version immutability
 
-A Repository MUST NOT modify or replace artifacts or metadata of a published release. The first release record created for a package version MUST be treated as the canonical record. Aggregators that index release records MUST ignore any record for a version that has already been indexed for the same package DID. On update checks, if a Repository serves a release for a previously-installed version, Clients MUST reject the response and MUST alert the user.
+A repository MUST NOT modify or replace the artifacts or metadata of a published release for a given version. The first release record created for a version under a given package DID is the canonical record.
+
+Clients MUST retain the `checksum` value of installed releases. On update checks, if a repository serves a release for a previously-installed version with a different `checksum`, clients MUST reject the response and MUST alert the user.
+
+Aggregators that index release records MUST ignore any record for a version that has already been indexed for the same package DID. The earlier record is canonical; the later record is invalid and MUST be treated as if it were not present.
 
 ### artifacts
 
@@ -779,6 +783,33 @@ External caches SHOULD only cache signed artifacts that can be independently-ver
 Clients SHOULD only use trusted external caches, such as those provided by the same infrastructure provider as the client or on the same machine.
 
 Clients MUST NOT use an external cache for [Resolving DIDs](#resolving-dids), but MAY use an internal cache for this data. DID resolution MUST NOT be cached for more than 24 hours.
+
+
+## Deletion & Tombstone Semantics
+
+Publishers may remove Packages or releases from their Repositories. This section defines the expected behavior of Clients and Aggregators when this occurs.
+
+### Package deletion
+
+When a Repository no longer serves a previously-indexed Package, the Package is considered deleted.
+
+Repositories SHOULD retain an internal tombstone record for the Package DID. This tombstone MUST NOT be served in search results and the deleted Package MUST NOT be installable. Direct lookups by DID SHOULD return an explicit `deleted` response (HTTP `410 Gone`) rather than `404 Not Found`.
+
+Since removal from a site is an explicit user action, Package deletion MUST NOT cause uninstallation by the Client.
+
+### Release deletion
+
+When a specific release record is removed from a Repository, the release is considered deleted.
+
+Repositories MUST exclude deleted releases from release lists. The latest-release selection algorithm MUST skip deleted releases when determining the current version, as deleted releases MUST NOT be installable.
+
+Repositories that mirror artifacts SHOULD remove the mirrored artifact bytes for deleted releases from their object stores. The tombstone record SHOULD be retained.
+
+Release deletion MUST NOT cause uninstallation by the Client.
+
+### Deletion is distinct from version immutability
+
+Deletion removes a release from distribution. A Publisher removing a release is explicitly permitted; a Publisher releasing a new artifact in place of an existing version is not (see [Version immutability](#version-immutability)). A deleted release MUST NOT be republished under the same version number, for which a tombstone record is retained.
 
 
 ## JSON-LD Contexts
