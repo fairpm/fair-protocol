@@ -2,38 +2,35 @@
 
 FAIR (Federated and Independent Repositories) Package Management Protocol is a system for distributing installable software.
 
-This specification outlines the core FAIR protocol specification ("FAIR Core"). Ecosystem-specific extensions are implemented as extensions to this specification, as defined in the [extension registry](./registry.md).
+This specification defines the core FAIR protocol ("FAIR Core"). Ecosystem-specific extensions are implemented as extensions to this specification, as defined in the [extension registry](./registry.md).
 
 
 ## Definitions
 
-- *aggregator* - Any server which aggregates or collects package data together.
-- *client* - An entity which requests packages.
-- *DID* - Decentralized ID, a universally-unique identifier specified by [the W3C specification](https://www.w3.org/TR/did-1.0/).
-- *package* - Any installable software, consisting of an ID, metadata, and associated assets.
-- *package binary* - An asset such as a zip file containing the package's binary executable code.
-- *repository* - Any server which offers packages, following the Repository APIs.
-- *user* - An end-user directing a client to operate.
-- *vendor* - An entity which publishes packages through a repository.
+Full definitions and usage conventions for terms used in this specification are in [terminology.md](./terminology.md). Key terms include [Aggregator](./terminology.md#def-aggregator), [Client](./terminology.md#def-client), [DID](./terminology.md#def-did), [Package](./terminology.md#def-package), [Publisher](./terminology.md#def-publisher), [Repository](./terminology.md#def-repository), and [User](./terminology.md#def-user).
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+The term *vendor* is retired. Read *[Publisher](./terminology.md#def-publisher)* in its place wherever it appears in this documentation.
 
 
 ## Introduction
 
 In a traditional package management system, a package manager client contacts a central repository to query which packages are available, to get information on each package and check for updates, and to download the package binaries themselves.
 
-For large ecosystems, this central repository may host packages from many independent vendors.
+For large ecosystems, this central repository may host packages from many independent Publishers.
 
 This system has several problems and limitations:
 
 * Trust in packages derives from trust in the central repository, not independently in packages.
-* If trust erodes in the central repository, vendors have little recourse to select alternatives (data portability).
+* If trust erodes in the central repository, Publishers have little recourse to select alternatives (data portability).
 * Even when alternatives can be created (such as by altering the package management system), packages hosted on any alternative repository are difficult for users to find.
 
 The FAIR Protocol addresses these issues by separating package identifiers, package repositories, and other services into a decentralized system.
 
-Each package in the FAIR system is uniquely identified by a [Decentralized Identifier (DID)][did]. The DID is used to identify the package, deduplicate any information about it, and to fetch the DID Document which contains information such as the repository location and cryptographic signing keys. The DID acts as a permanent, globally-unique, host-independent identifier which vendors control.
+Each package in the FAIR system is uniquely identified by a [Decentralized Identifier (DID)][did]. The DID is used to identify the package, deduplicate any information about it, and to fetch the DID Document which contains information such as the repository location and cryptographic signing keys. The DID acts as a permanent, globally-unique, host-independent identifier which Publishers control.
 
-Package vendors may choose any repository, including running their own or using a repository provider they trust. They may change repositories by pointing the DID to a different repository, giving them data portability.
+Publishers may choose any repository, including running their own or using a repository provider they trust. They may change repositories by pointing the DID to a different repository, giving them data portability.
 
 Each repository may operate fully independently, and clients may interact exclusively with the repository (and DID resolution mechanisms) - the "small web view". However, by itself this can present a bootstrapping problem: how do clients learn about new packages and repositories?
 
@@ -44,7 +41,7 @@ As each package is uniquely identified by DID, decentralized "overlay" services 
 
 ### Protocol Flow
 
-The FAIR system focusses on three key flows:
+The FAIR system focuses on three key flows:
 
 * **Discovery** - A user wants to find a package which fulfills their need, without knowing a specific package.
 * **Installation** - A client wants to install a package identified by DID.
@@ -119,14 +116,14 @@ For package binaries, clients may use a local (caching) mirror for any signed as
 
 ### Common Elements
 
-The FAIR Protocol is built on top of [HTTP][http], and the use of any other protocol is out of scope. Unless otherwise specified, all HTTP protocols MUST use Transport Layer Security (TLS).
+The FAIR Protocol is built on top of [HTTP][http], and the use of any other protocol is out of scope. Unless otherwise specified, all HTTP connections MUST use Transport Layer Security (TLS).
 
 Documents in the FAIR Protocol use [JSON-LD][json-ld] to provide context on the data within each document, allowing clients to identify the document type they are working on.
 
 Links within JSON-LD documents use [Hypertext Application Language (HAL)][hal] to link to related resources.
 
 [hal]: https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-11
-[http]: https://datatracker.ietf.org/doc/html/rfc7230
+[http]: https://www.rfc-editor.org/rfc/rfc9110 "HTTP Semantics (RFC 9110), or later versions"
 [json-ld]: https://www.w3.org/TR/json-ld11/
 
 
@@ -139,13 +136,13 @@ The following [DID methods][did-methods] MUST be supported as package IDs by com
 * [plc](https://github.com/did-method-plc/did-method-plc)
 * [web](https://w3c-ccg.github.io/did-method-web/)
 
-Additionally, clients must support the [key method](https://w3c-ccg.github.io/did-key-spec/) for cryptographic signatures.
+Additionally, clients MUST support the [key method](https://w3c-ccg.github.io/did-key-spec/) for cryptographic signatures.
 
 Clients MUST resolve DIDs to a DID Document following the method-specific resolution rules.
 
 Clients MAY cache a mapping of DID to DID Document for up to 24 hours. Clients MUST revalidate this mapping after 24 hours, to ensure that key revocation or repository changes are propagated within this time.
 
-Vendors SHOULD use DID methods that are future-proof for data portability, and which avoid encoding trademarks or potentially-ephemeral names or domains.
+Publishers SHOULD use DID methods that are future-proof for data portability, and which avoid encoding trademarks or potentially-ephemeral names or domains.
 
 [did-methods]: https://www.w3.org/TR/did-extensions-methods/
 
@@ -158,9 +155,11 @@ Valid documents MUST contain a service of type `FairPackageManagementRepo` with 
 
 The repo URL SHOULD point to a valid [Metadata Document](#metadata-document) available via the HTTP protocol. Clients SHOULD ensure they have robust error handling if this URL is invalid, such as if the server is unavailable.
 
-Valid documents SHOULD NOT contain multiple services without the `FairPackageManagementRepo` type unless specified by an extension to this specification. Clients which assume a single repository MUST use the first service with the matching type in the [set][ordered-set].
+Valid documents MAY contain multiple services of the `FairPackageManagementRepo` type. Each service MUST have a unique `id` value. Clients MAY select any available service from the list. Clients SHOULD attempt an alternative service if the selected one is unavailable or returns an invalid response.
 
-Valid documents MUST contain one or more verification methods in the `verificationMethod` property. Valid verification methods MUST have the type `Multikey`, and MUST use an ID where the non-fragment parts of the URL match the DID, and where the fragment part starts with `fair_`.
+Services of types other than `FairPackageManagementRepo` SHOULD NOT be present unless specified by an extension to this specification.
+
+Repository-Trust DID documents MUST contain one or more verification methods in the `verificationMethod` property. For Publisher-Trust DID documents where `capabilityDelegation` is present (see [Trust Tiers](#trust-tiers)), the verification method is provided by the Publisher's DID document and the `verificationMethod` property MAY be omitted from the Repository's Package DID document. Valid verification methods MUST have the type `Multikey`, and MUST use an ID where the non-fragment parts of the URI match the DID, and where the fragment part starts with `fair_`.
 
 For example, the following document is considered a valid DID document:
 
@@ -191,7 +190,204 @@ For example, the following document is considered a valid DID document:
 }
 ```
 
-[ordered-set]: https://infra.spec.whatwg.org/#ordered-set
+A Repository MAY host any number of Packages. Each Package MUST have a distinct Package DID, and each DID MUST resolve to a separate DID Document with its own `FairPackageManagementRepo` service endpoint. Clients resolve and process each Package DID independently; the presence of multiple Package DIDs under the same domain requires no special handling.
+
+
+## Trust Tiers
+
+Two distinct trust tiers are defined in the FAIR Trust Model. Clients determine which tier applies from the Package's DID document structure alone.
+
+### Repository-Trust
+
+The DID document lists verification methods (signing keys) directly. The Package is signed by the Repository, so trust in the artifact flows from trust in the Repository. This is the trust baseline, and applies to:
+
+- Packages redistributed by a Repository with no involvement in DID creation or signing from the original Publisher; and
+- Packages for which the Publisher chooses to delegate signing entirely to the Repository.
+
+### Publisher-Trust
+
+A Publisher signing Packages directly and providing a valid DID document with a `FairPackageManagementRepo` service endpoint establishes Publisher-Trust directly. The Repository does not need to serve a separate DID document for the Package.
+
+If the Repository does serve a DID document for a Package, the Trust Tier can be upgraded to Publisher-Trust using entries in the two DID documents. A Repository's DID document MAY contain a `capabilityDelegation` entry transferring signing functions to the Publisher's DID. The Package is signed by the Publisher using their own keys, so trust in the artifact flows directly from the Publisher's DID.
+
+The format for `capabilityDelegation` is the DID to which authority is delegated with the capability appended — in this case `#fair_signing`.
+
+This model requires two DID resolutions:
+
+1. Resolve the Repository's Package DID → obtain the DID document → find the `capabilityDelegation` reference to the Publisher's DID and the `FairPackageManagementRepo` service endpoint(s).
+2. Resolve the Publisher's DID → obtain current verification methods → use those keys to verify the artifact signature.
+
+Clients MUST perform both resolutions when `capabilityDelegation` is present. Clients MUST NOT accept a signature as Publisher-verified if only the Package DID has been resolved.
+
+Example Repository DID document for a Publisher-Trust Package:
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/multikey/v1"
+  ],
+  "id": "did:web:repo.example.com:Packages:my-plugin",
+  "alsoKnownAs": [
+    "did:plc:Publisher123abc..."
+  ],
+  "service": [
+    {
+      "id": "#fairpm_repo",
+      "type": "FairPackageManagementRepo",
+      "serviceEndpoint": "https://repo.example.com/Packages/my-plugin"
+    }
+  ],
+  "capabilityDelegation": [
+    "did:plc:Publisher123abc...#fair_signing"
+  ]
+}
+```
+
+Example of the corresponding Publisher's DID document:
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/multikey/v1"
+  ],
+  "id": "did:plc:Publisher123abc...",
+  "alsoKnownAs": [
+    "did:web:repo.example.com:Packages:my-plugin"
+  ],
+  "service": [
+    {
+      "id": "#fairpm_repo",
+      "type": "FairPackageManagementRepo",
+      "serviceEndpoint": "https://repo.example.com/Packages/my-plugin"
+    }
+  ],
+  "verificationMethod": [
+    {
+      "id": "did:plc:Publisher123abc...#fair_signing",
+      "type": "Multikey",
+      "controller": "did:plc:Publisher123abc...",
+      "publicKeyMultibase": "zQ3shwa7usQaHQqiUMCRweiWD2Njb8sZBynkqxD3VXMSzSorc"
+    }
+  ],
+  "assertionMethod": [
+    "did:plc:Publisher123abc...#fair_signing"
+  ]
+}
+```
+
+### Publisher DID takes precedence
+
+The Publisher DID is the higher Trust Tier and is the authoritative source for Repository location. When a Package DID document contains `capabilityDelegation` referencing a Publisher DID, and the Publisher DID has a `FairPackageManagementRepo` service endpoint, Clients MUST prefer the Publisher DID's service endpoint(s) over any endpoint listed in the Repository's Package DID document.
+
+Precedence is determined by DID Holder, not DID method. Any DID method supported by the FAIR protocol is valid.
+
+### Client presentation of Trust Tier
+
+To enable end-user discretion concerning Trust Tiers, Clients MUST surface the applicable Trust Tier to users when displaying Package details:
+
+- **Repository-Trust** indicates that the Package is signed by the Repository, attesting that it contains a true bit-for-bit copy of the original Package. Trust flows from the Repository.
+- **Publisher-Trust** indicates that the Package is signed directly by the Publisher. Trust flows from the Publisher.
+
+### Trust Tier change notification
+
+If a Client detects that the Trust Tier of an installed Package has changed since the last install or update, or detects that `capabilityDelegation` references a different Publisher DID, the Client MUST notify the user before installing any update. The update MUST NOT proceed silently.
+
+
+## Alias Acknowledgment with `alsoKnownAs`
+
+The `alsoKnownAs` property in the DID document declares a mutual acknowledgment that two identifiers refer to the same subject. It does not convey authorization of any type.
+
+For Publisher-Trust Packages, the Publisher's DID SHOULD include `alsoKnownAs` entries referencing the Repository-Issued DID(s) for the Package. The Package's DID SHOULD include `alsoKnownAs` referencing the Publisher's DID. Bidirectional confirmation indicates an active, mutually acknowledged relationship between a Package hosted by a Repository and a Publisher.
+
+Clients MUST verify that `alsoKnownAs` entries confirm the relationship bidirectionally before following any `capabilityDelegation` directive. When `capabilityDelegation` is present in a DID document, Clients MUST determine the applicable trust source as follows:
+
+**Case 1 — confirmation broken, Publisher DID has a `FairPackageManagementRepo` service endpoint:** The Publisher has moved on from the Repository, either by initiating migration (removing the Repository-Issued DID from their own `alsoKnownAs`) or because the Repository has removed its `alsoKnownAs` reference to the Publisher DID to disavow the relationship. In both cases, Clients MUST follow the Publisher DID's service endpoint and MUST NOT fall back to the Repository's Package DID document. This applies for both Publisher-initiated and Repository-initiated separation. The Publisher's DID MUST remain authoritative.
+
+**Case 2 — confirmation broken, Publisher DID has no `FairPackageManagementRepo` service endpoint:** The delegation cannot be confirmed and there is no authoritative Publisher endpoint to follow. Clients MUST NOT install or update the Package and MUST surface a warning to the user. Clients MUST NOT fall back to Repository-Trust. The presence of an unconfirmed `capabilityDelegation` is a signal that the trust model for this Package is in an indeterminate state.
+
+**Case 3 — no `capabilityDelegation` present:** Repository-Trust baseline applies. The Package has not entered the Publisher-Trust model from the standpoint of this DID document.
+
+Falling back to Repository-Trust MUST only occur in Case 3. A `capabilityDelegation` that exists but is unconfirmed is not equivalent to the absence of `capabilityDelegation`. This distinction is required to ensure Package portability is directed solely by the Publisher.
+
+
+## Multiple Repositories for a Package
+
+### Multiple `alsoKnownAs` entries as multiple Repositories
+
+In the Publisher-Trust model, the Publisher's DID MAY list multiple DIDs in `alsoKnownAs` entries. Each DID MAY point to a different Repository to support configurations for redundancy, geographic distribution, and phased release strategies at the Publisher's discretion. Clients and Aggregators MUST NOT assume release parity across Repositories.
+
+Clients MAY use any criteria to select among Repositories, including availability, latency, or locally configured preference.
+
+### Aggregator behaviour for multi-Repository Packages
+
+Aggregators resolve the Publisher's DID to obtain the list of valid Repositories. The Aggregator MAY use any criteria to select which Repository to index. Aggregators MUST NOT merge release lists across Repositories.
+
+### Sync failure handling
+
+If a Client fetches a release artifact and the checksum does not match the value in the release record, the Client MUST treat this as a transient failure and MUST NOT install the Package. The Client SHOULD attempt an alternative Repository if one is available. A checksum failure against a single Repository MUST NOT permanently invalidate other Repository DIDs for the same Package. The Client SHOULD surface a warning to the user.
+
+
+## Package Portability and Repository Migration
+
+Publishers and Repositories control their own DIDs, and portability is derived from this separation.
+
+### Publisher-initiated Repository migration
+
+**To migrate to a new Repository:**
+
+1. The Publisher adds a `FairPackageManagementRepo` service endpoint to their DID pointing to the new Repository.
+2. The Publisher removes the old Repository DID from `alsoKnownAs` in their DID, or adds the new Repository DID alongside it for a transition period.
+3. The old Repository retains its DID document unchanged.
+
+**Client behaviour after migration:**
+
+A Client resolving the old Repository-Issued DID follows the `capabilityDelegation` entry to resolve the Publisher's DID and determines that the Repository-Issued DID is no longer listed in `alsoKnownAs`. The bidirectional confirmation check fails, and the Client follows the Publisher DID's `FairPackageManagementRepo` service endpoint to the new Repository.
+
+The old Repository MAY continue to serve its last copy of any release.
+
+The Publisher MAY retain the old Repository DID in `alsoKnownAs` indefinitely for failover if they continue to update that Repository's releases, or remove it at their discretion.
+
+### Install by Publisher DID
+
+Clients MUST support resolution beginning from a Publisher DID. This is a first-class resolution path and not a fallback. The resolution path is:
+
+1. Resolve Publisher DID → check for `FairPackageManagementRepo` service endpoint(s) directly; if present, these take precedence over `alsoKnownAs` entries per the Publisher DID precedence rule. If no direct service endpoint is present, find `alsoKnownAs` entries referencing Repository-Issued DIDs.
+2. Resolve any Repository-Issued DID found and obtain the Metadata Document from the Repository.
+3. Proceed with normal installation for the selected Package.
+
+When resolution begins from a Publisher DID, the `id` check against the Metadata Document (see [id](#id)) MUST be performed against the Package DID obtained from the Publisher DID's `alsoKnownAs` entries, not against the Publisher DID used to initiate resolution. A mismatch between the Metadata Document's `id` and the Publisher DID is not a validation failure, provided the `id` matches the expected Package DID from `alsoKnownAs`.
+
+
+## Package Claiming Process (Repository-Trust → Publisher-Trust)
+
+This process transfers a Package from Repository-Trust to Publisher-Trust. Publishers of Packages being redistributed without prior engagement may claim ownership and take control of signing functions to establish provenance at the Publisher-Trust level.
+
+### Cryptographic mechanism
+
+1. The claimant Publisher creates or designates a DID they control as the Publisher DID.
+2. The claimant adds the Package's Repository-Issued DID to `alsoKnownAs` in their Publisher DID. This step is the claimant's half of the handshake and can be performed without the Repository's involvement.
+3. The Repository verifies the claimant's identity by out-of-band means.
+4. The Repository updates its Package DID document to add `alsoKnownAs` referencing the claimant's Publisher DID, completing the bidirectional `alsoKnownAs` acknowledgment.
+5. The Repository updates its Package DID document to add a `capabilityDelegation` entry pointing to the claimant's Publisher DID for the `fair_signing` capability.
+6. Bidirectional confirmation and delegation of package signing are established, achieving Publisher-Trust for the Package.
+7. Future releases MUST be signed with the Publisher's keys. Existing releases signed with Repository keys remain valid.
+
+The claimant's `alsoKnownAs` step MUST precede the Repository's first DID update (step 4). This ensures the claimant has acknowledged the Package identity before the Repository asserts a trust relationship with them. A Repository MUST NOT update the DID document to add `capabilityDelegation` before the claimant's `alsoKnownAs` entry is confirmed.
+
+### Out-of-band identity verification
+
+Verification of the claimant's identity is the Repository's responsibility and is outside the scope of this Protocol. The Protocol guarantees a valid cryptographic chain, but guaranteeing that the claiming party is the legitimate Publisher is a policy claim governed by the Repository hosting the Package. Repositories SHOULD document their identity verification process for claimants.
+
+### Aggregator notification
+
+Repositories MUST emit a `Package.trust-transferred` event to Aggregators on completion of a claiming process so downstream services are aware the Trust Model has changed. Based on their own policies, downstream services MAY apply additional scrutiny. Aggregators MUST surface this event in the Package history.
+
+
+## Key Revocation for Installed Packages
+
+For Packages installed prior to a key rotation, Clients MUST re-verify installed Packages against the current signing keys in the applicable DID document at the next update check. If an installed Package's artifact cannot be verified against any current signing key, the Client MUST surface a warning to the user and MUST NOT install updates until verification succeeds. Since uninstallation is an explicit user action, Clients MUST NOT automatically uninstall a Package solely because its historical signature cannot be verified against current keys.
 
 
 ## Metadata Document
@@ -228,6 +424,8 @@ The `id` property specifies the package ID. This property MUST be specified.
 This property MUST be a valid DID.
 
 Clients SHOULD verify this ID against the DID used to look up the metadata document. If the ID specified in the Metadata Document does not match the expected ID, clients MUST stop processing the document and MUST NOT treat the document as valid for the expected ID.
+
+When resolution begins from a Publisher DID (see [Install by Publisher DID](#install-by-publisher-did)), the `id` check MUST be performed against the Package DID obtained from the Publisher DID's `alsoKnownAs` entries, not against the Publisher DID itself. A mismatch between the Metadata Document's `id` and the Publisher DID is not a validation failure, provided the `id` matches the expected Package DID from `alsoKnownAs`.
 
 
 ### type
@@ -276,7 +474,7 @@ The items of the list MUST be objects, with the following properties:
 * `url` (optional) - A URL string. Used to link users to the author's site or a HTML page describing the author.
 * `email` (optional) - An email address string. Used to link users to contact the author.
 
-Vendors SHOULD specify at least one of `url` or `email` per author.
+Publishers SHOULD specify at least one of `url` or `email` per author.
 
 Clients MAY refuse to install packages without at least one valid author.
 
@@ -296,7 +494,7 @@ The items of the list MUST be objects, with the following properties:
 * `url` (optional) - A URL string. Used to link users to a security contact form or information about the security of the package.
 * `email` (optional) - An email address string. Used to link users to contact a security notification email.
 
-Vendors SHOULD specify at least one of `url` or `email` per security contact.
+Publishers SHOULD specify at least one of `url` or `email` per security contact.
 
 Clients SHOULD refuse to install packages without at least one valid security contact.
 
@@ -326,7 +524,7 @@ slug  = ALPHA *(ALPHA / DIGIT / "-" / "_")
 
 Clients SHOULD validate the slug against these rules. If a slug does not validate, clients MAY strip invalid characters to form a valid slug, or ignore the slug entirely.
 
-Clients SHOULD use the slug for file or directory names used during installation of the package, unless doing so would conflict with a different package. Clients MAY deduplicate packages with matching slugs (but differing IDs) in any way they see fit, including appending an incrementing counter to the slug or using the ID as part of the slug. Vendors SHOULD indicate a globally-unique slug if possible, such as a product name.
+Clients SHOULD use the slug for file or directory names used during installation of the package, unless doing so would conflict with a different package. Clients MAY deduplicate packages with matching slugs (but differing IDs) in any way they see fit, including appending an incrementing counter to the slug or using the ID as part of the slug. Publishers SHOULD indicate a globally-unique slug if possible, such as a product name.
 
 
 ### name
@@ -375,7 +573,7 @@ Clients SHOULD ignore any section which does not have an explicit semantic meani
 
 ### last_updated
 
-The `last_updated` property specifies the date string the current package was last updated.
+The `last_updated` property specifies the date on which the package was last updated.
 
 The last_updated MUST be a string.
 
@@ -386,7 +584,7 @@ The last_updated MUST be a string.
 
 Metadata Documents may have links to other resources, using the [HAL specification][hal], as provided in the `_links` property.
 
-Metadata Documents SHOULD have a `https://fair.pm/rel/repo` link to the Repository Document for the release they belong to.
+Metadata Documents SHOULD have a `https://fair.pm/rel/repo` link to the Repository Document for the Package they describe.
 
 Metadata Documents MAY have a `https://fair.pm/rel/releases` link to a collection of Releases. This relationship may be used to indicate an endpoint which provides an exhaustive list of Releases, allowing the `releases` property to be used only for "active" releases.
 
@@ -424,9 +622,9 @@ The `version` property specifies the version for this release.
 
 This property MUST be a string, consisting of up to 3 groups of numbers, separated by a period.
 
-A pre-release version MAY be denoted by appending a hyphen and a series of dot-separated identifiers
+A pre-release version MAY be denoted by appending a hyphen and a series of dot-separated identifiers.
 
-Build metadata MAY be denoted by appending a plus sign and a series of dot separated-identifiers following the patch or pre-release version.
+Build metadata MAY be denoted by appending a plus sign and a series of dot-separated identifiers following the patch or pre-release version.
 
 ```
 alphahyphen = ALPHA / DIGIT / "-"
@@ -438,6 +636,8 @@ version     = 1*DIGIT *2("." 1*DIGIT) ["-" prerelease] ["+" metadata]
 This property SHOULD be a valid version number conforming to the [Semantic Versioning Specification (SemVer)][semver], with the semantic meaning as described in that specification. Clients SHOULD parse the version number according to SemVer, and SHOULD use the version comparison rules specified in SemVer.
 
 The build metadata MUST be ignored when determining version precedence.
+
+[semver]: https://semver.org/
 
 #### Version immutability
 
@@ -473,7 +673,7 @@ The values of the map MUST be objects or lists of objects, with the following co
 
 Extensions MAY specify additional properties which are type-specific.
 
-A common `package` artifact type is defined as the "primary" artifact representing the installable binary, as applicable to the specified package type. The `package` type MUST specify the `url` property, and SHOULD specify the `signature`, and `checksum` properties.
+A common `package` artifact type is defined as the "primary" artifact representing the installable binary, as applicable to the specified package type. The `package` type MUST specify the `url` property, and SHOULD specify the `signature` and `checksum` properties.
 
 The properties of these objects have the following semantic meanings and constraints.
 
@@ -505,7 +705,7 @@ The `requires-auth` property MUST be a boolean.
 If the `requires-auth` property is true, clients SHOULD perform authentication prior to accessing the URL, according to the [auth](#property-auth) property of the release.
 
 
-### release-asset
+#### release-asset
 
 The `release-asset` property indicates that the artifact URL points to a platform release asset rather than a directly-served file.
 
@@ -547,7 +747,7 @@ Clients SHOULD verify the checksum and signature of `release-asset` artifacts us
 
 The `url` property specifies the URL where a client can access an asset.
 
-Clients MAY embed assets from URLs directly; for example, images may be embedded directly into a client without downloading them directly.
+Clients MAY embed assets from URLs directly; for example, images may be displayed inline rather than downloaded.
 
 
 #### signature
@@ -561,7 +761,7 @@ Signatures MUST be generated using the appropriate signature method for one of t
 
 The `checksum` property specifies a checksum used to validate the data integrity of the artifact.
 
-Checksums MUST be specified as a string, as defined in [checksum][#checksum].
+Checksums MUST be specified as a string, as defined in [checksum](#checksum).
 
 Extensions MAY specify additional valid checksum algorithms. Custom or non-standard types SHOULD be prefixed with `x-` to indicate they are non-standard.
 
@@ -609,7 +809,7 @@ This property matches the format of the [`requires` property](#property-requires
 
 <a name="property-auth"></a>
 
-The `auth` property specifies authentication requirements to access the package.
+The `auth` property specifies authentication requirements to access the release's artifacts.
 
 This property MUST be a valid object, conforming to the authentication method being used. The `type` property of this object indicates the authentication method being used. The authentication method SHOULD be a method defined in the [authentication registry][auth-registry].
 
@@ -627,29 +827,11 @@ Clients which do not recognise the method being used SHOULD display the `hint` a
 
 Authentication may be used for limited-access packages, such as those requiring purchase, and clients SHOULD display the `hint` and `hint_url` to the user to ensure they understand why access is limited.
 
-Access to individual artifacts may be limited on a per-artifact basis using the `requires-auth` property on the artifact. The presence of this flag indicates clients must authenticate in order to access the artifact.
+Access to individual artifacts may be limited on a per-artifact basis using the `requires-auth` property on the artifact. The presence of this flag indicates clients MUST authenticate in order to access the artifact.
 
 The properties of this object have the following semantic meanings and constraints.
 
 [auth-registry]: ./registry.md#authentication-methods
-
-### sbom
-
-<a name="property-sbom"></a>
-
-Publishers MAY include an entry for the `sbom` property to specify a machine-readable software bill of materials for this release.
-
-This property MUST be a valid object with the following properties:
-
-* `format` (optional) — The SBOM format. MUST be one of `"cyclonedx"` or `"spdx"`.
-* `url` (optional) — A URL string where the SBOM document can be fetched.
-* `checksum` (optional) — A checksum of the SBOM document, in the same format as artifact checksums (see [checksum](#checksum)). This allows the SBOM document to be verified using the same trust chain as the release artifact.
-
-Publishers SHOULD include `sbom` references for releases distributed commercially in jurisdictions that require software bill of materials disclosure.
-
-Clients SHOULD surface SBOM presence or absence to users when displaying release details, and SHOULD provide access to the SBOM URL for inspection. Clients MUST NOT refuse to install a release solely because `sbom` is absent.
-
-Aggregators and Labellers MAY use SBOM presence and content as a trust signal.
 
 #### type
 
@@ -680,6 +862,25 @@ This property MUST be a string with a valid URL to a HTTP document.
 Clients SHOULD display the hint URL to the user, even if the method is not recognised. Clients which support hyperlinks SHOULD use an interactive hyperlink to allow the user to easily view the linked document.
 
 
+### sbom
+
+<a name="property-sbom"></a>
+
+Publishers MAY include an entry for the `sbom` property to specify a machine-readable software bill of materials for this release.
+
+This property MUST be a valid object with the following properties:
+
+* `format` (optional) — The SBOM format. MUST be one of `"cyclonedx"` or `"spdx"`.
+* `url` (optional) — A URL string where the SBOM document can be fetched.
+* `checksum` (optional) — A checksum of the SBOM document, in the same format as artifact checksums (see [checksum](#checksum)). This allows the SBOM document to be verified using the same trust chain as the release artifact.
+
+Publishers SHOULD include `sbom` references for releases distributed commercially in jurisdictions that require software bill of materials disclosure.
+
+Clients SHOULD surface SBOM presence or absence to users when displaying release details, and SHOULD provide access to the SBOM URL for inspection. Clients MUST NOT refuse to install a release solely because `sbom` is absent.
+
+Aggregators and Labellers MAY use SBOM presence and content as a trust signal.
+
+
 ### _links
 
 <a name="links-release"></a>
@@ -688,7 +889,7 @@ Release Documents may have links to other resources, using the [HAL specificatio
 
 If a Release Document is embedded within another resource, such as a Metadata Document, links which are the same as the parent document SHOULD be omitted.
 
-Release Documents SHOULD have a `https://fair.pm/rel/repo` link to the Repository Document for the release they belong to.
+Release Documents SHOULD have a `https://fair.pm/rel/repo` link to the Repository Document for the Repository hosting the release.
 
 Release Documents SHOULD have a `https://fair.pm/rel/package` link to the Metadata Document for the package they belong to.
 
@@ -753,7 +954,7 @@ The items of the list MUST be objects, with the following properties:
 * `url` (optional) - A URL string. Used to link users to a security contact form or information about the security of the package.
 * `email` (optional) - An email address string. Used to link users to contact a security notification email.
 
-Vendors SHOULD specify at least one of `url` or `email` per security contact.
+Repositories SHOULD specify at least one of `url` or `email` per security contact.
 
 If the `security` property is not specified, clients SHOULD block installation of packages from the repository, and SHOULD display a warning to the user.
 
@@ -840,7 +1041,7 @@ An existing property:
 * MUST NOT have its validation rules tightened.
 * MUST NOT be renamed.
 
-Each of these are considered breaking changes.
+Each of these is considered a breaking change.
 
 ### Breaking changes require a new context URL.
 
@@ -853,7 +1054,7 @@ Extension authors MUST treat extension-defined document shapes as subject to the
 
 ## Link Relationships
 
-The following link relationships are defined, such as for links specified by [HAL links][hal] (in the `_links`) property of a document).
+The following link relationships are defined, such as for links specified by [HAL links][hal] (in the `_links` property of a document).
 
 | Relation                       | Description                                                  |
 | ------------------------------ | ------------------------------------------------------------ |
