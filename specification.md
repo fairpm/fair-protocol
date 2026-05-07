@@ -319,10 +319,10 @@ The items of the list MUST be objects, conforming to the [Release Document](#rel
 
 The `slug` property specifies the desired "slug" for the Package, which the Client may use for filenames or directory names when installing the Package.
 
-The slug MUST be a string containing only alphanumeric characters, dashes, or underscores. The slug MUST start with an alphabetic character.
+The slug MUST be a string containing only alphanumeric characters, dashes, or underscores. The slug MUST start with an alphanumeric character.
 
 ```
-slug  = ALPHA *(ALPHA / DIGIT / "-" / "_")
+slug  = (ALPHA / DIGIT) *(ALPHA / DIGIT / "-" / "_")
 ```
 
 Clients SHOULD validate the slug against these rules. If a slug does not validate, Clients MAY strip invalid characters to form a valid slug, or ignore the slug entirely.
