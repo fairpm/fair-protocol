@@ -408,9 +408,10 @@ The following properties are defined for the release document:
 | version     | yes       | A string that conforms to the rules of [version](#property-version)  |
 | artifacts   | yes       | A map that conforms to the rules of [artifacts](#property-artifacts) |
 | provides    | no        | A map that conforms to the rules of [provides](#property-provides)   |
-| requires    | no        | A map that conforms to the rules of [requires](#property-requires)   |
-| suggests    | no        | A map that conforms to the rules of [suggests](#property-suggests)   |
-| auth        | no        | A map that conforms to the rules of [auth](#property-auth)           |
+| requires      | no        | A map that conforms to the rules of [requires](#property-requires)         |
+| suggests      | no        | A map that conforms to the rules of [suggests](#property-suggests)         |
+| compatibility | no        | A map that conforms to the rules of [compatibility](#property-compatibility) |
+| auth          | no        | A map that conforms to the rules of [auth](#property-auth)                 |
 | _links      | no        | [HAL links][hal], with [defined relationships](#links-release)       |
 
 The properties of the release document have the following semantic meanings and constraints.
@@ -603,6 +604,38 @@ Environment requirements prefixed with `env:` are type-specific, and are specifi
 The `suggests` property specifies packages that can be installed alongside the package being installed.
 
 This property matches the format of the [`requires` property](#property-requires).
+
+
+### compatibility
+
+<a name="property-compatibility"></a>
+
+The `compatibility` property specifies the range of platform and dependency versions against which this release has been tested and verified to work correctly.
+
+This property MUST be a valid map, represented as a JSON Object. The keys and value format are identical to the [`requires` property](#property-requires): keys MUST be either a package DID or an `env:`-prefixed environment key, and values MUST be version constraint strings.
+
+`compatibility` is distinct from `requires`. `requires` expresses the minimum versions needed for the package to function. `compatibility` expresses the verified range — the versions against which the publisher has confirmed correct behaviour. A key MAY appear in both; when it does, `requires` defines the floor and `compatibility` defines the tested range.
+
+Publishers SHOULD specify `compatibility` for environment dependencies where the tested upper bound is known and narrower than "all future versions". Publishers MUST NOT use `compatibility` to express hard runtime requirements; those belong in `requires`.
+
+Clients SHOULD surface compatibility information to users when the installed environment version falls outside the declared range. Clients MUST NOT refuse installation solely because the environment exceeds the declared compatibility ceiling; `compatibility` is informational, not a hard constraint.
+
+```json
+{
+  "version": "2.1.0",
+  "requires": {
+    "env:php": ">=8.1",
+    "env:typo3": ">=12.4.0 <14.0.0"
+  },
+  "compatibility": {
+    "env:php": ">=8.1 <=8.3",
+    "env:typo3": ">=12.4.0 <=13.4.0"
+  },
+  "artifacts": {}
+}
+```
+
+Aggregators and package managers MAY use `compatibility` data to surface warnings when a known-compatible ceiling has been exceeded, enabling users to make informed decisions before updating their environment.
 
 
 ### auth
