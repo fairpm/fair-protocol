@@ -202,16 +202,17 @@ Valid metadata documents MUST conform to the JSON-LD specification. When present
 
 The following properties are defined for the metadata document:
 
-| Property     | Required? | Constraints                                                          |
-| ------------ | --------- | -------------------------------------------------------------------- |
-| id           | yes       | A valid DID.                                                         |
-| type         | yes       | A string that conforms to the rules of [type](#property-type).       |
-| license      | yes       | A string that conforms to the rules of [license](#property-license)  |
-| authors      | yes       | A list that conforms to the rules of [authors](#property-authors)    |
-| security     | yes       | A list that conforms to the rules of [security](#property-security)  |
-| releases     | yes       | A list of [Releases](#release-document)                              |
-| slug         | no        | A string that conforms to the rules of [slug](#property-slug)        |
-| name         | no        | A string.                                                            |
+| Property     | Required? | Constraints                                                         |
+| ------------ | --------- | ------------------------------------------------------------------- |
+| id           | yes       | A valid DID.                                                        |
+| type         | yes       | A string that conforms to the rules of [type](#property-type).      |
+| license      | yes       | A string that conforms to the rules of [license](#property-license) |
+| authors      | yes       | A list that conforms to the rules of [authors](#property-authors)   |
+| security     | yes       | A list that conforms to the rules of [security](#property-security) |
+| releases     | yes       | A list of [Releases](#release-document)                             |
+| slug          | no        | A string that conforms to the rules of [slug](#property-slug)              |
+| name          | no        | A string.                                                                  |
+| composer-name | no        | A string that conforms to the rules of [composer-name](#property-composer-name) |
 | description  | no        | A string.                                                            |
 | keywords     | no        | A list of strings.                                                   |
 | sections     | no        | A map that conforms to the rules of [sections](#property-sections)   |
@@ -337,6 +338,29 @@ The `name` property specifies a human-readable name for the Package, which the C
 The name MUST be a string.
 
 
+### composer-name
+
+<a name="property-composer-name"></a>
+
+The `composer-name` property specifies the canonical Composer package name for the package, for use by tools that bridge between the FAIR protocol and the Composer dependency manager.
+
+The `composer-name` MUST be a string conforming to [Composer's package naming rules][composer-schema-name]: a vendor prefix and a package name separated by a forward slash, where both parts consist of lowercase alphanumeric characters, hyphens, underscores, or periods.
+
+```
+composer-vendor  = 1*(ALPHA / DIGIT / "-" / "_" / ".")
+composer-package = 1*(ALPHA / DIGIT / "-" / "_" / ".")
+composer-name    = composer-vendor "/" composer-package
+```
+
+[composer-schema-name]: https://getcomposer.org/doc/04-schema.md#name
+
+This property SHOULD be specified for packages that are also distributed via Composer. It SHOULD be omitted for packages that are not distributed via Composer.
+
+Aggregators exposing a Composer-compatible repository API MUST use this value as the Composer package name in their package records when it is present. Clients and aggregators MAY use this property to build a reverse index of DID → Composer name mappings.
+
+This property MUST NOT be used to restrict installation of the package to Composer environments. Clients that do not use Composer MUST ignore this property.
+
+
 ### description
 
 The `description` property specifies a short description of the Package, which the Client may display in index or list pages.
@@ -434,12 +458,14 @@ The following properties are defined for the release document:
 
 | Property    | Required? | Constraints                                                          |
 | ----------- | --------- | -------------------------------------------------------------------- |
-| version     | yes       | A string that conforms to the rules of [version](#property-version)  |
-| artifacts   | yes       | A map that conforms to the rules of [artifacts](#property-artifacts) |
-| provides    | no        | A map that conforms to the rules of [provides](#property-provides)   |
-| requires    | no        | A map that conforms to the rules of [requires](#property-requires)   |
-| suggests    | no        | A map that conforms to the rules of [suggests](#property-suggests)   |
-| auth        | no        | A map that conforms to the rules of [auth](#property-auth)           |
+| version                  | yes | A string that conforms to the rules of [version](#property-version)                              |
+| artifacts                | yes | A map that conforms to the rules of [artifacts](#property-artifacts)                             |
+| provides                 | no  | A map that conforms to the rules of [provides](#property-provides)                               |
+| requires                 | no  | A map that conforms to the rules of [requires](#property-requires)                               |
+| suggests                 | no  | A map that conforms to the rules of [suggests](#property-suggests)                               |
+| x-composer-requires      | no  | A map that conforms to the rules of [x-composer-requires](#property-x-composer-requires)         |
+| x-composer-repositories | no  | A map that conforms to the rules of [x-composer-repositories](#property-x-composer-repositories) |
+| auth                     | no  | A map that conforms to the rules of [auth](#property-auth)                                       |
 | sbom        | no        | Conforms to the rules of [sbom](#property-sbom)                      |
 | advisory    | no        | Conforms to the rules of [advisory](#property-advisory)              |
 | _links      | no        | [HAL links][hal], with [defined relationships](#links-release)       |
@@ -634,6 +660,58 @@ Environment requirements prefixed with `env:` are type-specific, and are specifi
 The `suggests` property specifies Packages that can be installed alongside the Package being installed.
 
 This property matches the format of the [`requires` property](#property-requires).
+
+
+### x-composer-requires
+
+<a name="property-x-composer-requires"></a>
+
+The `x-composer-requires` property specifies Composer-native dependencies of this release that are not registered in the FAIR protocol — packages identifiable only by a Composer `vendor/package` name, resolvable through Packagist or a compatible Composer repository.
+
+This property MUST be a valid map, represented as a JSON Object. Keys MUST be valid Composer package names conforming to the `composer-name` format defined in the Metadata Document. Values MUST be valid Composer version constraint strings.
+
+Clients implementing Composer integration SHOULD include these entries in the Composer dependency graph for the package, resolved through the user's configured Composer repositories. These dependencies are not FAIR-verified; they are resolved through Composer's standard trust model.
+
+Aggregators exposing a Composer-compatible repository API SHOULD surface these as `require` entries in their package records.
+
+Dependencies that have FAIR DIDs MUST be listed in `requires` using their DID, not in `x-composer-requires`.
+
+Clients that do not implement Composer integration MUST ignore this property.
+
+```json
+"x-composer-requires": {
+  "paragonie/sodium_compat": "^2.0",
+  "psr/log": "^3.0"
+}
+```
+
+
+### x-composer-repositories
+
+<a name="property-x-composer-repositories"></a>
+
+The `x-composer-repositories` property provides source hints for Composer-native dependencies listed in `x-composer-requires` that are not resolvable through standard public Composer registries.
+
+This property MUST be a valid map, represented as a JSON Object. Keys MUST be valid Composer package names matching entries in `x-composer-requires`. Values MUST be objects with the following properties:
+
+* `type` (required) — The Composer repository type. MUST be one of `composer`, `vcs`, or `package`.
+* `url` (required) — The repository URL. MUST use HTTPS.
+
+Clients implementing Composer integration MAY automatically add these repository entries to the project's Composer configuration when installing the package. Clients MUST present repository additions to the user before writing them, and MUST NOT add repositories using protocols other than HTTPS without explicit user confirmation.
+
+This property is informational. Its absence does not indicate that all `x-composer-requires` entries are resolvable through public registries.
+
+Clients that do not implement Composer integration MUST ignore this property.
+
+```json
+"x-composer-repositories": {
+  "gravityforms/gravityforms": {
+    "type": "composer",
+    "url": "https://gfapi.gravitywiz.com"
+  }
+}
+```
+
 
 ### auth
 
