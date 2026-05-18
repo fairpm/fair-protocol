@@ -91,6 +91,13 @@ Additionally, the following are recognised as aliases:
 
 All section content MAY contain HTML
 
+#### filename
+
+The `filename` property specifies the root folder and file name for the package.
+
+The filename MUST be a string containing only alphanumeric characters, dashes, or underscores. Optionally the filename may contain a period or a forward slash. The file MUST start with an alphabetic character.
+
+The filename MUST be a string.
 
 ### Release Document
 
