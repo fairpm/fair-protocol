@@ -403,6 +403,9 @@ This property MUST be a valid object, represented as a JSON Object, with the fol
 * `hint` (optional) - A string. A human-readable hint to display to the user explaining what is required to access the package. The hint SHOULD be written in plain text, and clients MUST escape any special characters for the applicable formatting context (such as HTML). The hint SHOULD NOT exceed 140 characters. Clients MAY truncate the hint if it exceeds this limit.
 * `hint_url` (optional) - A URL string. A URL for more information about the access requirements, such as a purchase page or subscription signup.
 * `scope` (optional) - A string or list of strings. Specifies what the entitlement controls. The value `"artifacts"` (the default) indicates that only artifact downloads require entitlement verification. The value `"metadata"` indicates that all access including metadata requires entitlement verification. A list of strings indicates that only the specified artifact types require entitlement verification.
+* `require-reauth` (optional) - A boolean. When `true`, clients MUST NOT cache [entitlement proofs](#entitlement-proof) for this package and MUST run a fresh [verification request](#verification-request) before each protected action (install, update, or artifact download). When `false` or omitted, clients MAY cache proofs up to the proof's `exp` claim. This property is a vendor-side override of the default caching behaviour; the proof's `exp` claim remains the authoritative re-verification deadline for cached proofs.
+
+Re-verification deadlines (when a cached proof becomes stale and the client must obtain a new one) are carried by the proof itself, in the JWT `exp` claim, not in the metadata. This keeps the metadata agnostic about authentication method and entitlement model: a `subscription` proof can be valid for 30 days, a high-security `license-key` proof for 8 hours, and a `free-registration` proof for a year, with the vendor's entitlement service choosing the appropriate value at issuance. See [Entitlement Proof](#entitlement-proof) for the full caching and re-verification rules.
 
 Clients MUST clearly communicate entitlement requirements to users before initiating any authentication or purchase flow.
 
@@ -787,7 +790,7 @@ The JWT payload MUST contain the following claims:
 * `package_did` - The DID of the package this proof is valid for.
 * `iss` - The entitlement service URL that issued the proof.
 * `iat` - The time at which the proof was issued, as a Unix timestamp.
-* `exp` - The time at which the proof expires, as a Unix timestamp. This value SHOULD NOT be more than 24 hours after `iat`.
+* `exp` - The time at which the proof expires, as a Unix timestamp. The entitlement service chooses this value to balance revocation latency against verification cost; there is no protocol-defined maximum. As a guideline, a short value (for example, 8 hours) is appropriate when entitlements may be revoked at any moment, a longer value (for example, 30 days) is appropriate for typical subscription billing cycles, and a value aligned with the underlying licence or registration expiry is appropriate for `license-key` and `free-registration` entitlements. See the [entitlement type registry][entitlement-registry] for typical guidance per type.
 
 The JWT payload MAY contain the following claims:
 
@@ -798,7 +801,20 @@ The JWT MUST be signed using a key that can be verified through the entitlement 
 
 Repositories and caches which accept entitlement proofs MUST verify the JWT signature and expiration before granting access. Repositories SHOULD accept entitlement proofs as bearer tokens in the `Authorization` header.
 
-Clients MAY cache entitlement proofs for the duration of their validity (until `exp`), and SHOULD reuse cached proofs for subsequent requests to the same package.
+
+### Caching and Re-verification
+
+Clients MAY cache entitlement proofs for the duration of their validity (until `exp`), and SHOULD reuse cached proofs for subsequent requests to the same package. This caching exists specifically to avoid running a verification request on every user interaction; clients SHOULD NOT verify entitlement on every page load or list refresh when a non-expired proof is available.
+
+When the [entitlements](#entitlements) property has `require-reauth` set to `true`, clients MUST NOT cache proofs across protected actions, even if `exp` has not yet been reached.
+
+Clients MUST treat a cached proof as no longer usable when any of the following occur, and MUST run a fresh [verification request](#verification-request) before retrying the protected action:
+
+1. The proof's `exp` claim is in the past or within the client's configured clock-skew margin.
+2. A repository or cache responds with `401 Unauthorized` while the client is presenting the proof. This indicates the repository considers the proof revoked or otherwise no longer valid; the client MUST discard the cached proof.
+3. The entitlement service responds to a refresh attempt with `403 Forbidden`. The client MUST discard the cached proof and SHOULD surface the returned `hint` and `hint_url` to the user.
+
+If the refreshed verification request returns `401 Unauthorized` or `402 Payment Required`, clients SHOULD prompt the user to supply or update credentials before retrying.
 
 [jwt]: https://datatracker.ietf.org/doc/html/rfc7519
 [jwks]: https://datatracker.ietf.org/doc/html/rfc7517

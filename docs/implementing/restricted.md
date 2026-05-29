@@ -64,6 +64,36 @@ Available entitlement types:
 | `license-key`       | Software with traditional license key activation   |
 | `free-registration` | Free plugins that require vendor registration      |
 
+#### When entitlements expire and how often clients re-check
+
+The protocol is deliberately agnostic about how an entitlement expires. The vendor's entitlement service controls re-verification timing through the `exp` claim on the JWT proof it issues — not through fields in the metadata. This keeps the metadata stable across renewals, plan changes, and authentication-method changes.
+
+In practice:
+
+- For a **monthly subscription**, issue proofs valid for a few days to a billing cycle (e.g., 1–30 days). When the subscription renews out of band, the next refresh will simply succeed and the client keeps going.
+- For a **one-time purchase**, issue long-lived proofs (months). Use the `401`/`403` revocation flow if a refund or chargeback occurs.
+- For a **license-key** entitlement, set `exp` to the licence's own expiry. A 365-day licence becomes a proof with `exp = now + 365 days`.
+- For **free-registration**, issue long-lived proofs (weeks to a year). Clients refresh on demand if the vendor revokes.
+- For **high-security plugins** where you want a re-check at least every shift, issue short proofs (e.g., 8 hours).
+
+Clients are required to cache proofs until `exp` and to refresh on `401`/`403`. This means you do **not** need to perform a fresh entitlement check on every page load — once a client has a valid cached proof, it reuses it until expiry or until the repository rejects it.
+
+If you need to force clients to skip caching and re-verify on every install/update — for example, for strict per-seat licence enforcement — set `require-reauth: true` on the entitlements object:
+
+```json
+{
+  "entitlements": {
+    "service": "https://licenses.example.com/verify",
+    "type": "license-key",
+    "require-reauth": true,
+    "hint": "Each install verifies your seat allocation in real time.",
+    "hint_url": "https://example.com/seats"
+  }
+}
+```
+
+Use `require-reauth: true` sparingly: it disables proof caching and adds a verification round-trip to every protected action.
+
 
 ### 3. Set up repository authentication
 
