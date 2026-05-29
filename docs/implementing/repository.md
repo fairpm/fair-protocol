@@ -24,7 +24,7 @@ Creating a PLC DID requires the creation of at least two cryptographic keys: a r
 
 Repositories should generally control both of these keys, and allow a user to provide the public key for their own rotation key. In the PLC directory, "earlier" rotation keys can override "later" ones (i.e. those first in the list can override any key after it), so the user's rotation key should be placed first. This allows them to override any erroneous operations if needed.
 
-Rotation keys must use ECDSA, with either a NIST P-256 (secp256r1/prime256v1) or NIST K-256 (secp256k1) key. We recommend the use of K-256, as most implementations using the PLC directory use it.
+Rotation keys must use ECDSA, with either a K-256 (secp256k1) or NIST P-256 (secp256r1/prime256v1) key. We recommend the use of K-256, as most implementations using the PLC directory use it.
 
 Note that keys must use the low-S form of the key, and must be encoded in compact (IEEE-P1363) form. This ensures keys are stored in canonical form, and prevents key confusion attacks.
 

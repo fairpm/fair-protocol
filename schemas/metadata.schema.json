@@ -123,12 +123,73 @@
 				"type": "string"
 			}
 		},
+		"entitlements": {
+			"$ref": "#/$defs/entitlements"
+		},
 		"_links": {
 			"$ref": "#/$defs/halLinks"
 		}
 	},
 	"additionalProperties": true,
 	"$defs": {
+		"entitlements": {
+			"type": "object",
+			"description": "Vendor-controlled access requirements for the package. Separate from `auth` on releases, which describes how to authenticate with the repository.",
+			"required": [
+				"service",
+				"type"
+			],
+			"properties": {
+				"service": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL of the vendor's entitlement verification endpoint. Must be under the FairEntitlementService URL in the DID Document."
+				},
+				"type": {
+					"type": "string",
+					"description": "Type of entitlement required. Should be a value from the entitlement type registry; custom values should be prefixed with 'x-'.",
+					"examples": [
+						"subscription",
+						"purchase",
+						"license-key",
+						"free-registration"
+					]
+				},
+				"hint": {
+					"type": "string",
+					"description": "Human-readable hint shown to the user explaining what is required to access the package.",
+					"maxLength": 140
+				},
+				"hint_url": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL for more information about the access requirements."
+				},
+				"scope": {
+					"description": "What the entitlement controls. 'artifacts' (default) covers artifact downloads; 'metadata' covers all access; an array restricts to specific artifact types.",
+					"oneOf": [
+						{
+							"type": "string",
+							"enum": [
+								"artifacts",
+								"metadata"
+							]
+						},
+						{
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					]
+				},
+				"require-reauth": {
+					"type": "boolean",
+					"description": "When true, clients must not cache entitlement proofs and must re-verify before each protected action. Defaults to false; the proof's JWT `exp` claim is the authoritative re-verification deadline for cached proofs."
+				}
+			},
+			"additionalProperties": false
+		},
 		"author": {
 			"type": "object",
 			"description": "An author of the package.",

@@ -7,6 +7,7 @@ This repository contains the specification for the FAIR protocol, as well as doc
 * [Documentation](./docs/README.md)
 * [Specification](./specification.md)
 	* [Extension Registry](./registry.md)
+    * [TYPO3 Extension](./ext-typo3.md)
 	* [WordPress Extension](./ext-wp.md)
 
 This repository is managed by the FAIR Working Group. See [the TSC repo for contributing docs](https://github.com/fairpm/tsc).

@@ -1,22 +1,37 @@
-# FAIR for WordPress Packages
+# FAIR for TYPO3 Packages
 
-FAIR for WordPress Packages is an extension to the [FAIR Core specification](./specification) for the WordPress Content Management System (CMS).
+FAIR for TYPO3 Packages is an extension to the [FAIR Core specification](./specification) for the TYPO3 Content Management System (CMS).
 
+| Document Status: | Draft |
+| ---------------- | ----- |
 
 ## Package Types
 
 This specification provides the following package types and associated semantic meanings:
 
-| Type        | Description                                                  |
-| ----------- | ------------------------------------------------------------ |
-| `wp-core`   | The WordPress CMS itself, or alternative distributions of it |
-| `wp-plugin` | Plugins for the WordPress CMS                                |
-| `wp-theme`  | Themes for the WordPress CMS                                 |
+| Type              | Description                                                  |
+| ----------------- | ------------------------------------------------------------ |
+| `typo3-core`      | Reserved for future use                                      |
+| `typo3-extension` | Extensions for the TYPO3 CMS                                 |
+| `typo3-theme`     | Reserved for future use                                      |
+
+
+## Core
+
+*to be specified*
 
 
 ## Common
 
-For each of the `wp-core`, `wp-plugin`, and `wp-theme` package types, several definitions are common.
+For the `typo3-extension` and `typo3-theme` package types, several definitions are common.
+
+```json
+keywords: [],
+compatibility: [],
+typo3: { 
+   extension-key: "key-name"
+}
+```
 
 ### Metadata Document
 
@@ -37,12 +52,12 @@ Dependencies MAY require a certain version of the PHP software, specified as `en
 
 Dependencies MAY require PHP extensions, specified with a `env:php-` prefix.
 
-Dependencies MAY require the WordPress CMS, specified as `env:wp`.
+Dependencies MAY require the TYPO3 CMS, specified as `env:typo3`.
 
 
 ## Core Package Type
 
-The `wp-core` package type indicates packages containing the WordPress CMS, or alternative distributions of it.
+The `typo3-core` package type indicates packages containing the TYPO3 CMS, or alternative distributions of it.
 
 
 ### Release Document
@@ -51,7 +66,7 @@ The following are extensions to the Release Document specified in FAIR Core.
 
 #### artifacts
 
-The following artifact types are defined for the `wp-core` type.
+The following artifact types are defined for the `typo3-core` type.
 
 ##### package
 
@@ -64,7 +79,7 @@ Repositories SHOULD publish at least one `package` artifact using the `applicati
 
 ## Plugin Package Type
 
-The `wp-plugin` package type indicates plugins compatible with the WordPress CMS.
+The `typo3-extension` package type indicates plugins compatible with the TYPO3 CMS.
 
 
 ### Metadata Document
@@ -91,19 +106,12 @@ Additionally, the following are recognised as aliases:
 
 All section content MAY contain HTML
 
-#### filename
-
-The `filename` property specifies the root folder and file name for the package.
-
-The filename MUST be a string containing only alphanumeric characters, dashes, or underscores. Optionally the filename may contain a period or a forward slash. The file MUST start with an alphabetic character.
-
-The filename MUST be a string.
 
 ### Release Document
 
 #### artifacts
 
-The following artifact types are defined for the `wp-plugin` type.
+The following artifact types are defined for the `typo3-extension` type.
 
 
 ##### package
@@ -159,7 +167,7 @@ Screenshots SHOULD NOT require authentication.
 
 #### requires
 
-The `requires` property SHOULD only contain valid package IDs for other `wp-plugin`-type packages, or PHP environment requirements as specified in [Common](#common).
+The `requires` property SHOULD only contain valid package IDs for other `typo3-extension`-type packages, or PHP environment requirements as specified in [Common](#common).
 
 Clients MAY treat the package as invalid if other package types are required.
 
