@@ -1,9 +1,9 @@
 # FAIR Approval and Governance Policies
 
-| <!-- --> | <!-- -->   |
-|----------|------------|
+|          |                 |
+|----------|-----------------|
 | Status   | Policy Document |
-| Date     | 2025-01-27 |
+| Date     | 2025-01-27      |
 
 ## Executive Summary
 
@@ -105,16 +105,19 @@ This ensures that community concerns are addressed proportionally while preventi
 ### Defederation Process
 
 Defederation removes a participant from the FAIR discovery and recommendation systems and does the following:
+
 - Prevents _new_ sites from discovering packages from defederated Repositories
 - Removes defederated Aggregators from FAIR's discovery services
 - Excludes defederated participants from federation-wide moderation and trust systems
 
 Bear in mind that being defederated will _not_:
+
 - Remove packages from individual sites that already have them installed
 - Disable or shut down the defederated server
 - Affect existing installations or functionality
 
 **Some Reasons for Defederation:**
+
 - Confirmed malware or malicious code
 - Critical security vulnerabilities with active exploitation
 - Copyright violations with valid takedown requests
@@ -156,12 +159,14 @@ FAIR will not intervene in Repository-specific decisions about package hosting o
 FAIR takes full responsibility for all defederation decisions it makes regarding Repositories and Aggregators. When FAIR defederates a participant, we provide a transparent appeals process to ensure fairness and due process.
 
 The scope of the appeals process covers:
+
 - FAIR-initiated defederation decisions
 - FAIR-applied moderation labels that result in widespread consequences
 - Decisions made by FAIR working groups
 - Policy enforcement actions taken by FAIR
 
 **What Appeals Do Not Cover:**
+
 - Repository-specific decisions about individual packages
 - Aggregator-specific listing decisions
 - Third-party service decisions
@@ -206,24 +211,28 @@ All policy decisions are thoroughly documented and made publicly available to en
 This timeline is a loose idea of the directions to take:
 
 **Phase 1 (Immediate):**
+
 - Create robust documentation about the moderation system
 - Determine if a started Working Group is needed
 - Policy documentation and communication
 
 **Phase 2 (3 months):**
+
 - Working group formation and training
 - Integration requirements enforcement
 
 **Phase 3 (6 months):**
+
 - Automated compliance monitoring
 - Appeal process implementation
 - Transparency reporting systems
 
 **Phase 4 (9 months):**
+
 - Performance metrics implementation
 - Policy refinement based on experience
 - Community feedback integration
 
 ---
 
-*This document is a living policy that will be updated based on community feedback and evolving requirements. All changes are subject to public review and comment periods.*
+_This document is a living policy that will be updated based on community feedback and evolving requirements. All changes are subject to public review and comment periods._
