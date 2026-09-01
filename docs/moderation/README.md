@@ -1,6 +1,6 @@
 # Moderation in the FAIR Ecosystem
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |

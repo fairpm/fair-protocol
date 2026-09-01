@@ -1,6 +1,6 @@
 # Moderation Labels
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -14,6 +14,7 @@ This section documents all proposed labels for the FAIR ecosystem, organized by 
 ### FAIR Official Labels
 
 #### Threshold-Based Labels
+
 These labels are automatically applied by FAIR's official labeler based on community reporting thresholds:
 
 - `fair:threshold:warning25` - Applied when 25% of active users report an issue
@@ -22,6 +23,7 @@ These labels are automatically applied by FAIR's official labeler based on commu
 - `fair:threshold:suspended75` - Applied when 75% of active users report an issue, triggers suspension
 
 #### FAIR Governance Labels
+
 Labels applied by FAIR working groups based on policy decisions:
 
 - `fair:verified` - Entity has been verified by FAIR
@@ -32,6 +34,7 @@ Labels applied by FAIR working groups based on policy decisions:
 ### Package-Level Labels
 
 #### Security and Safety
+
 - `package:malicious` - Package contains malicious code or behavior
 - `package:vulnerability:active` - Package has active security vulnerabilities
 - `package:unverified` - Package has not been verified for safety
@@ -47,22 +50,26 @@ Labels applied by FAIR working groups based on policy decisions:
 ### Repository-Level Labels
 
 #### Compliance and Trust
+
 - `repository:insecure` - Repository has security issues
 - `repository:non-compliant` - Repository does not comply with FAIR standards
 
 #### Operational Status
+
 - `repository:verified` - Repository has been verified
 - `repository:trusted` - Repository is trusted by the community
 
 ### Aggregator-Level Labels
 
 #### Compliance and Trust
+
 - `aggregator:compliant` - Aggregator complies with FAIR standards
 - `aggregator:trusted` - Aggregator is trusted by the community
 
 ### Author/Developer Labels
 
 #### Verification
+
 - `author:verified` - Author/developer has been verified
 - `author:trusted` - Author/developer is trusted by the community
 
@@ -71,48 +78,57 @@ Labels applied by FAIR working groups based on policy decisions:
 The following are examples of labels that third-party moderation services might implement:
 
 #### Security Focus
+
 - `myorg:security:audited` - Package has been security audited by organization
 - `myorg:security:reviewed` - Package has been reviewed for security
 
 #### Accessibility Focus
+
 - `community:focus-accessibility` - Package focuses on accessibility
 - `wcag:2.2AA` - Package meets WCAG 2.2 AA standards
 
 #### Vendor/Organization Labels
+
 - `vendor:verified` - Vendor has been verified
 - `vendor:official-partner` - Vendor is an official partner
 - `myorg:custom-label` - Custom label from specific organization
 
 #### Community Labels
+
 - `community:trusted` - Trusted by the community
 
 ### Label Categories by Impact Level
 
 #### Critical (Immediate Action Required)
+
 - `fair:threshold:suspended75`
 - `fair:defederated`
 - `package:malicious`
 - `repository:insecure`
 
 #### High Risk (Warning Required)
+
 - `fair:threshold:review60`
 - `package:security-vulnerability:active`
 - `repository:non-compliant`
 - `repository:non-compliant`
 
 #### Medium Risk (Notice Required)
+
 - `fair:threshold:notice50`
 - `package:unverified`
 - `package:deprecated`
 - `theme:deprecated`
 
 #### Low Risk (Information Only)
+
 - `fair:threshold:warning25`
 - `plugin:experimental`
 - `plugin:community-trusted`
 - `theme:accessibility-reviewed`
 
 #### Positive Signals
+
 - `fair:verified`
 - `fair:security-vetted`
 - `author:verified`

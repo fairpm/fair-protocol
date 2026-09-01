@@ -2,7 +2,6 @@
 
 Security is at the heart of the FAIR system, and is a fundamental design principle of the system.
 
-
 ## Security of DIDs
 
 FAIR is designed to protect against a package being hijacked by anyone else. This is incorporated into the core design of the system, with the use of Decentralized IDs that cannot be controlled by any one entity.
@@ -16,7 +15,6 @@ The repository also controls your DID with its own registration key, which is th
 Because the repository's key is secondary, your recovery key can override the secondary key and remove it. The PLC directory also provides a grace window of 48 hours where your recovery key can remove a prior operation - so if the repository ever "goes rogue", there's a built in way to recover your DID.
 
 Since you control the primary key, you can also move to a different repository - such as one that you trust more, or even one that you run yourself.
-
 
 ## Security of packages
 
@@ -32,7 +30,6 @@ However, situations can change, and repositories may become untrustworthy in the
 
 For publishers who are concerned about this vector, we recommend running your own repository to maintain full control of your DID and package systems. Note that this may be complex to run, and you also potentially have higher risks as there is no ability for others to help you update plugins or recover your DID.
 
-
 ## Security of FAIR-controlled data
 
 Due to the nature of the FAIR system, very little data is centrally controlled by FAIR.
@@ -46,12 +43,10 @@ There are four components run by FAIR for the benefit of the ecosystem:
 
 These services are hosted on servers provided by GoDaddy, who are a well-reputed host who have XXX compliance standards. The FAIR team includes experienced staff familiar with data privacy laws and secure architecture.
 
-
 ### Main Repository
 
 The main repository is run by FAIR to provide a "default" repository publishers can use for their packages. We provide this so that publishers can easily get their packages out, without needing to worry about setting up their own infrastructure.
 
 This system contains the private keys used to manage DIDs for users, as well as signing keys for each package. As a result, it requires the highest level of security.
 
-{Add further detail about security here.}
-
+*Add further detail about security here.*

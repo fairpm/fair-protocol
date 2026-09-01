@@ -1,6 +1,6 @@
 # Service Hierarchy
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -8,15 +8,18 @@
 FAIR's discovery system operates on multiple levels:
 
 ## Repositories
+
 - Host and distribute actual package files
 - Primary content storage layer
 
 ## Aggregators
+
 - Index and list Repositories and their packages
 - Provide search and discovery interfaces
 - Can list other Aggregators (recursive)
 
 ## Discovery Services
+
 - Higher-level directories that aggregate multiple Aggregators
 - Enable ecosystem stakeholders to create unified search experiences
 - Examples: Hosting companies, CMS vendors, large developer communities

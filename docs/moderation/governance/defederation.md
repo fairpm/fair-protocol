@@ -1,9 +1,9 @@
 # Defederation and Removal Policy
 
-| <!-- --> | <!-- -->   |
-|----------|------------|
+|          |                 |
+|----------|-----------------|
 | Status   | Policy Document |
-| Date     | 2025-01-27 |
+| Date     | 2025-01-27      |
 
 ## Executive Summary
 
@@ -22,17 +22,20 @@ This document defines FAIR's comprehensive policy for removing participants, con
 ### 1. Content-Level Removal (Packages, Themes, Plugins)
 
 **Immediate Removal Criteria:**
+
 - Confirmed malware or malicious code
 - Critical security vulnerabilities with active exploitation
 - Copyright violations with valid takedown requests
 - Illegal content as defined by applicable law
 
 **Graduated Removal Process:**
+
 - **Warning Level**: Minor policy violations, security concerns
 - **Suspension Level**: Repeated violations, moderate security issues
 - **Removal Level**: Persistent violations, serious security issues
 
 **Required Documentation:**
+
 - Specific violation description
 - Evidence supporting the decision
 - Date and time of removal
@@ -42,6 +45,7 @@ This document defines FAIR's comprehensive policy for removing participants, con
 ### 2. Repository-Level Removal
 
 **Immediate Defederation Criteria:**
+
 - Persistent failure to respond to security incidents
 - Repeated hosting of malicious content
 - Failure to maintain required contact information
@@ -49,11 +53,13 @@ This document defines FAIR's comprehensive policy for removing participants, con
 - Refusal to integrate with Ozone moderation system
 
 **Graduated Defederation Process:**
+
 - **Warning (7 days)**: First policy violation, technical issues
 - **Suspension (30 days)**: Repeated violations, failure to remediate
 - **Defederation (permanent)**: Persistent non-compliance, security risks
 
 **Required Documentation:**
+
 - Detailed violation report
 - Timeline of incidents and responses
 - Communication attempts with operators
@@ -63,12 +69,14 @@ This document defines FAIR's comprehensive policy for removing participants, con
 ### 3. Aggregator-Level Removal
 
 **Immediate Defederation Criteria:**
+
 - Failure to maintain moderation standards
 - Persistent listing of defederated repositories
 - Non-compliance with federation API requirements
 - Refusal to implement required security measures
 
 **Graduated Process:**
+
 - **Warning (14 days)**: Policy violations, technical issues
 - **Suspension (60 days)**: Repeated violations, failure to remediate
 - **Defederation (permanent)**: Persistent non-compliance
@@ -138,6 +146,7 @@ This document defines FAIR's comprehensive policy for removing participants, con
 ### Reinstatement Process
 
 **Eligibility Requirements:**
+
 - Demonstrated remediation of violations
 - Implementation of required security measures
 - Compliance with all federation policies
@@ -145,6 +154,7 @@ This document defines FAIR's comprehensive policy for removing participants, con
 - Payment of any required fees or penalties
 
 **Reinstatement Process:**
+
 - Formal application with evidence of compliance
 - Technical review by Security Working Group
 - Policy review by Vetting Working Group
@@ -190,12 +200,14 @@ This document defines FAIR's comprehensive policy for removing participants, con
 ### Critical Security Incidents
 
 **Immediate Action Required:**
+
 - Zero-day vulnerabilities with active exploitation
 - Confirmed supply chain attacks
 - Large-scale security breaches
 - Regulatory compliance failures
 
 **Emergency Process:**
+
 - Immediate suspension by Security Working Group
 - Notification to all federation participants
 - Public security advisory within 24 hours
@@ -227,16 +239,19 @@ This document defines FAIR's comprehensive policy for removing participants, con
 ## Implementation Timeline
 
 ### Phase 1 (Immediate)
+
 - Policy communication and training
 - Working group formation
 - Monitoring system implementation
 
 ### Phase 2 (30 days)
+
 - Automated violation detection
 - Warning system implementation
 - Appeal process establishment
 
 ### Phase 3 (90 days)
+
 - Full defederation capability
 - Performance metrics implementation
 - Policy refinement based on experience

@@ -1,11 +1,12 @@
 # Submitting Packages to a Repository
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
 
 A Package is any digital file which may be downloaded, installed, or served from a Repository. This may be include:
+
 * **Software:** Software may be in binary or source code form, whether excutable or not.
 * **Digital archive files:** File archives may bundle and/or compress multiple files into a single file to be "extracted" into its original form for use. (e.g., .zip, .tar.gz, .rar, etc.)
 * **Other content:** Other content may include text, images, media such as audio or video, or other digitally stored information.
@@ -23,6 +24,7 @@ Each Repository must perform the following automated checks:
 * **Security:** Perform an automated security scan at upload time to identify potentially dangerous code, such as known vulnerable patterns or libraries, malware, filesystem abuse, or unauthorized remote calls.
 
 In addition, software Repositories can:
+
 * Scan for use of obfuscation techniques like base64 encoding, ROT13, or unreadable one-liners.
 * Look for raw API keys, secret tokens, or OAuth credentials committed in the source.
 * Compare submitted author name and plugin slug against known identifiers (DIDs, GitHub handles, etc.).

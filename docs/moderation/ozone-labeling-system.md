@@ -1,6 +1,6 @@
 # FAIR's Label-Based Moderation System with Ozone
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -36,25 +36,25 @@ The philosophy behind Ozone aligns well with FAIR's goals for a decentralized ec
 FAIR will leverage Ozone's capabilities in the following ways:
 
 1. **FAIR as a Labeling Authority:**
-    * FAIR (or designated working groups within FAIR) will operate one or more "labeler" services built upon Ozone.
-    * These services will issue labels relevant to the FAIR ecosystem, such as:
-        * `package:malicious`
-        * `package:unverified`
-        * `package:deprecated`
-        * `repository:insecure`
-        * `repository:non-compliant`
-        * `aggregator:compliant`
-        * `author:verified`
-        * `fair:verified`
-    * These and other labels will be publicly queryable and attached to the Decentralized Identifiers (DIDs) of Repositories, Aggregators, or developer identities.
+    - FAIR (or designated working groups within FAIR) will operate one or more "labeler" services built upon Ozone.
+    - These services will issue labels relevant to the FAIR ecosystem, such as:
+        - `package:malicious`
+        - `package:unverified`
+        - `package:deprecated`
+        - `repository:insecure`
+        - `repository:non-compliant`
+        - `aggregator:compliant`
+        - `author:verified`
+        - `fair:verified`
+    - These and other labels will be publicly queryable and attached to the Decentralized Identifiers (DIDs) of Repositories, Aggregators, or developer identities.
 
 2. **Transparency Ledger for Moderation Actions:**
-    * FAIR’s working groups (e.g., for Security, Vetting, or future Appeals) could publish signed moderation records as ATProto data.
-    * Each significant moderation event (e.g., a warning issued, a suspension, a guideline violation finding) becomes a verifiable label event, potentially including metadata about the decision. This contributes to the integrity of the moderation process (see also [Integrity and Transparency Requirements](./governance/integrity.md)).
+    - FAIR’s working groups (e.g., for Security, Vetting, or future Appeals) could publish signed moderation records as ATProto data.
+    - Each significant moderation event (e.g., a warning issued, a suspension, a guideline violation finding) becomes a verifiable label event, potentially including metadata about the decision. This contributes to the integrity of the moderation process (see also [Integrity and Transparency Requirements](./governance/integrity.md)).
 
 3. **Aggregator-Level Enforcement and Filtering:**
-    * FAIR Aggregators, and potentially third-party aggregators, can choose which labelers to trust (e.g., FAIR's official labeler or other community-recognized labelers).
-    * Based on subscribed labels, Aggregators can implement their filtering policies (e.g., hide items labeled `package:malicious`, warn about `repository:insecure`, or boost `author:verified` content). This maintains federation while allowing directories to apply moderation in a composable, client-controlled way.
+    - FAIR Aggregators, and potentially third-party aggregators, can choose which labelers to trust (e.g., FAIR's official labeler or other community-recognized labelers).
+    - Based on subscribed labels, Aggregators can implement their filtering policies (e.g., hide items labeled `package:malicious`, warn about `repository:insecure`, or boost `author:verified` content). This maintains federation while allowing directories to apply moderation in a composable, client-controlled way.
 
 _End users may choose to subscribe to Aggregators which best align with their own moderation preferences._
 
@@ -67,14 +67,14 @@ Ozone itself does not implement threshold-specific rules directly within its cor
 1. **Build a FAIR-Specific Labeler Service:** This service will use Ozone's infrastructure but incorporate FAIR’s specific reporting and escalation logic.
 2. **Monitor Report Metrics:** The FAIR labeler will track report volume and the percentage of active users reporting an item, as defined in the reporting policy.
 3. **Apply Escalation Labels:** Based on the defined thresholds, the FAIR labeler will automatically apply specific, clearly defined labels, such as:
-    * `fair:threshold:warning25` (when 25% threshold is met)
-    * `fair:threshold:notice50` (when 50% threshold is met)
-    * `fair:threshold:review60` (when 60% threshold is met, signaling need for manual review)
-    * `fair:threshold:suspended75` (when 75% threshold is met)
+    - `fair:threshold:warning25` (when 25% threshold is met)
+    - `fair:threshold:notice50` (when 50% threshold is met)
+    - `fair:threshold:review60` (when 60% threshold is met, signaling need for manual review)
+    - `fair:threshold:suspended75` (when 75% threshold is met)
 4. **Actioning Escalation Labels:** These `fair:threshold:*` labels will then be used by:
-    * **Aggregators:** To automatically show/hide content, display warnings, or temporarily delist items.
-    * **Package Installers (e.g., Clients like the FAIR Plugin for WordPress):** To notify end-users and site administrators of the status of plugins/themes or Repositories they interact with.
-    * **FAIR Review Dashboards:** To alert FAIR working groups to items requiring manual review or decision-making.
+    - **Aggregators:** To automatically show/hide content, display warnings, or temporarily delist items.
+    - **Package Installers (e.g., Clients like the FAIR Plugin for WordPress):** To notify end-users and site administrators of the status of plugins/themes or Repositories they interact with.
+    - **FAIR Review Dashboards:** To alert FAIR working groups to items requiring manual review or decision-making.
 5. **Audit Log:** Optionally, the FAIR labeler service will write to a publicly auditable log (e.g., as ATProto repository posts or signed JSON records) each time a threshold-based label is applied, further enhancing transparency.
 
 ## Supporting Technical Components

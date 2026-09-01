@@ -1,6 +1,6 @@
 # Submitting Repositories to Aggregators
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |

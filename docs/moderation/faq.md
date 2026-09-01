@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -48,7 +48,7 @@ Labels are digital tags applied to plugins, themes, Repositories, or Aggregators
 
 * **For Developers/Operators:** Labels can reflect the status or reputation of your plugin, Repository, or Aggregator. Positive labels can build trust, while negative ones (e.g., `repository:non-compliant`) might indicate issues you need to address. Persistent negative labels from reputable labelers could affect your discoverability.
 
-You can learn more about the system in [Ozone Labeling System](./ozone-labeling-system.md) and  Services](./governance-services.md).
+You can learn more about the system in [Ozone Labeling System](./ozone-labeling-system.md) and  [Services](./governance-services.md).
 
 ## Can I run my own Aggregator? What's involved?
 
@@ -66,9 +66,9 @@ Running an Aggregator comes with responsibilities to maintain transparency and c
 
 A **Federation Monitor** is a service that acts as an independent, trusted recipient for copies of reports filed within the FAIR network (e.g., reports about plugins, Repositories, etc.). Its main purpose is to ensure reports aren't lost or suppressed by a single Repository or Aggregator.
 
-*  **As a User:** You generally won't interact directly with a Federation Monitor. When you submit a report through a compliant system, a copy should automatically be sent to a Monitor in the background.
-*  **As a Repository Operator:** You need to ensure your system forwards reports correctly.
-*  **As an Aggregator Operator:** You are *required* to ensure your Aggregator is connected to and forwards relevant report data to at least one recognized Federation Monitor.
+* **As a User:** You generally won't interact directly with a Federation Monitor. When you submit a report through a compliant system, a copy should automatically be sent to a Monitor in the background.
+* **As a Repository Operator:** You need to ensure your system forwards reports correctly.
+* **As an Aggregator Operator:** You are *required* to ensure your Aggregator is connected to and forwards relevant report data to at least one recognized Federation Monitor.
 
 You can find more details in the [Integrity Requirements documentation](./governance/integrity.md#redundant-submissions-and-federation-monitors).
 
@@ -134,24 +134,24 @@ This is a critical question, and understanding your responsibilities is key.
 **Legal Liability (Copyright, Illegal Content, etc.):**
 
 * **You, as the Repository operator, are generally responsible and potentially liable for complying with all applicable laws in your jurisdiction regarding the content you host.** This includes, but is not limited to:
-    * **Copyright Law:** You are responsible for addressing copyright infringement claims (e.g., through DMCA takedown notices or similar legal processes in your region). Hosting copyrighted material without permission can lead to legal action against you.
-    * **Other Illegal Content:** Distributing content that is illegal in your jurisdiction (e.g., malware, incitement to violence, child exploitation material) can also result in severe legal consequences for you as the publisher.
+  * **Copyright Law:** You are responsible for addressing copyright infringement claims (e.g., through DMCA takedown notices or similar legal processes in your region). Hosting copyrighted material without permission can lead to legal action against you.
+  * **Other Illegal Content:** Distributing content that is illegal in your jurisdiction (e.g., malware, incitement to violence, child exploitation material) can also result in severe legal consequences for you as the publisher.
 
 **FAIR's View on Accountability (Within the FAIR Ecosystem):**
 
 Within the FAIR protocol's framework, there's a distinction between direct liability for content *behavior* (e.g., a plugin malfunctioning or having a security flaw *after* installation) and accountability for the *systems and processes* around that content on your Repository.
 
 * **Accountability for Systems, Signals, and Processes:**
-    * While FAIR's model encourages developers to be responsible for the code they write, **Repository operators are held accountable by the FAIR community and governance for the systems, signals, and processes by which content is submitted, vetted (according to your Repository's policies), displayed, and discovered on your Repository.**
-    * This means you are accountable for:
-        * Implementing and enforcing your Repository's submission and content guidelines.
-        * How you integrate with FAIR's moderation and labeling systems (e.g., applying labels, responding to threshold warnings).
-        * Ensuring transparency about your Repository's operations and affiliations.
-        * Your processes for handling reported issues or takedown requests.
-        * Adhering to FAIR's integrity requirements (e.g., connecting to Federation Monitors).
+  * While FAIR's model encourages developers to be responsible for the code they write, **Repository operators are held accountable by the FAIR community and governance for the systems, signals, and processes by which content is submitted, vetted (according to your Repository's policies), displayed, and discovered on your Repository.**
+  * This means you are accountable for:
+    * Implementing and enforcing your Repository's submission and content guidelines.
+    * How you integrate with FAIR's moderation and labeling systems (e.g., applying labels, responding to threshold warnings).
+    * Ensuring transparency about your Repository's operations and affiliations.
+    * Your processes for handling reported issues or takedown requests.
+    * Adhering to FAIR's integrity requirements (e.g., connecting to Federation Monitors).
 * **Behavior of Hosted Content:**
-    * FAIR's reporting and labeling systems are designed to help identify and flag problematic content *behavior* (like security vulnerabilities or spammy actions) after it's been distributed.
-    * If content hosted on your Repository is found to be problematic, your Repository may receive negative labels, and you would be expected to act on such information (e.g., by removing the content or working with the developer, according to your policies and FAIR guidelines). Persistent failure to manage problematic content responsibly can impact your Repository's reputation and standing within the FAIR ecosystem.
+  * FAIR's reporting and labeling systems are designed to help identify and flag problematic content *behavior* (like security vulnerabilities or spammy actions) after it's been distributed.
+  * If content hosted on your Repository is found to be problematic, your Repository may receive negative labels, and you would be expected to act on such information (e.g., by removing the content or working with the developer, according to your policies and FAIR guidelines). Persistent failure to manage problematic content responsibly can impact your Repository's reputation and standing within the FAIR ecosystem.
 
 **In summary:**
 
@@ -224,20 +224,19 @@ If you have legal questions or concerns about operating your Repository or Aggre
 Here are some suggestions on how to find appropriate legal counsel:
 
 * **Local Bar Associations:** Many regional or national bar associations offer referral services that can help you find lawyers specializing in relevant areas such as:
-    * Technology Law
-    * Intellectual Property Law (especially copyright and software licensing)
-    * Internet Law
-    * Data Privacy Law (e.g., GDPR, CCPA, PIPEDA)
-    * Business Law
+  * Technology Law
+  * Intellectual Property Law (especially copyright and software licensing)
+  * Internet Law
+  * Data Privacy Law (e.g., GDPR, CCPA, PIPEDA)
+  * Business Law
 
 * **Lawyers Specializing in Open Source Software:** Some lawyers and law firms specialize in legal issues surrounding free and open source software (FOSS). Searching for legal professionals with this specific expertise might be beneficial, especially concerning licensing.
 
 * **Organizations Supporting Digital Rights or Open Source:** While they may not provide direct legal counsel to individuals or businesses in all cases, organizations like:
-    * The Electronic Frontier Foundation (EFF)
-    * The Software Freedom Law Center (SFLC)
-    * Local digital rights groups may have resources, guides, or be able to point you towards lawyers who work in these areas. Some may offer clinics or pro bono services for specific types of cases or clients (often non-profits).
+  * The Electronic Frontier Foundation (EFF)
+  * The Software Freedom Law Center (SFLC)
+  * Local digital rights groups may have resources, guides, or be able to point you towards lawyers who work in these areas. Some may offer clinics or pro bono services for specific types of cases or clients (often non-profits).
 
 * **Referrals:** If you know other individuals or organizations operating similar services, they might be able to refer you to legal professionals they have worked with.
 
 When seeking legal advice, be prepared to discuss the specifics of your Repository or Aggregator, the types of content you plan to host or index, your target audience, and your operational practices. A legal professional can help you understand your specific rights and responsibilities, draft appropriate terms of service and privacy policies, and navigate any legal challenges that may arise.
-

@@ -1,6 +1,6 @@
 # Submitting Aggregators to a Discovery Service
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
