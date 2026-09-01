@@ -1,0 +1,30 @@
+name: Docusaurus MDX compatibility
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "**/*.mdx"
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.md"
+      - "**/*.mdx"
+
+jobs:
+  mdx-compatibility:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate documentation
+        run: npm run lint:markdown
