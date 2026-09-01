@@ -1,6 +1,6 @@
 # Moderation Services and Labelers in FAIR
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -47,24 +47,24 @@ The FAIR ecosystem is designed to support the operation of independent, third-pa
 A third party wishing to establish their own Moderation Service within the FAIR ecosystem would generally need to:
 
 1. **Define Scope and Criteria:**
-    * Determine the types of labels they will issue and the clear, consistent criteria for applying them.
-    * Identify their target audience or the specific value their labels will provide.
+    - Determine the types of labels they will issue and the clear, consistent criteria for applying them.
+    - Identify their target audience or the specific value their labels will provide.
 
 2. **Set Up Technical Infrastructure:**
-    * Implement or deploy a "labeler" application. This could involve:
-        * Forking and customizing existing open-source Ozone components.
-        * Developing a custom application that can interact with the AT Protocol or a similar decentralized identity and data framework used by FAIR.
-        * The service must be able to sign and publish labels associated with DIDs in a way that is consumable by other FAIR participants.
-    * Ensure the service has a stable, discoverable endpoint (API).
+    - Implement or deploy a "labeler" application. This could involve:
+        - Forking and customizing existing open-source Ozone components.
+        - Developing a custom application that can interact with the AT Protocol or a similar decentralized identity and data framework used by FAIR.
+        - The service must be able to sign and publish labels associated with DIDs in a way that is consumable by other FAIR participants.
+    - Ensure the service has a stable, discoverable endpoint (API).
 
 3. **Establish Identity:**
-    * The Moderation Service should have its own clear identity within the network (e.g., its own DID). This allows consumers of its labels to know who is issuing them.
+    - The Moderation Service should have its own clear identity within the network (e.g., its own DID). This allows consumers of its labels to know who is issuing them.
 
 4. **Publish Labeling Policies:**
-    * It is highly recommended (though not mandated by FAIR for independent services) to publicly document the service's labeling policies, criteria, and any dispute resolution mechanisms they offer for their own labels. This builds trust with potential consumers of their labels.
+    - It is highly recommended (though not mandated by FAIR for independent services) to publicly document the service's labeling policies, criteria, and any dispute resolution mechanisms they offer for their own labels. This builds trust with potential consumers of their labels.
 
 5. **Announce and Promote:**
-    * Make the FAIR community aware of the new Moderation Service, its purpose, and how to subscribe to its labels.
+    - Make the FAIR community aware of the new Moderation Service, its purpose, and how to subscribe to its labels.
 
 ### Interoperability Considerations
 

@@ -1,6 +1,6 @@
 # Appeals Process for FAIR Moderation Decisions
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -54,30 +54,30 @@ _Simply disagreeing with the decision is not adequate grounds for appeal: new in
 ## The Appeals Process
 
 1. **Submission:**
-    * Appeals must be submitted via the form or published contact information on the FAIR website specifically addressing moderation requests, dispute resolutions and appeals.
-    * The appeal should be submitted within 60 days of the notification of the decision being appealed.
+    - Appeals must be submitted via the form or published contact information on the FAIR website specifically addressing moderation requests, dispute resolutions and appeals.
+    - The appeal should be submitted within 60 days of the notification of the decision being appealed.
 
 2. **Required Information, in FAIR's Preferred Order:**
-    * Appellant's name and contact information.
-    * Clear identification of the decision or label being appealed (e.g., Repository URL, DID (if available, else package slug or other identifier), date of decision, specific label).
-    * A summary of the grounds for appeal consisting of no more than 300 words.
-    * A detailed explanation of the justifiable grounds for the appeal as listed here. When presenting new information, it will be helpful to note why the information was not available during the initial review process.
-    * Any available applicable supporting evidence (e.g., logs, screenshots, corrected information).
-    * The desired outcome of the appeal.
+    - Appellant's name and contact information.
+    - Clear identification of the decision or label being appealed (e.g., Repository URL, DID (if available, else package slug or other identifier), date of decision, specific label).
+    - A summary of the grounds for appeal consisting of no more than 300 words.
+    - A detailed explanation of the justifiable grounds for the appeal as listed here. When presenting new information, it will be helpful to note why the information was not available during the initial review process.
+    - Any available applicable supporting evidence (e.g., logs, screenshots, corrected information).
+    - The desired outcome of the appeal.
 
-3.  **Review:**
-    * Appeals will be reviewed by a designated FAIR Appeals Working Group, which whenever reasonably possible will be independent of the body that made the initial decision.
-    * The Appeals Working Group may request further information from the appellant or other relevant parties.
-    * The review process will aim to be completed within 60 days, though complex cases may take longer. Appellants will be kept informed of the progress.
+3. **Review:**
+    - Appeals will be reviewed by a designated FAIR Appeals Working Group, which whenever reasonably possible will be independent of the body that made the initial decision.
+    - The Appeals Working Group may request further information from the appellant or other relevant parties.
+    - The review process will aim to be completed within 60 days, though complex cases may take longer. Appellants will be kept informed of the progress.
 
-4.  **Decision:**
-    * The Appeals Working Group will issue a written decision, outlining the reasons for upholding, overturning, or modifying the original decision.
-    * Possible outcomes include:
-        * **Appeal Declined for Consideration:** Valid grounds for appeal have not been established.
-        * **Appeal Upheld:** The original decision is overturned or modified.
-        * **Appeal Partially Upheld:** Parts of the original decision are modified, while others stand.
-        * **Appeal Denied:** The original decision stands.
-    * The decision of the Appeals Working Group is typically final.
+4. **Decision:**
+    - The Appeals Working Group will issue a written decision, outlining the reasons for upholding, overturning, or modifying the original decision.
+    - Possible outcomes include:
+        - **Appeal Declined for Consideration:** Valid grounds for appeal have not been established.
+        - **Appeal Upheld:** The original decision is overturned or modified.
+        - **Appeal Partially Upheld:** Parts of the original decision are modified, while others stand.
+        - **Appeal Denied:** The original decision stands.
+    - The decision of the Appeals Working Group is typically final.
 
 ## Transparency and the Appeals Viewer
 

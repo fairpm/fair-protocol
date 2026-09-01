@@ -1,6 +1,6 @@
 # Integrity and Transparency Requirements
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -22,39 +22,39 @@ To ensure the highest level of transparency and allow users to make informed dec
 
 Open disclosure of these relationships is essential for:
 
-* User Trust: Users can better assess the neutrality and motivations behind listings and recommendations.
-* Fair Competition: It prevents hidden advantages and ensures that merit and quality can be more fairly judged.
-* Preventing Deception: It guards against practices that could mislead users into believing endorsements are purely organic when they are commercially influenced.
+- User Trust: Users can better assess the neutrality and motivations behind listings and recommendations.
+- Fair Competition: It prevents hidden advantages and ensures that merit and quality can be more fairly judged.
+- Preventing Deception: It guards against practices that could mislead users into believing endorsements are purely organic when they are commercially influenced.
 
 This principle is vital for maintaining user trust and ensuring a level playing field within the FAIR ecosystem.
 
-### Specific Disclosure Requirements:
+### Specific Disclosure Requirements
 
-* **Paid Listings or Preferential Treatment:**
-    * **By Aggregators:** If an Aggregator receives payment from a Repository for inclusion in its listings, for preferential placement (e.g., "featured," "sponsored"), or for any other form of paid promotion, this relationship **must** be clearly and conspicuously disclosed by the Aggregator.
-    * **By Repositories:** If a Repository receives payment from a plugin/theme author/developer for hosting their package, for preferential display on the Repository, or for any other form of paid promotion, this **must** be clearly and conspicuously disclosed by the Repository.
-    * In both cases, this disclosure should be visible alongside the relevant listing(s) and in a dedicated, easily accessible section detailing all such arrangements.
-* **Sponsorship of Infrastructure or Operations:** If server hosting, significant operational costs, or development are sponsored or paid for by a third-party entity (especially if that entity also participates in or benefits from the FAIR ecosystem, such as a commercial plugin company, hosting provider, or another Repository/Aggregator), this sponsorship **must** be disclosed, **naming** the sponsoring entity and the nature of the support provided.
-* **Other Material Affiliations:** Any other affiliations or relationships (e.g., common ownership between a Repository and an Aggregator, significant investment by an ecosystem participant in another) that could reasonably be perceived by users as a potential conflict of interest or a source of bias **must** be disclosed.
+- **Paid Listings or Preferential Treatment:**
+  - **By Aggregators:** If an Aggregator receives payment from a Repository for inclusion in its listings, for preferential placement (e.g., "featured," "sponsored"), or for any other form of paid promotion, this relationship **must** be clearly and conspicuously disclosed by the Aggregator.
+  - **By Repositories:** If a Repository receives payment from a plugin/theme author/developer for hosting their package, for preferential display on the Repository, or for any other form of paid promotion, this **must** be clearly and conspicuously disclosed by the Repository.
+  - In both cases, this disclosure should be visible alongside the relevant listing(s) and in a dedicated, easily accessible section detailing all such arrangements.
+- **Sponsorship of Infrastructure or Operations:** If server hosting, significant operational costs, or development are sponsored or paid for by a third-party entity (especially if that entity also participates in or benefits from the FAIR ecosystem, such as a commercial plugin company, hosting provider, or another Repository/Aggregator), this sponsorship **must** be disclosed, **naming** the sponsoring entity and the nature of the support provided.
+- **Other Material Affiliations:** Any other affiliations or relationships (e.g., common ownership between a Repository and an Aggregator, significant investment by an ecosystem participant in another) that could reasonably be perceived by users as a potential conflict of interest or a source of bias **must** be disclosed.
 
-### Method of Disclosure:
+### Method of Disclosure
 
 Disclosure information must be:
 
-* Clear and Conspicuous: Not hidden in fine print or obscure locations.
-* Easily Accessible: Users should not have to hunt for this information.
-* Machine-Readable: Where feasible, such disclosures should also be available in a machine-readable format as part of the Repository's or Aggregator's metadata API, allowing tools and other services to surface this information. For example, a `sponsored: true` flag or an `affiliations` array in metadata.
-* Typically Provided On:
-    * A dedicated "About Us," "Disclosure," "Sponsorship," or "Transparency" page on the Repository or Aggregator's public-facing website/interface.
-    * Directly on or adjacent to listings if the disclosure pertains to a specific item (e.g., a "Sponsored Listing" badge).
+- Clear and Conspicuous: Not hidden in fine print or obscure locations.
+- Easily Accessible: Users should not have to hunt for this information.
+- Machine-Readable: Where feasible, such disclosures should also be available in a machine-readable format as part of the Repository's or Aggregator's metadata API, allowing tools and other services to surface this information. For example, a `sponsored: true` flag or an `affiliations` array in metadata.
+- Typically Provided On:
+  - A dedicated "About Us," "Disclosure," "Sponsorship," or "Transparency" page on the Repository or Aggregator's public-facing website/interface.
+  - Directly on or adjacent to listings if the disclosure pertains to a specific item (e.g., a "Sponsored Listing" badge).
 
-### Consequences of Non-Disclosure:
+### Consequences of Non-Disclosure
 
 Failure to adequately disclose such material affiliations and financial interests will be considered a breach of FAIR's integrity standards. This may lead to:
 
-* A formal warning from FAIR.
-* The Repository or Aggregator being flagged as "Lacking Transparency" by FAIR's official Aggregator or other community tools.
-* Persistent or egregious non-disclosure may result in a review for suspension or delisting from FAIR's official Aggregator and potential defederation warnings issued to the community.
+- A formal warning from FAIR.
+- The Repository or Aggregator being flagged as "Lacking Transparency" by FAIR's official Aggregator or other community tools.
+- Persistent or egregious non-disclosure may result in a review for suspension or delisting from FAIR's official Aggregator and potential defederation warnings issued to the community.
 
 ## Signed and Auditable Logs
 
@@ -72,9 +72,9 @@ To further bolster the integrity of moderation decisions originating from FAIR i
 
 This involves:
 
-* **Signed Records:** Key moderation events (e.g., formal warnings, suspensions, delistings initiated by FAIR, or the application of critical FAIR-issued labels) will be recorded as cryptographically signed, verifiable entries.
-* **Publicly Auditable:** These signed records can be published to a distributed ledger or a system built on technologies like the AT Protocol graph. This makes FAIR's own moderation interventions transparent and available for public audit.
-* **Contribution to System Integrity:** By making its own oversight actions verifiable and difficult to tamper with, FAIR not only ensures accountability for its role but also provides a trusted dataset that other participants in the ecosystem can reference. This complements the requirements for individual Repositories and Aggregators to maintain their own logs.
+- **Signed Records:** Key moderation events (e.g., formal warnings, suspensions, delistings initiated by FAIR, or the application of critical FAIR-issued labels) will be recorded as cryptographically signed, verifiable entries.
+- **Publicly Auditable:** These signed records can be published to a distributed ledger or a system built on technologies like the AT Protocol graph. This makes FAIR's own moderation interventions transparent and available for public audit.
+- **Contribution to System Integrity:** By making its own oversight actions verifiable and difficult to tamper with, FAIR not only ensures accountability for its role but also provides a trusted dataset that other participants in the ecosystem can reference. This complements the requirements for individual Repositories and Aggregators to maintain their own logs.
 
 The mechanisms for creating and distributing these signed moderation records, including how they relate to the broader label-based system, are detailed further in the [Ozone Labeling System documentation](../ozone-labeling-system.md). This approach ensures that even FAIR's own interventions are subject to scrutiny, reinforcing the overall integrity of the federated ecosystem.
 
@@ -98,8 +98,8 @@ A **Federation Monitor** (or "Monitor") is a designated, trusted service whose p
 
 - **Requirement for Aggregators:** All Aggregators participating in the FAIR ecosystem **must** be configured to forward copies of relevant reports they process or receive to at least one FAIR-recognized Federation Monitor.
 - **Public List of Recognized Monitors:** FAIR will maintain and publish a list of recognized Federation Monitor services. This list will be:
-    - Publicly accessible and machine-readable (e.g., via a JSON API endpoint like `GET /fair/v1/monitors`).
-    - Provide necessary details for each Monitor, such as its name, report submission API endpoint, and public key if applicable.
+  - Publicly accessible and machine-readable (e.g., via a JSON API endpoint like `GET /fair/v1/monitors`).
+  - Provide necessary details for each Monitor, such as its name, report submission API endpoint, and public key if applicable.
 - **FAIR's Default Usage:** The official FAIR Aggregator service(s) will utilize FAIR's own designated Federation Monitor service(s). FAIR's Aggregator and other ecosystem tools may flag or indicate Aggregators that are not verifiably connected to a recognized Monitor, signaling a potential risk or lack of full compliance with integrity standards.
 - **Purpose:** Monitors serve as an independent receipt point, facilitating audits by FAIR working groups, verifying report acknowledgment, and helping investigate claims of suppression.
 

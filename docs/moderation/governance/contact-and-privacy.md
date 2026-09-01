@@ -1,6 +1,6 @@
 # Contact and Privacy Requirements
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -61,4 +61,3 @@ This includes:
 Integration with Ozone enables real-time coordination between federation participants, allowing FAIR and other Aggregators to track abuse reports, verify identities, and ensure that moderation actions are visible and enforceable across the network.
 
 Failure to implement or maintain this integration will be treated as a breach of federation protocol and may lead to delisting or defederation.
-

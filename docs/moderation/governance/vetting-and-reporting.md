@@ -1,6 +1,6 @@
-#  Vetting and Reporting
+# Vetting and Reporting
 
-| <!-- --> | <!-- -->   |
+|          |            |
 |----------|------------|
 | Status   | Proposal   |
 | Date     | 2025-07-22 |
@@ -27,11 +27,11 @@ While everyone should be free to submit and host repositories, safeguards are es
 Each Repository and Aggregator must implement easily accessible reporting features:
 
 - **Repositories:** Must provide features visible within the client (package installer or browser interface) interface:
-    - "Report Package"
-    - "Report Repository"
+  - "Report Package"
+  - "Report Repository"
 - **Aggregators:** Must include additional reporting features:
-    - "Report Repository"
-    - "Report Aggregator"
+  - "Report Repository"
+  - "Report Aggregator"
 
 These reporting tools must be available to the client from both listing and detail views for packages, Repositories, and Aggregators. For example, the WordPress theme or plugin installer (client) using FAIR should make this information visible to the end user, whether the user is browsing or searching plugins or themes, or reviewing those which are already installed.
 
@@ -56,16 +56,16 @@ Valid reports contribute toward a threshold system that escalates actions based 
 ### Reporting Actions by Threshold
 
 - **25%:**
-    - Automated warning recorded and shown in system logs.
+  - Automated warning recorded and shown in system logs.
 - **50%:**
-    - Notice displayed on all relevant listings.
-    - Reports forwarded to directory Aggregators.
-    - “Community Notice” badge shown.
+  - Notice displayed on all relevant listings.
+  - Reports forwarded to directory Aggregators.
+  - “Community Notice” badge shown.
 - **60%:**
-    - “Community Notice” escalates to a visible Warning.
-    - FAIR working group is alerted for manual review.
+  - “Community Notice” escalates to a visible Warning.
+  - FAIR working group is alerted for manual review.
 - **75%:**
-    - Automated temporary suspension from Repository and Aggregators, pending FAIR decision.
+  - Automated temporary suspension from Repository and Aggregators, pending FAIR decision.
 
 Note on Implementation: These threshold-triggered actions, such as warnings, notices, and suspensions, are implemented and propagated across the decentralized network as "labels." These labels are applied to the relevant Repository, Aggregator, or package. For a detailed explanation of how this labeling system works, including its basis on systems like Ozone, please see the [Ozone Labeling System documentation](../ozone-labeling-system.md).
 
