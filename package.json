@@ -5,9 +5,15 @@
 	"private": true,
 	"devDependencies": {
 		"ajv-cli": "^5.0",
-		"ajv-formats": "^3.0"
+		"ajv-formats": "^3.0",
+		"remark-cli": "^12.0.1",
+		"remark-directive": "^4.0.0",
+		"remark-frontmatter": "^5.0.0",
+		"remark-gfm": "^4.0.1",
+		"remark-mdx": "^3.1.1"
 	},
 	"scripts": {
-		"test": "./scripts/test.sh"
+		"test": "./scripts/test.sh",
+		"lint:markdown": "remark docs external --ext md --ext mdx --quiet --frail"
 	}
 }
