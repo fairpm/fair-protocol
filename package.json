@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"test": "./scripts/test.sh",
-		"prepare": "husky .husky",
+		"prepare": "husky",
 		"lint:markdown": "remark docs --ext md --ext mdx --quiet --frail"
 	},
 	"lint-staged": {
