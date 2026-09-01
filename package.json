@@ -17,9 +17,9 @@
 	"scripts": {
 		"test": "./scripts/test.sh",
 		"prepare": "husky",
-		"lint:markdown": "remark docs --ext md --ext mdx --quiet --frail"
+		"lint:markdown": "remark docs --ext md --ext mdx --output --quiet --frail"
 	},
 	"lint-staged": {
-   		"**/*.{md,mdx}": "remark --quiet --frail"
+   		"**/*.{md,mdx}": "remark --output --quiet --frail"
 	}
 }
