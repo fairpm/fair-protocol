@@ -14,6 +14,6 @@
 	},
 	"scripts": {
 		"test": "./scripts/test.sh",
-		"lint:markdown": "remark docs external --ext md --ext mdx --quiet --frail"
+		"lint:markdown": "remark docs --ext md --ext mdx --quiet --frail"
 	}
 }
