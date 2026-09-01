@@ -2,7 +2,6 @@
 
 This document is designed as a detailed technical overview of how the FAIR decentralized concept works, including background information on inspiration.
 
-
 ## Prior Art
 
 ### Linux Package Distribution
@@ -12,7 +11,6 @@ Linux distributions provide package managers which typically allow for multiple 
 This also incorporates package signing, however this is implemented as a layer on top of the distribution system. Trust is assigned at the repository level, not the package level, allowing a malicious trusted repository to hijack a package - "the ACF problem".
 
 The mirror system also leads to complexity in synchronization, and does not provide any authoritative source of data for usage statistics.
-
 
 ### Composer
 
@@ -24,12 +22,10 @@ Composer's primary usage is for developers, and the complexity of the tool and s
 
 The internals of Composer are difficult to reuse in other contexts, and it is not guaranteed to have a stable API.
 
-
 ### AT Proto
 
-- <https://atproto.com/>
-
-- <https://atproto.com/articles/atproto-for-distsys-engineers>
+- [atproto.com](https://atproto.com/)
+- [Atproto for distributed systems engineers](https://atproto.com/articles/atproto-for-distsys-engineers)
 
 AT Proto is the protocol underlying Bluesky, which was developed in response to an existing centralized service as a way to redesign to avoid the problems centralization had created.
 
@@ -43,7 +39,6 @@ This avoids some of the big synchronisation problems that occur with similar pro
 
 We look to AT Proto as a great example of a specific response to centralisation - there's plenty that will be applicable, but also aspects that aren't, since their problems aren't the same as ours. In the social web, all players are equal - but we're designing a distribution system of providers and users, not a social network.
 
-
 ### WordPress already
 
 WordPress already has a type of decentralized system hacked into it, with premium plugins and tools like Git Updater having to be grafted on to core's update system - and with no potential to integrate into the core install system (there is no way to find the plugin from within WordPress dashboard at this time).
@@ -52,10 +47,9 @@ Each implementation integrates independently, with two large implementations com
 
 This means that the flow today for many sites looks like:
 
-![](./initial-existing.png) 
+![Graph of WordPress' current implementation of package updaters](./initial-existing.png)
 
 Notably though, none of these providers speak a common protocol, and all have to integrate into WordPress independently. This makes it more difficult to develop new plugins, and stifles innovation. Integrating these natively will make it much easier for new vendors, and can also solve the new install problem too.
-
 
 ## Our Protocol
 
@@ -66,9 +60,7 @@ Taking lessons from the prior art in the ecosystem, we can model out a similar s
 We'll create three core concepts:
 
 - Repository Nodes
-
 - Aggregators
-
 - Extras (e.g. Analytics)
 
 The Repository Nodes are servers that provide package zips and some information about them (name, description, images, FAQ, etc).
@@ -77,10 +69,9 @@ The Aggregators are servers that provide any service that collects information a
 
 Additionally, we'll have some extras. Specifically, a neutral central analytics service that can provide information to aggregators, but is not essential.
 
-![](./initial-overview.png)
+![Graph of FAIR's protocol initial design](./initial-overview.png)
 
 To bootstrap the network, we'll create reference implementations of the Repository Node, some key Aggregators, and our analytics service - all as open source. We'll also run a central version of each to provide services to smaller players, while allowing bigger players to federate into the network when it makes sense. This will balance flexibility and independence with practicality and accessibility.
-
 
 ### Repository Node
 
@@ -96,7 +87,7 @@ Example endpoints for repository nodes might look like:
 
 - `/packages` - List all packages the repository node offers.
 - `/packages/{id}` - Get metadata about a specific package, including:
-	- `name`, `id`, `description`
+  - `name`, `id`, `description`
 - `/packages/{id}/versions` - Get available versions of a package.
 - `/packages/{id}/versions/{version}/download` - Download a specific package version.
 - `/packages/{id}/versions/{version}/signature` - Get the package signature for a specific version.
@@ -107,7 +98,6 @@ Custom authorization for repository nodes can be implemented for licensing, usin
 
 (Detailed design on endpoints tbd, but can be modelled after Composer's design.)
 
-
 ### Aggregators
 
 Aggregators pool information from multiple Repository Nodes to create an index, and offer various services based on this. They store some metadata about packages, but point sites to the actual Repository Node for the canonical information and downloads.
@@ -115,7 +105,6 @@ Aggregators pool information from multiple Repository Nodes to create an index, 
 Since package metadata can be used for a wide variety of purposes, many different services are possible, but we think the following are the essential ones we'll need to start with:
 
 - **Discovery** - An aggregator to find all available packages, and let users browse and search them.
-
 - **Moderation** - An aggregator to flag insecure/bad packages (and package releases) as well as vouched packages - to provide a good/bad status to help users make an informed decision.
 
 A single server could offer multiple types of aggregators - they don't need to be arbitrarily split.
@@ -124,27 +113,24 @@ We think there's a wide scope for businesses to build off the aggregation system
 
 Also, the network would be open to new aggregator types to allow for innovation - for example, a new recommender type could provide data-driven recommendations on great packages to solve user problems.
 
-
 #### Discovery Aggregator
 
 Example endpoints for a discovery node might be:
 
 - `/packages` - List all packages this node knows about.
-	- `/packages?tag=seo` - Get all packages tagged with "SEO".
+  - `/packages?tag=seo` - Get all packages tagged with "SEO".
 - `/packages/{id}` - Get metadata about a specific package, including:
-	- `name`, `id`, `description`
-	- `repository_node`
+  - `name`, `id`, `description`
+  - `repository_node`
 - `/search` - Find packages by name, type, tag, etc.
-
 
 #### Moderation Aggregator
 
 Example endpoints for a moderation node might be:
 
 - `/check/{id}` - Check a singular package's status data, including:
-	- `score` - -1 for bad, 1 for good, 0 for neutral or unknown.
+  - `score` - -1 for bad, 1 for good, 0 for neutral or unknown.
 - `/check-all` - Check multiple packages.
-
 
 ### Analytics
 
@@ -159,7 +145,6 @@ This component will be run for the common good, and will provide data neutrally 
 Aggregators and repository nodes can still collect their own data, but the use of a neutral service makes the data more reliable - it protects the ecosystem against repository nodes faking download counts, for example.
 
 The analytics concept breaks from AT Proto, which gets "like" and "repost" counts by searching for like/repost events. In a social media context like AT Proto, all actors are public, whereas in our context sites are not public. Using a single, central, neutral service for the common good provides a simple way to fix this, while designing the protocol to not require it if it turns bad. This is not dissimilar to parts of other trust structures, such as [Sigstore's Public Good Instance](https://openssf.org/blog/2023/10/03/running-sigstore-as-a-managed-service-a-tour-of-sigstores-public-good-instance/).
-
 
 ## Data
 
@@ -177,11 +162,9 @@ Similar to other package management systems, we could use (reverse) DNS, e.g. or
 
 This is easier and doesn't involve any central service, but is harder to use for small developers who may not have a domain yet. It also does not retain portability through renaming, so the ID may forever contain a fixed name - which can bring trademark concerns.
 
-
 #### UUIDs
 
 We could use standalone unique IDs, like UUIDs. This would give us a concept of global uniqueness, but we wouldn't be able to prove the provenance of any ID - anyone could use any ID.
-
 
 #### DIDs
 
@@ -193,7 +176,6 @@ For example, I might install a plugin "Toast SEO", which has the internal ID of 
 
 We could also support the did:web: method, which does use DNS - this would give that as a possibility too. This uses a combination of DNS with a /.well-known/did.json endpoint which any site could implement. This is lacking data portability, but we could support both to let people pick whichever they prefer.
 
-
 ### Signatures
 
 Signatures likely need to be tied to IDs in some regard to bootstrap the web of trust.
@@ -202,34 +184,30 @@ Using either DIDs or DNS, we can likely store public keys in a publicly accessib
 
 We should likely look at a service like [Sigstore](https://www.sigstore.dev/) for signature storage - this is also how GitHub package signing works.
 
-
 ## Examples
 
 Here are some examples as to how the system works.
-
 
 ### Search and Install a Plugin
 
 In this scenario, a user is looking for a plugin, but doesn't know where to find it. They contact their discovery aggregator to find it. Since the discovery aggregator pulls analytics data periodically, it would be updated with the newest releases.
 
-![](./initial-scenario-search-install.png)
+![Graph of FAIR's initial Search and Install scenario](./initial-scenario-search-install.png)
 
 The Discovery node never knows which package was selected, but can still recommend more-frequently-used plugins using the analytics data.
 
 The Analytics node has no direct influence or control, but can assist the Discovery node - the Discovery node can also ignore it if it turns bad.
 
-
 ### Check and Update a Plugin
 
 In this scenario, a user has a plugin and wants to check for updates. They contact the repository node (DistA) to check for updates.
 
-![](./initial-scenario-update.png)
+![Graph of FAIR's initial Update scenario](./initial-scenario-update.png)
 
 The Discovery node is not involved at all, meaning the distributor has full control - they can't be hijacked.
-
 
 ### Positive and Negative Moderation
 
 In this scenario, a user is about to install several packages. They have two moderation aggregators enabled: a developer verification (VerifyMod) and a security scanning tool (SecurityMod).
 
-![](./initial-scenario-moderation.png)
+![Graph of FAIR's initial Moderation scenario](./initial-scenario-moderation.png)
