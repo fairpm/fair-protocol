@@ -29,3 +29,15 @@ This document is a registry for the known extensions to the FAIR Package Managem
 | `bearer` | [FAIR Authentication Methods](./ext-auth.md) | FAIR Working Group |
 | `basic`  | [FAIR Authentication Methods](./ext-auth.md) | FAIR Working Group |
 | `oauth2` | [FAIR Authentication Methods](./ext-auth.md) | FAIR Working Group |
+
+
+## Entitlement Types
+
+The "Typical proof lifetime" column is non-normative guidance for vendors choosing the JWT `exp` claim on [entitlement proofs](./specification.md#entitlement-proof). Vendors MAY use any lifetime appropriate to their entitlement model; the spec does not impose a maximum.
+
+| Type                | Description                                             | Typical proof lifetime                          |
+| ------------------- | ------------------------------------------------------- | ----------------------------------------------- |
+| `subscription`      | Active subscription required to access the package.     | Days to one billing cycle (e.g., 1–30 days)     |
+| `purchase`          | One-time purchase required to access the package.       | Long-lived (months); refresh on revocation only |
+| `license-key`       | Valid license key required to access the package.       | Up to the licence's own expiry                  |
+| `free-registration` | Free to use, but requires registration with the vendor. | Long-lived (weeks to a year)                    |
